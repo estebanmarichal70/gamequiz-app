@@ -1,0 +1,98 @@
+//Aca van las variables
+$color-primary: #202225;
+$color-secondary: #2f3136;
+$color-third: #36393f;
+$color-texto-1: #d1d2d3;
+$color-texto-2: #909296;
+
+$phone-breakpoint: 576px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 992px;
+$large-breakpoint: 1200px;
+
+//@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+//@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) { ... }
+
+.d-flex {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.center-all {
+  @extend .d-flex;
+  @extend .ai-center;
+  @extend .jc-center;
+}
+
+.center-all-col {
+  @extend .center-all;
+  flex-direction: column;
+}
+
+@for $j from 1 through 100 {
+  .h-#{$j} {
+    height: ($j * 1%);
+  }
+}
+
+@for $j from 1 through 100 {
+  .w-#{$j} {
+    width: ($j * 1%);
+  }
+}
+
+.titulo {
+  color: $color-texto-1;
+}
+
+.titulo-inicio {
+  @extend .titulo;
+  font-size: 3rem;
+}
+
+.subtitulo {
+  color: $color-texto-2;
+}
+
+.boton-inicio {
+  background-color: $color-secondary;
+  color: $color-texto-1;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+
+  @media (max-width: $phone-breakpoint) {
+    width: 200px;
+    height: 100px;
+  }
+
+  @media (min-width: $phone-breakpoint) {
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+      background-color: $color-third;
+    }
+    width: 400px;
+    height: 150px;
+  }
+}
+
+.link{
+  text-decoration: none;
+}
