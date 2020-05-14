@@ -3,6 +3,7 @@ import '../../assets/sass/App.scss';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 const Login = React.lazy(()=> import('./login.view'));
+const Registrar = React.lazy(()=> import('./registrar.view'));
 
 const Usuario = ({match}) => {
     return (
@@ -12,6 +13,7 @@ const Usuario = ({match}) => {
                     <BrowserRouter>
                         <Switch>
                             <Route path={`${match.url}/login`} render={props => <Login {...props}/>} exact />
+                            <Route path={`${match.url}/registrar`} render={props => <Registrar {...props}/>} exact />
                         </Switch>
                     </BrowserRouter>
                 </Suspense>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BotonInicio from "../../components/boton-Inicio.component";
+import BotonInicio from "../components/boton-Inicio.component";
 
 class Inicio extends Component {
   render() {
@@ -7,7 +7,7 @@ class Inicio extends Component {
       <div className="h-100 center-all-col">
         <h1 className="titulo-inicio">GameQuiz</h1>
         <BotonInicio ruta="/jugar" text="Jugar" />
-        <BotonInicio ruta="/crear" text="Crear Juego" />
+        <BotonInicio ruta="/usuario/login" text="Crear Juego" />
       </div>
     );
   }
