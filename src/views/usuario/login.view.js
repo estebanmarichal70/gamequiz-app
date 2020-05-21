@@ -15,15 +15,16 @@ class Login extends Component {
                 <div className="titulo-login">Iniciar Sesión</div>
                 <input type="text" placeholder="Username" autoFocus/>
                 <input type="password" placeholder="Password"/>
-                    <button type="submit">
-                        Login
-                     </button>
+                <button type="submit">
+                    Login
+                </button>
                 <Link className="link-blanco" to="/usuario/registrar">
                     Registrarse
                 </Link>
             </div>
         );
     }
+    
 }
 
 export default Login;
