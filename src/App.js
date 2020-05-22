@@ -5,6 +5,7 @@ import {Switch,Route,BrowserRouter} from 'react-router-dom'
 const VistaInicio = React.lazy(()=> import('./views/index.view'));
 const Auth = React.lazy(()=> import('./views/usuario/index.view'));
 const Juego = React.lazy(()=> import('./views/juego/index.view'));
+const Perfil = React.lazy(()=> import('./views/usuario/perfil.view'));
 
 class App extends Component {
   render() { 
@@ -15,7 +16,8 @@ class App extends Component {
             <Switch>
               <Route path='/' render={props => <VistaInicio {...props}/>} exact />
               <Route path='/usuario' render={props => <Auth {...props}/>} />  
-              <Route path='/app' render={props => <Juego {...props}/>} />  
+              <Route path='/app' render={props => <Juego {...props}/>} />
+              <Route path='/perfil' render={props => <Perfil {...props}/>} />
             </Switch>
           </BrowserRouter>
         </Suspense>
