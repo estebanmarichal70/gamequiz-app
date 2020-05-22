@@ -1,17 +1,18 @@
-const baseUrl = 'http://localhost:44365'
-const basePath = '/api'
-const apiUrl = baseUrl + basePath
+import axios from "axios";
 
-let axios = require("axios");
+import {API_URL} from "../constants/constants";
 
-/*let addDefaultHeaders = () => {
-  axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem('access_token'));
-}*/
+let addDefaultHeaders = () => {
+    axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem('access_token'));
+}
 
-module.exports = {
-  services: {
-    registrar(data) {
-      return axios.post(apiUrl + "/registrar", data);
+export default {
+    services: {
+        registrar(data) {
+            return axios.post(API_URL + "/registrar", data);
+        },
+        login(params) {
+            return axios.post(API_URL + "/acceder", params);
+        }
     }
-  }
 }
