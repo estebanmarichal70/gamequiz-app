@@ -47,8 +47,7 @@ class Registrar extends Component {
                 nombre: this.state.nombre,
                 apellido: this.state.apellido,
                 username: this.state.username,
-                password: this.state.pass,
-                conPass: this.state.conPass,
+                password: this.state.password,
                 fechaNac: this.state.fechaNac,
                 juegos: this.state.juegos
             }
