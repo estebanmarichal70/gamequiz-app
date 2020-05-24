@@ -56,43 +56,17 @@ class Registrar extends Component {
             .then(response => {
                 console.log(response.data)
 
-                toast.success('Se ha creado el usuario correctamente', {
-                    position: "top-center",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                toast.success('Se ha creado el usuario correctamente');
             }).catch(err => console.log(err))
         } else {
-            toast.error('Las contraseñas no coinciden', {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            toast.error('Las contraseñas no coinciden');
         }
     }
 
     render() {
         return (
             <div>
-                <ToastContainer
-                    position="top-center"
-                    autoClose={3000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                />
+                <ToastContainer position="top-center" />
                 <form onSubmit={this.onSubmit}>
                     <div className="titulo-login">Registrarse</div>
                     <input type="text" placeholder="Nombre" name="nombre" value={this.state.nombre} onChange={this.onChange} autoFocus required/>
