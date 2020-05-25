@@ -1,6 +1,7 @@
-//Aca van las variables
+/*===================================================================================================================*/
+/*[ Colores generales y de utilidad ]*/
 $color-primary: #202225;
-$color-secondary: #2f3136;
+$color-secondary: #393939;
 $color-third: #36393f;
 $color-texto-1: #d1d2d3;
 $color-texto-2: #909296;
@@ -21,6 +22,8 @@ $large-breakpoint: 1200px;
 // Extra large devices (large desktops, 1200px and up)
 //@media (min-width: 1200px) { ... }
 
+/*===================================================================================================================*/
+/*[ Funciones reutilizables ]*/
 .d-flex {
   display: flex;
 }
@@ -35,6 +38,10 @@ $large-breakpoint: 1200px;
 
 .jc-center {
   justify-content: center;
+}
+
+.jc-sb {
+  justify-content: space-between;
 }
 
 .ai-center {
@@ -64,19 +71,24 @@ $large-breakpoint: 1200px;
   }
 }
 
-.titulo {
-  color: $color-texto-1;
-}
-
+/*===================================================================================================================*/
+/*[ Estilo de títulos y subtítulos ]*/
 .titulo-inicio {
   @extend .titulo;
   font-size: 3rem;
+}
+
+.titulo {
+  color: $color-texto-1;
 }
 
 .subtitulo {
   color: $color-texto-2;
 }
 
+
+/*===================================================================================================================*/
+/*[ Boton general ]*/
 .boton-inicio {
   background-color: $color-secondary;
   color: $color-texto-1;
@@ -94,13 +106,17 @@ $large-breakpoint: 1200px;
     transition: all 0.2s ease-in-out;
     &:hover {
       transform: scale(1.05);
-      background-color: $color-third;
+      background: $color-texto-1;
+      color: $color-third;
     }
     width: 400px;
     height: 150px;
   }
 }
 
+
+/*===================================================================================================================*/
+/*[ Estilo de links ]*/
 .link{
   text-decoration: none;
 }
@@ -111,6 +127,16 @@ $large-breakpoint: 1200px;
   font-size: 14px;
 }
 
+.link-gris {
+  @extend .link;
+  color: #909296;
+  font-size: 14px;
+}
+
+
+
+/*===================================================================================================================*/
+/*[ Form para registrar e iniciar sesión ]*/
 .form-login {
   padding: 0;
   display: flex;
@@ -166,113 +192,195 @@ $large-breakpoint: 1200px;
   }
 
   .form-box button[type="submit"]:hover {
-    background: $color-third;
+    background: $color-texto-1;
+    color: $color-third;
   }
 }
+
 .m-0 {
   margin: 0 !important; 
 }
 
-//----- Extends
-%clearfix:after {
-	display:block;
-	clear:both;
-	content:'';
+
+/*===================================================================================================================*/
+/*[ Tabla ]*/
+.wrap-table {
+  .hide {display: none;}
+  margin-right: 20px;
+  width: 1400px;
+  @media (max-width: $phone-breakpoint) {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 95%;
+    .table-head th{
+      display: none;
+    }
+    .hide {display: block!important;}
+    .table-body {
+      max-height: 200px;
+    }
+  }
 }
 
-//----- Grid System
-$grid-spacing:3%;
-
-.row {
-	@extend %clearfix;
-
-	& + & {
-		margin-top:$grid-spacing;
-	}
+.table {
+  width: 100%;
 }
 
-[class^="col-"] {
-	float:left;
-	margin-right:$grid-spacing;
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	box-sizing:border-box;
-
-	&:last-child {
-		margin-right:0%;
-	}
+table {
+  width: 100%;
 }
 
-//----- Columns (Manual)
-/*
-.col-1 { width:5.583333333333333%; }
-.col-2 { width:14.16666666666667%; }
-.col-3 { width:22.75%; }
-.col-4 { width:31.33333333333333%; }
-.col-5 { width:39.91666666666667%; }
-.col-6 { width:48.5%; }
-.col-7 { width:57.08333333333333%; }
-.col-8 { width:65.66666666666666%; }
-.col-9 { width:74.25%; }
-.col-10 { width:82.83333333333333%; }
-.col-11 { width:91.41666666666666%; }
-.col-12 { width:100%; }
-*/
+.column1 {
+  width: 20%;
+}
 
-//----- Columns (Automatic)
-.col-1 { width:(100% / 12) - ($grid-spacing * 11 / 12); }
-.col-2 { width:(100% / 6) - ($grid-spacing * 10 / 12); }
-.col-3 { width:(100% / 4) - ($grid-spacing * 9 / 12); }
-.col-4 { width:(100% / 3) - ($grid-spacing * 8 / 12); }
-.col-5 { width:(100% / 2.4) - ($grid-spacing * 7 / 12); }
-.col-6 { width:(100% / 2) - ($grid-spacing * 6 / 12); }
-.col-7 { width:(100% / 1.714285714285714) - ($grid-spacing * 5 / 12); }
-.col-8 { width:(100% / 1.5) - ($grid-spacing * 4 / 12); }
-.col-9 { width:(100% / 1.333333333333333) - ($grid-spacing * 3 / 12); }
-.col-10 { width:(100% / 1.2) - ($grid-spacing * 2 / 12); }
-.col-11 { width:(100% / 1.090909090909091) - ($grid-spacing * 1 / 12); }
-.col-12 { width:100%; }
+.column2 {
+  width: 30%;
+}
 
-//  termino el tema
+.column3 {
+  width: 8%;
+}
 
-.tabla-perfil {
+.column4 {
+  width: 8%;
+}
 
-  table-layout: auto;
-  border-collapse: separate;
+.column5 {
+  width: 14%;
+}
 
-  td, th {
+.column6{
+  width: 20%;
+}
 
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    border-collapse: collapse;
+.table-head th {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.table-body td {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/*==================================================================
+[ Fixeo de tamaños ]*/
+.table {
+  
+  position: relative;
+  padding-top: 60px;
+}
+
+.table-head {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.table-body {
+  max-height: 600px;
+  overflow: auto;
+}
+
+/*==================================================================
+[ Estilo de Tabla]*/
+.table.style {
+  text-align: center;
+  background-color: $color-secondary;
+  border-radius: 10px;
+}
+
+.table.style th {
+  color: $color-texto-1;
+  line-height: 1.4;
+  background-color: $color-secondary;
+}
+
+.table.style td {
+  color: $color-texto-2;
+  line-height: 1.4;
+  background-color: $color-primary;
+}
+
+.botonTabla{
+  border: 0;
+  background: $color-secondary;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  outline: none;
+  color: $color-texto-1;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+  &:hover {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+}
+
+
+/*==================================================================
+[ Estilo scroll]*/
+.scroll::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #a7a7a7;
+}
+
+.scroll::-webkit-scrollbar
+{
+    width: 12px;
+}
+
+.scroll::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+
+/*==================================================================
+[ Card ]*/
+.card {
+  width: 400px;
+  height: 230px;
+  border: 2px solid $color-secondary;
+  border-radius: 10px;
+  background-color: $color-primary;
+  margin-bottom: 20px;
+
+  .card-header {
+    font-weight: bold;
+    background-color: $color-secondary;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+  @media (max-width: $phone-breakpoint) {
     width: 200px;
-    max-width: 250px;
+    height: 220px;
   }
-
-  th {
-    background-color: #393939;
-  }
-
-  td {
-    color: $color-texto-1;
-    background-color: #222222;
-  }
-
-  th:first-child {
-    border-top-left-radius: 10px;
-  }
-  th:last-child {
-    border-top-right-radius: 10px;
-  }
-  tr:last-child td:first-child {
-    border-bottom-left-radius: 10px;
-  }
-  tr:last-child td:last-child {
-    border-bottom-right-radius: 10px;
-  }
-
-  tr:hover {background-color:#f5f5f5;}
 }
 
+.flex-izq {
+  margin-left: 20px;
+  @media (max-width: $phone-breakpoint) {
+    margin: 0;
+  }
+}
 
+.contenedor {
+  @media (max-width: $phone-breakpoint) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

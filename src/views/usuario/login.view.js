@@ -26,11 +26,11 @@ class Login extends Component {
     }
 
     handleClick() {
-        if (this.state.username != "" && this.state.password.length > 4) {
+        if (this.state.username !== "" && this.state.password.length > 4) {
             this.setState({...this.state, errorPrinted: false});
             this.props.loginUser({username: this.state.username, password: this.state.password}, this.props.history);
         } else {
-            if (this.state.username == "") {
+            if (this.state.username === "") {
                 toast.error("Ingrese un nombre de usuario correcto.")
             }
             if (this.state.password < 4) {
@@ -60,7 +60,7 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <ToastContainer/>
+                <ToastContainer position="top-center"/>
                 <div className="titulo-login">Iniciar Sesión</div>
                 <input type="text" value={this.state.username}
                        onChange={event => this.setState({...this.state, username: event.target.value})}
