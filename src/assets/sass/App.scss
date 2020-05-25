@@ -1,10 +1,22 @@
 /*===================================================================================================================*/
 /*[ Colores generales y de utilidad ]*/
+
+/*  Colores berreta */
 $color-primary: #202225;
 $color-secondary: #393939;
 $color-third: #36393f;
 $color-texto-1: #d1d2d3;
 $color-texto-2: #909296;
+/*------------------- */
+
+
+/* Colores re pro */
+
+$color-gold: #ffd700;
+
+/*-------------------------------------*/
+/* Aca terminan los mejores colores :) */
+/*-------------------------------------*/
 
 $phone-breakpoint: 576px;
 $tablet-breakpoint: 768px;
@@ -40,6 +52,14 @@ $large-breakpoint: 1200px;
   justify-content: center;
 }
 
+.jc-start {
+  justify-content: start;
+}
+
+.jc-end {
+  justify-content: end;
+}
+
 .jc-sb {
   justify-content: space-between;
 }
@@ -70,6 +90,41 @@ $large-breakpoint: 1200px;
     width: ($j * 1%);
   }
 }
+
+
+@for $j from 1 through 100 {
+  .mt-#{$j} {
+    margin-top: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .mb-#{$j} {
+    margin-bottom: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .ml-#{$j} {
+    margin-left: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .mr-#{$j} {
+    margin-right: ($j * 1px);
+  }
+}
+
+@for $j from 1 through 100 {
+  .m-#{$j} {
+    margin: ($j * 1px);
+  }
+}
+
 
 /*===================================================================================================================*/
 /*[ Estilo de títulos y subtítulos ]*/
@@ -117,7 +172,7 @@ $large-breakpoint: 1200px;
 
 /*===================================================================================================================*/
 /*[ Estilo de links ]*/
-.link{
+.link {
   text-decoration: none;
 }
 
@@ -132,7 +187,6 @@ $large-breakpoint: 1200px;
   color: #909296;
   font-size: 14px;
 }
-
 
 
 /*===================================================================================================================*/
@@ -152,7 +206,7 @@ $large-breakpoint: 1200px;
     text-align: center;
   }
 
-  .titulo-login{
+  .titulo-login {
     @extend .titulo;
     font-weight: bold;
     font-size: 2.5rem;
@@ -198,24 +252,29 @@ $large-breakpoint: 1200px;
 }
 
 .m-0 {
-  margin: 0 !important; 
+  margin: 0 !important;
 }
 
 
 /*===================================================================================================================*/
 /*[ Tabla ]*/
 .wrap-table {
-  .hide {display: none;}
+  .hide {
+    display: none;
+  }
+
   margin-right: 20px;
   width: 1400px;
   @media (max-width: $phone-breakpoint) {
     margin: 0;
     margin-bottom: 10px;
     width: 95%;
-    .table-head th{
+    .table-head th {
       display: none;
     }
-    .hide {display: block!important;}
+    .hide {
+      display: block !important;
+    }
     .table-body {
       max-height: 200px;
     }
@@ -250,7 +309,7 @@ table {
   width: 14%;
 }
 
-.column6{
+.column6 {
   width: 20%;
 }
 
@@ -267,7 +326,7 @@ table {
 /*==================================================================
 [ Fixeo de tamaños ]*/
 .table {
-  
+
   position: relative;
   padding-top: 60px;
 }
@@ -304,45 +363,22 @@ table {
   background-color: $color-primary;
 }
 
-.botonTabla{
-  border: 0;
-  background: $color-secondary;
-  display: block;
-  margin: 10px auto;
-  text-align: center;
-  width: 30px;
-  height: 30px;
-  outline: none;
-  color: $color-texto-1;
-  border-radius: 24px;
-  transition: 0.25s;
-  cursor: pointer;
-  &:hover {
-    background: $color-texto-1;
-    color: $color-third;
-  }
-}
-
-
 /*==================================================================
 [ Estilo scroll]*/
-.scroll::-webkit-scrollbar-track
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-    background-color: #a7a7a7;
+.scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #a7a7a7;
 }
 
-.scroll::-webkit-scrollbar
-{
-    width: 12px;
+.scroll::-webkit-scrollbar {
+  width: 12px;
 }
 
-.scroll::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #555;
 }
 
 
@@ -357,16 +393,14 @@ table {
   margin-bottom: 20px;
 
   .card-header {
+    @extend .titulo;
+    @extend .center-all;
     font-weight: bold;
     background-color: $color-secondary;
   }
 
   .card-body {
     text-align: center;
-  }
-  @media (max-width: $phone-breakpoint) {
-    width: 200px;
-    height: 220px;
   }
 }
 
@@ -382,5 +416,99 @@ table {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.card-perfil {
+  @extend .card;
+
+  @media (max-width: $phone-breakpoint) {
+    width: 200px;
+    height: 220px;
+  }
+}
+
+
+/* ESTILOS VISTA CREAR JUEGO */
+
+.rounded-input {
+  background: none;
+  border: 2px solid $color-texto-1;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+
+}
+
+.rounded-left-input {
+  @extend .rounded-input;
+
+  border-bottom-right-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.rounded-button {
+
+  background: $color-primary;
+  border: 2px solid $color-gold;
+
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+}
+
+.rounded-right-button {
+  @extend .rounded-button;
+  border-left: 0;
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+
+.card-pregunta {
+  @extend .card;
+  height: 500px;
+
+  .card-body {
+    padding: 30px;
+  }
+
+  .preguntas-cont {
+
+    overflow: auto;
+    overflow-x: hidden;
+    max-height: 330px;
+    padding: 5px;
+
+
+    .pregunta-cont {
+      @extend .card;
+      cursor: pointer;
+      margin-right: 20px;
+      height: 150px !important;
+      width: 220px !important;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+
+  @media (max-width: $phone-breakpoint) {
+    width: 200px;
+    height: 220px;
   }
 }

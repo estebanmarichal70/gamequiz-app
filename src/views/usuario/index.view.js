@@ -11,12 +11,10 @@ const Usuario = ({match}) => {
         <div className="form-login h-100">
             <div className="form-box">
                 <Suspense fallback={<div/>}>
-
                     <Switch>
                         <Route path={`${match.url}/login`} render={props => <Login {...props}/>} exact/>
                         <Route path={`${match.url}/registrar`} render={props => <Registrar {...props}/>} exact/>
                     </Switch>
-
                 </Suspense>
             </div>
         </div>

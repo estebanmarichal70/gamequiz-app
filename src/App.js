@@ -16,7 +16,7 @@ class App extends Component {
             <Switch>
               <Route path='/' render={props => <VistaInicio {...props}/>} exact />
               <Route path='/usuario' render={props => <Auth {...props}/>} />  
-              <Route path='/app' render={props => <Juego {...props}/>} />
+              <Route path='/juego' render={props => <Juego {...props}/>} />
               <Route path='/perfil' render={props => <Perfil {...props}/>} />
             </Switch>
           </BrowserRouter>

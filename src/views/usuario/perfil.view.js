@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
 import '../../assets/sass/App.scss';
 
-
 import BotonInicio from "../../components/boton-Inicio.component";
 import {Link} from "react-router-dom";
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-
 import {faEdit} from "@fortawesome/free-solid-svg-icons";
-
 import {connect} from "react-redux";
 
 class Perfil extends Component {
@@ -31,8 +27,8 @@ class Perfil extends Component {
                 </div>
                 <div className="d-flex jc-sb contenedor">
                     <div className="flex-izq flex-column">
-                        <div className="card">
-                            <div className="card-header h-25 center-all titulo"><span>Perfil</span></div>
+                        <div className="card-perfil">
+                            <div className="card-header h-25"><span>Perfil</span></div>
                             <div className="card-body subtitulo">
                                 <p>{this.state.user ? `Nombre: ${this.state.user.Nombre} ${this.state.user.Apellido}` : null}</p>
                                 <p>{this.state.user ? `Usuario: ${this.state.user.Username}` : null}</p>
