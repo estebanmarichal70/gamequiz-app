@@ -1,7 +1,7 @@
 import {all, call, fork, put, takeEvery} from 'redux-saga/effects';
-import {LOGIN_USER, LOGOUT_USER, REGISTER_USER,} from '../actions';
+import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, registerUserSuccess,} from '../actions';
 
-import {loginUserError, loginUserSuccess, registerUserError, registerUserSuccess,} from './actions';
+import {loginUserError, loginUserSuccess, registerUserError,} from './actions';
 
 import gamequizServices from "../../api/gamequizServices";
 
@@ -21,7 +21,7 @@ function* loginWithEmailPassword({payload}) {
     const {history} = payload;
     try {
         const response = yield call(loginWithEmailPasswordAsync, username, password);
-        if(response.data) {
+        if (response.data) {
             if (!response.data.data.success) {
                 let user = response.data.data.user;
                 let token = response.data.data.token;
@@ -29,12 +29,14 @@ function* loginWithEmailPassword({payload}) {
                 localStorage.setItem('user', JSON.stringify(user));
                 localStorage.setItem('token', JSON.stringify(token));
 
+
                 yield put(loginUserSuccess(user, token));
+
                 yield put(history.push("/perfil"));
             } else {
                 yield put(loginUserError(response.data.data.message));
             }
-        }else{
+        } else {
             yield put(loginUserError(response));
         }
     } catch (error) {
@@ -47,23 +49,26 @@ export function* watchRegisterUser() {
     yield takeEvery(REGISTER_USER, registerWithEmailPassword);
 }
 
-const registerWithEmailPasswordAsync = async (email, password) =>
-    await gamequizServices.services.registrar(email, password)
+const registerWithEmailPasswordAsync = async (payload) =>
+    await gamequizServices.services.registrar({...payload})
         .then(authUser => authUser)
         .catch(error => error);
 
 function* registerWithEmailPassword({payload}) {
-    const {email, password} = payload.user;
-    //const { history } = payload
+    yield put(registerUserSuccess(''));
+    yield put(registerUserError(''));
+    const {history} = payload
     try {
-        const registerUser = yield call(registerWithEmailPasswordAsync, email, password);
-        if (!registerUser.message) {
-            localStorage.setItem('user', registerUser.user.uid);
-            yield put(registerUserSuccess(registerUser));
-            // history.push('/')
+        const registerUser = yield call(registerWithEmailPasswordAsync, payload.user);
+        if (registerUser.data) {
+            if (!registerUser.data.data.success) {
+                yield put(registerUserSuccess("Se ha registrado el usuario correctamente."));
+                setTimeout(() => history.push('/usuario/login'), 3000)
+            } else {
+                yield put(registerUserError(registerUser.message));
+            }
         } else {
             yield put(registerUserError(registerUser.message));
-
         }
     } catch (error) {
         yield put(registerUserError(error));

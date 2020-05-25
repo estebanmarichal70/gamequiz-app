@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 import {connect} from "react-redux";
 import {loginUser} from "../../redux/actions";
@@ -14,7 +14,6 @@ import {withRouter} from "react-router";
 class Login extends Component {
 
 
-
     constructor(props) {
         super(props);
         this.state = {
@@ -25,16 +24,14 @@ class Login extends Component {
 
     }
 
+
     handleClick() {
-        if (this.state.username !== "" && this.state.password.length > 4) {
+        if (this.state.username !== "" && this.state.password != "") {
             this.setState({...this.state, errorPrinted: false});
             this.props.loginUser({username: this.state.username, password: this.state.password}, this.props.history);
         } else {
-            if (this.state.username === "") {
-                toast.error("Ingrese un nombre de usuario correcto.")
-            }
-            if (this.state.password < 4) {
-                toast.error("La contraseña debe ser mayor a 4 carácteres")
+            if (this.state.username === "" || this.state.password === "") {
+                toast.error("Por favor, ingrese todos los datos.")
             }
         }
     }

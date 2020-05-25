@@ -1,6 +1,8 @@
 import React,{Component}  from 'react';
 import '../../assets/sass/App.scss';
 
+
+
 class Perfil extends Component {
 
     constructor(props) {

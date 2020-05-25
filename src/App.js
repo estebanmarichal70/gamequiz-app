@@ -11,7 +11,7 @@ class App extends Component {
   render() { 
       return ( 
       <div className="App h-100">
-        <Suspense fallback={ <div></div>}>
+        <Suspense fallback={ <div/>}>
           <BrowserRouter>
             <Switch>
               <Route path='/' render={props => <VistaInicio {...props}/>} exact />
