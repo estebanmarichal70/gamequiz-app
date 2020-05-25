@@ -30,7 +30,7 @@ function* loginWithEmailPassword({payload}) {
                 localStorage.setItem('token', JSON.stringify(token));
 
                 yield put(loginUserSuccess(user, token));
-                history.push('/');
+                yield put(history.push("/perfil"));
             } else {
                 yield put(loginUserError(response.data.data.message));
             }

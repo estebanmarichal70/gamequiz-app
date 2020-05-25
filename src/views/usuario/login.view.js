@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Link} from "react-router-dom";
+import {Link } from "react-router-dom";
 
 import {connect} from "react-redux";
 import {loginUser} from "../../redux/actions";
@@ -9,8 +9,11 @@ import {toast, ToastContainer} from "react-toastify";
 
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/sass/App.scss';
+import {withRouter} from "react-router";
 
 class Login extends Component {
+
+
 
     constructor(props) {
         super(props);
@@ -19,6 +22,7 @@ class Login extends Component {
             password: "",
             errorPrinted: false
         };
+
     }
 
     handleClick() {
@@ -82,4 +86,4 @@ const mapStateToProps = ({authUser}) => {
     return {user, error};
 };
 
-export default connect(mapStateToProps, {loginUser})(Login);
+export default withRouter(connect(mapStateToProps, {loginUser})(Login));

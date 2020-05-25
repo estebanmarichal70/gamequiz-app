@@ -1,16 +1,16 @@
 import React, { Suspense } from "react";
 import "../../assets/sass/App.scss";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {withRouter} from "react-router";
 
 const Perfil = React.lazy(() => import("./perfil.view"));
 const Crear = React.lazy(() => import("./crear.view"));
 const Jugar = React.lazy(() => import("./jugar.view"));
 
-const Usuario = ({ match }) => {
+const Juego = ({ match }) => {
   return (
       // PONER BARRA 
     <Suspense fallback={<div>Cargando</div>}>
-      <BrowserRouter>
         <Switch>
           <Route
             path={`${match.url}/perfil`}
@@ -28,9 +28,8 @@ const Usuario = ({ match }) => {
             exact
           />
         </Switch>
-      </BrowserRouter>
     </Suspense>
   );
 };
 
-export default Usuario;
+export default withRouter(Juego);

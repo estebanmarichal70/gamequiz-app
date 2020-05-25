@@ -2,10 +2,10 @@ import React,{Component, Suspense}  from 'react';
 import './assets/sass/App.scss';
 import {Switch,Route,BrowserRouter} from 'react-router-dom'
 
-const VistaInicio = React.lazy(()=> import('./views/index.view'));
-const Auth = React.lazy(()=> import('./views/usuario/index.view'));
-const Juego = React.lazy(()=> import('./views/juego/index.view'));
-const Perfil = React.lazy(()=> import('./views/usuario/perfil.view'));
+import VistaInicio from "./views/index.view";
+import Auth from "./views/usuario/index.view"
+import Juego from './views/juego/index.view';
+import Perfil from './views/usuario/perfil.view';
 
 class App extends Component {
   render() { 
