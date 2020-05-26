@@ -10,7 +10,6 @@ const Configurar = React.lazy(() => import("./configurar.view"));
 
 const Juego = ({match}) => {
     return (
-        // PONER BARRA
         <Suspense fallback={<div/>}>
             <div className="center-all">
                 <h1 className="titulo-inicio">GameQuiz</h1>

@@ -13,6 +13,7 @@ $color-texto-2: #909296;
 /* Colores re pro */
 
 $color-gold: #ffd700;
+$color-true: #54E0C7;
 
 /*-------------------------------------*/
 /* Aca terminan los mejores colores :) */
@@ -466,7 +467,7 @@ input[type="password"][disabled], input[type="text"][disabled] {
 
   &:hover {
     background: $color-texto-1;
-    color: $color-third;
+    color: $color-secondary;
   }
 }
 
@@ -512,8 +513,8 @@ input[type="password"][disabled], input[type="text"][disabled] {
     color: $color-texto-1;
 
     &:after {
-      background-color: #54E0C7;
-      border-color: #54E0C7;
+      background-color: $color-true;
+      border-color: $color-true;
     }
   }
 
@@ -535,54 +536,105 @@ input[type="password"][disabled], input[type="text"][disabled] {
 
 /*==================================================================
 [ Estilos de Selectbox ]*/
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  appearance: none;
-  outline: none;
-  box-shadow: none;
-  border: 0 !important;
-  background: $color-secondary;
-}
-select::-ms-expand {
-  display: none;
-}
-
-.select {
+.select-box {
   position: relative;
-  display: flex;
-  width: 300px;
-  height: 48px;
-  line-height: 3;
-  overflow: hidden;
-  border-radius: 5px;
-}
-
-select {
-  flex: 1;
-  padding: 0 15px;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 16px;
   color: $color-texto-1;
-  cursor: pointer;
+  width: 40%;
+  
+  &__current {
+    position: relative;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+    cursor: pointer;
+    outline: none;
+    
+    &:focus {
+      & + .select-box__list {
+        opacity: 1;
+        animation-name: none;
+        
+        .select-box__option {
+          cursor: pointer;
+        }
+      }
+      
+      .select-box__icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+  
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 20px;
+    opacity: 0.3;
+    transition: 0.2s ease;
+  }
+  
+  &__value {
+    display: flex;
+  }
+  
+  &__input {
+    display: none;
+    
+    &:checked + .select-box__input-text {
+      display: block;
+    }
+  }
+  
+  &__input-text {
+    border-radius: 5px;
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    background-color: $color-secondary;
+  }
+  
+  &__list {
+    overflow-x: auto;
+    max-height: 160px;
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    animation-name: HideList;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: step-start;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+  }
+  
+  &__option {
+    display: block;
+    padding: 15px;
+    background-color: $color-secondary;
+    
+
+    &:hover,
+    &:focus {
+      color: $color-texto-1;
+      background-color: $color-third;
+    }
+  }
 }
 
-.select::after {
-  content: '\25BC';
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 0 15px;
-  color: $color-secondary;
-  background: $color-texto-1;
-  cursor: pointer;
-  pointer-events: none;
-  -webkit-transition: .25s all ease;
-  -o-transition: .25s all ease;
-  transition: .25s all ease;
-}
-
-.select:hover::after {
-  color: #54E0C7;
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
 }
 
 
@@ -678,5 +730,8 @@ select {
     &:hover {
       transform: scale(1.03);
     }
+  }
+  .rounded-button{
+    border: 2px solid $color-true;
   }
 }
