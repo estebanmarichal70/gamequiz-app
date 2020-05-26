@@ -1,0 +1,102 @@
+
+/*  Colores berreta */
+$color-primary: #202225;
+$color-secondary: #393939;
+$color-third: #53575f;
+$color-texto-1: #d1d2d3;
+$color-texto-2: #909296;
+/*------------------- */
+
+.card {
+  border: 2px solid $color-secondary;
+  border-radius: 10px;
+  background-color: $color-primary;
+
+  .card-header {
+    border-radius: 5px 5px 0px 0px;
+    height: 60px;
+    font-weight: bold;
+    background-color: $color-secondary;
+  }
+
+  .card-body {
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+.datos-cont {
+
+  overflow: auto;
+  overflow-x: hidden;
+  max-height: 315px;
+  padding: 15px;
+
+
+  .imagen-juego {
+    @extend .card;
+    cursor: pointer;
+    margin-right: 10px;
+    height: 135px;
+    width: 220px;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+  }
+}
+
+ .datos{
+  font-size:14px;
+  color: #d1d2d3;
+}
+
+.datos li{
+  list-style:none;
+  border-bottom:dotted;
+  border-bottom-color: #393939;
+  margin-top:10px;
+  padding-bottom:8px;
+}
+
+.card-preguntas {
+  @extend .card;
+  width: 50%;
+
+  .card-body {
+    padding: 8px;
+  }
+
+  .cont-preguntas{
+    overflow: auto;
+    max-height: 350px;
+  }
+  .cont-pregunta {
+    @extend .card;
+    height: 100px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.02);
+    }
+  
+    .cont-texto{
+      padding: 10px;
+      width: 500px;
+    }
+
+    .imagen-juego {
+      @extend .card;
+      cursor: pointer;
+      height: 80px;
+      width: 130px;
+      transition: all 0.2s ease-in-out;
+  
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+}

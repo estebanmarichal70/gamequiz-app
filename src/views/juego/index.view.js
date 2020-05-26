@@ -7,10 +7,10 @@ import {withRouter} from "react-router";
 const Crear = React.lazy(() => import("./crear.view"));
 const Jugar = React.lazy(() => import("./jugar.view"));
 const Configurar = React.lazy(() => import("./configurar.view"));
+const Empezar = React.lazy(() => import("./empezar.view"));
 
 const Juego = ({match}) => {
     return (
-        // PONER BARRA
         <Suspense fallback={<div/>}>
             <div className="center-all">
                 <h1 className="titulo-inicio">GameQuiz</h1>
@@ -29,6 +29,11 @@ const Juego = ({match}) => {
                 <Route
                     path={`${match.url}/configurar`}
                     render={(props) => <Configurar {...props} />}
+                    exact
+                />
+                <Route
+                    path={`${match.url}/empezar`}
+                    render={(props) => <Empezar {...props} />}
                     exact
                 />
             </Switch>
