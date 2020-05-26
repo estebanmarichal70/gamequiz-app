@@ -48,7 +48,7 @@ class Jugar extends Component {
                             <div className="cover center-all mb-20">
                                 <FontAwesomeIcon icon={faPlus} color="#909296"/>
                             </div>
-                            <div className="select">
+                            <div className="select mb-20">
                                 <select name="slct" id="slct">
                                     <option selected disabled hidden>Música del juego</option>
                                     <option value="1">1</option>
@@ -57,6 +57,9 @@ class Jugar extends Component {
                                     <option value="4">4</option>
                                 </select>
                             </div>
+                            <button className="rounded-button">
+                                Aceptar
+                            </button>
                         </div>
                     </div>
                 </div>

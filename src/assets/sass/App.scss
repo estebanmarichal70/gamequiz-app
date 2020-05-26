@@ -284,6 +284,7 @@ table {
 }
 
 .column1 {
+  border-radius: 5px 0px 0px 5px;
   width: 20%;
 }
 
@@ -304,7 +305,9 @@ table {
 }
 
 .column6 {
+  border-radius: 0px 5px 5px 0px;
   width: 20%;
+  
 }
 
 .table-head th {
@@ -320,7 +323,7 @@ table {
 /*==================================================================
 [ Fixeo de tamaños de tabla ]*/
 .table {
-
+  padding: 2px;
   position: relative;
   padding-top: 60px;
 }
@@ -333,6 +336,7 @@ table {
 }
 
 .table-body {
+  border-radius: 6px;
   max-height: 600px;
   overflow: auto;
 }
@@ -384,6 +388,7 @@ table {
   background-color: $color-primary;
 
   .card-header {
+    border-radius: 5px 5px 0px 0px;
     height: 60px;
     @extend .titulo;
     @extend .center-all;
@@ -616,7 +621,7 @@ select {
     overflow: auto;
     overflow-x: hidden;
     max-height: 315px;
-    padding: 5px;
+    padding: 4px;
 
 
     .pregunta-cont {
