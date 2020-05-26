@@ -4,7 +4,7 @@
 /*  Colores berreta */
 $color-primary: #202225;
 $color-secondary: #393939;
-$color-third: #36393f;
+$color-third: #53575f;
 $color-texto-1: #d1d2d3;
 $color-texto-2: #909296;
 /*------------------- */
@@ -74,9 +74,8 @@ $large-breakpoint: 1200px;
   @extend .jc-center;
 }
 
-.center-all-col {
-  @extend .center-all;
-  flex-direction: column;
+.m-0 {
+  margin: 0 !important;
 }
 
 @for $j from 1 through 100 {
@@ -150,7 +149,6 @@ $large-breakpoint: 1200px;
   border-radius: 40px;
   cursor: pointer;
   font-size: 1.5rem;
-  margin-bottom: 20px;
 
   @media (max-width: $phone-breakpoint) {
     width: 200px;
@@ -184,7 +182,7 @@ $large-breakpoint: 1200px;
 
 .link-gris {
   @extend .link;
-  color: #909296;
+  color: $color-texto-2;
   font-size: 14px;
 }
 
@@ -213,6 +211,7 @@ $large-breakpoint: 1200px;
   }
 
   .form-box input[type="text"], .form-box input[type="password"], .form-box button[type="submit"] {
+    font-family: inherit;
     border: 0;
     background: none;
     display: block;
@@ -222,7 +221,7 @@ $large-breakpoint: 1200px;
     padding: 14px 10px;
     width: 200px;
     outline: none;
-    color: white;
+    color: $color-texto-1;
     border-radius: 24px;
     transition: 0.25s;
   }
@@ -239,7 +238,7 @@ $large-breakpoint: 1200px;
     text-align: center;
     padding: 14px 40px;
     outline: none;
-    color: white;
+    color: $color-texto-1;
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer;
@@ -250,11 +249,6 @@ $large-breakpoint: 1200px;
     color: $color-third;
   }
 }
-
-.m-0 {
-  margin: 0 !important;
-}
-
 
 /*===================================================================================================================*/
 /*[ Tabla ]*/
@@ -324,7 +318,7 @@ table {
 }
 
 /*==================================================================
-[ Fixeo de tamaños ]*/
+[ Fixeo de tamaños de tabla ]*/
 .table {
 
   position: relative;
@@ -364,7 +358,7 @@ table {
 }
 
 /*==================================================================
-[ Estilo scroll]*/
+[ Estilo de Scroll ]*/
 .scroll::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -385,14 +379,12 @@ table {
 /*==================================================================
 [ Card ]*/
 .card {
-  width: 400px;
-  height: 230px;
   border: 2px solid $color-secondary;
   border-radius: 10px;
   background-color: $color-primary;
-  margin-bottom: 20px;
 
   .card-header {
+    height: 60px;
     @extend .titulo;
     @extend .center-all;
     font-weight: bold;
@@ -400,18 +392,15 @@ table {
   }
 
   .card-body {
+    padding: 20px;
     text-align: center;
   }
 }
 
-.flex-izq {
-  margin-left: 20px;
-  @media (max-width: $phone-breakpoint) {
-    margin: 0;
-  }
-}
 
-.contenedor {
+/*==================================================================
+[ Contenedor para responsive, muestra en columna y centra todo ]*/
+.contenedorR {
   @media (max-width: $phone-breakpoint) {
     flex-direction: column;
     justify-content: center;
@@ -419,28 +408,29 @@ table {
   }
 }
 
-.card-perfil {
-  @extend .card;
 
-  @media (max-width: $phone-breakpoint) {
-    width: 200px;
-    height: 220px;
-  }
-}
-
-
-/* ESTILOS VISTA CREAR JUEGO */
-
+/*==================================================================
+[ Inputs, botones y componentes rounded ]*/
 .rounded-input {
   background: none;
   border: 2px solid $color-texto-1;
   padding: 14px 10px;
   width: 200px;
   outline: none;
-  color: white;
+  color: $color-texto-1;
   border-radius: 24px;
   transition: 0.25s;
+  font-family: inherit;
+}
 
+.rounded-textarea {
+  @extend .rounded-input;
+  resize: none;
+  overflow: hidden;
+}
+
+input[type="password"][disabled], input[type="text"][disabled] {
+  background-color: $color-texto-1;
 }
 
 .rounded-left-input {
@@ -450,6 +440,13 @@ table {
   border-top-right-radius: 0 !important;
 }
 
+.rounded-right-button {
+  @extend .rounded-button;
+  border-left: 0;
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
 .rounded-button {
 
   background: $color-primary;
@@ -457,7 +454,7 @@ table {
 
   padding: 14px 40px;
   outline: none;
-  color: white;
+  color: $color-texto-1;
   border-radius: 24px;
   transition: 0.25s;
   cursor: pointer;
@@ -468,17 +465,147 @@ table {
   }
 }
 
-.rounded-right-button {
-  @extend .rounded-button;
-  border-left: 0;
-  border-bottom-left-radius: 0 !important;
-  border-top-left-radius: 0 !important;
+/*==================================================================
+[ Estilo de Checkbox ]*/
+.checkbox {
+  background-color: none;
+  display: block;
+  position: relative;
+  border-radius: 24px;
+  border: 2px solid $color-texto-1;
+  
+  label {
+    font-size: 14px;
+    border-radius: 24px;
+    padding: 12px 10px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    color: $color-texto-2;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: color 200ms ease-in;
+    overflow: hidden;
+
+    &:after {
+      width: 32px;
+      height: 32px;
+      content: '';
+      border: 2px solid $color-texto-1;
+      border-radius: 50%;
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      transition: all 200ms ease-in;
+    }
+  }
+
+  input:checked ~ label {
+    color: $color-texto-1;
+
+    &:after {
+      background-color: #54E0C7;
+      border-color: #54E0C7;
+    }
+  }
+
+  input {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    cursor: pointer;
+    visibility: hidden;
+  }
+}
+
+*::after {
+  box-sizing: inherit;
 }
 
 
+/*==================================================================
+[ Estilos de Selectbox ]*/
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  border: 0 !important;
+  background: $color-secondary;
+}
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  width: 300px;
+  height: 48px;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+select {
+  flex: 1;
+  padding: 0 15px;
+  color: $color-texto-1;
+  cursor: pointer;
+}
+
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 15px;
+  color: $color-secondary;
+  background: $color-texto-1;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+.select:hover::after {
+  color: #54E0C7;
+}
+
+
+/*==================================================================
+[ Estilos de Perfil ]*/
+.flex-izq {
+  @media (max-width: $phone-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.card-perfil {
+  @extend .card;
+
+  @media (max-width: $phone-breakpoint) {
+    width: 240px;
+    height: 220px;
+  }
+}
+
+
+/*==================================================================
+[ Estilos para Crear Juego ]*/
 .card-pregunta {
   @extend .card;
-  height: 500px;
 
   .card-body {
     padding: 30px;
@@ -488,20 +615,20 @@ table {
 
     overflow: auto;
     overflow-x: hidden;
-    max-height: 330px;
+    max-height: 315px;
     padding: 5px;
 
 
     .pregunta-cont {
       @extend .card;
       cursor: pointer;
-      margin-right: 20px;
-      height: 150px !important;
-      width: 220px !important;
+      margin-right: 10px;
+      height: 150px;
+      width: 220px;
       transition: all 0.2s ease-in-out;
 
       &:hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
       }
     }
   }
@@ -510,5 +637,41 @@ table {
   @media (max-width: $phone-breakpoint) {
     width: 200px;
     height: 220px;
+  }
+}
+
+
+/*==================================================================
+[ Estilos para Configurar Juego ]*/
+
+.card-summary {
+  @extend .card;
+  .card-body {
+    padding: 50px;
+    .rounded-input {
+      width: 280px;
+    }
+    .rounded-textarea {
+      height: 100px;
+    }
+  }
+}
+
+.card-media {
+  @extend .card;
+  width: 50%;
+
+  .card-body {
+    padding: 30px;
+  }
+  .cover {
+    @extend .card;
+    height: 400px;
+    width: 400px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.03);
+    }
   }
 }

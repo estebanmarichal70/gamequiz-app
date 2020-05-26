@@ -25,14 +25,15 @@ class Perfil extends Component {
                 <div className="center-all">
                     <h1 className="titulo-inicio">GameQuiz</h1>
                 </div>
-                <div className="d-flex jc-sb contenedor">
-                    <div className="flex-izq flex-column">
-                        <div className="card-perfil">
-                            <div className="card-header h-25"><span>Perfil</span></div>
+                <div className="d-flex jc-sb contenedorR">
+                    <div className="flex-izq ml-25">
+                        <div className="card-perfil mb-20">
+                            <div className="card-header"><span>Perfil</span></div>
                             <div className="card-body subtitulo">
                                 <p>{this.state.user ? `Nombre: ${this.state.user.Nombre} ${this.state.user.Apellido}` : null}</p>
                                 <p>{this.state.user ? `Usuario: ${this.state.user.Username}` : null}</p>
-                                <p>{this.state.user && this.state.user.Juegos != undefined ? `Creados: ${this.state.user.Juegos.length}` : `Creados: 0`}</p>
+                                <p>{this.state.user && this.state.user.Juegos !== undefined ? `Creados: ${this.state.user.Juegos.length}` : `Creados: 0`}</p>
+                                
                             </div>
                         </div>
                         <BotonInicio ruta="/juego/crear" text="Crear Juego"/>
@@ -96,11 +97,8 @@ class Perfil extends Component {
 }
 
 const mapStateToProps = ({authUser}) => {
-
-
     const {user} = authUser;
     return {user};
-
 };
 
 export default connect(mapStateToProps)(Perfil);

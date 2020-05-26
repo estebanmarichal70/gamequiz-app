@@ -1,15 +1,19 @@
-import React, {Component} from 'react';
+import React,{Component}  from 'react';
 import '../../assets/sass/App.scss';
-import DatePicker, {registerLocale} from "react-datepicker";
-import {toast, ToastContainer} from 'react-toastify';
+
+import DatePicker from "react-datepicker";
+import { registerLocale } from  "react-datepicker";
+
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import es from 'date-fns/locale/es';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import {connect} from "react-redux";
+import {registerUser} from "../../redux/actions";
 
 import "react-datepicker/dist/react-datepicker.css";
-import {withRouter} from "react-router";
-import {connect} from "react-redux";
-import {registerUser} from "../../redux/authUser/actions";
 
 
 class Registrar extends Component {
@@ -24,7 +28,7 @@ class Registrar extends Component {
             conPass: '',
             fechaNac: new Date(),
             juegos: null,
-            messagePrinted: false
+            errorPrinted: false
         };
         registerLocale('es', es)
 
@@ -38,14 +42,13 @@ class Registrar extends Component {
         });
     }
 
-    onChange(e) {
+    onChange(e){
         this.setState({[e.target.name]: e.target.value});
     }
 
-    onSubmit(e) {
-        this.setState({...this.state, messagePrinted: false});
+    onSubmit(e){
         e.preventDefault();
-        if (this.state.password === this.state.conPass) {
+        if(this.state.password === this.state.conPass){
             const usuario = {
                 nombre: this.state.nombre,
                 apellido: this.state.apellido,
@@ -54,49 +57,49 @@ class Registrar extends Component {
                 fechaNac: this.state.fechaNac,
                 juegos: this.state.juegos
             }
+
             this.props.registerUser(usuario, this.props.history);
+            /*gamequizServices.services.registrar(usuario)
+            .then(response => {
+                console.log(response.data)
+
+                toast.success('Se ha creado el usuario correctamente');
+            }).catch(err => console.log(err))*/
         } else {
             toast.error('Las contraseñas no coinciden');
         }
     }
 
-
     componentDidUpdate() {
-        if (this.props.error != '' && !this.state.messagePrinted) {
-            this.setState({...this.state, messagePrinted: true});
-            switch (this.props.error) {
-                case "Request failed with status code 409":
-                    toast.error("El usuario ingresado ya existe");
+        if (this.props.error && !this.state.errorPrinted) {
+            this.setState({...this.state, errorPrinted: true});
+            switch (this.props.error.message) {
+                case "Request failed with status code 404":
+                    toast.error("El usuario especificado no existe.");
+                    break;
+                case "Request failed with status code 401":
+                    toast.error("La contraseña ingresada es incorrecta.");
                     break;
                 default:
-                    toast.error(this.props.error)
+                    toast.error(this.props.error.message);
                     break;
             }
-        }
 
-        if (this.props.success_message != '' && !this.state.messagePrinted) {
-            this.setState({...this.state, messagePrinted: true});
-            toast.success(this.props.success_message);
         }
     }
 
     render() {
         return (
             <div>
-                <ToastContainer position="top-center"/>
+                <ToastContainer position="top-center" />
                 <form onSubmit={this.onSubmit}>
                     <div className="titulo-login">Registrarse</div>
-                    <input type="text" placeholder="Nombre" name="nombre" value={this.state.nombre}
-                           onChange={this.onChange} autoFocus required/>
-                    <input type="text" placeholder="Apellido" name="apellido" value={this.state.apellido}
-                           onChange={this.onChange} required/>
-                    <input type="text" placeholder="Usuario" name="username" value={this.state.usuario}
-                           onChange={this.onChange} required/>
-                    <input type="password" placeholder="Contraseña" name="password" value={this.state.pass}
-                           onChange={this.onChange} required/>
-                    <input type="password" placeholder="Repetir contraseña" name="conPass" value={this.state.conPass}
-                           onChange={this.onChange} required/>
-                    <DatePicker
+                    <input type="text" placeholder="Nombre" name="nombre" value={this.state.nombre} onChange={this.onChange} autoFocus required/>
+                    <input type="text" placeholder="Apellido" name="apellido" value={this.state.apellido} onChange={this.onChange} required/>
+                    <input type="text" placeholder="Usuario" name="username" value={this.state.usuario} onChange={this.onChange} required/>
+                    <input type="password" placeholder="Contraseña" name="password" value={this.state.pass} onChange={this.onChange} required/>
+                    <input type="password" placeholder="Repetir contraseña" name="conPass" value={this.state.conPass} onChange={this.onChange} required/>
+                    <DatePicker 
                         className="m-0"
                         dateFormat="dd/MM/yyyy"
                         placeholderText="Fecha de Nacimiento"
@@ -118,8 +121,8 @@ class Registrar extends Component {
 }
 
 const mapStateToProps = ({authUser}) => {
-    const {success_message, error} = authUser;
-    return {success_message, error};
+    const {user, error} = authUser;
+    return {user, error};
 };
 
-export default withRouter(connect(mapStateToProps, {registerUser})(Registrar));
+export default connect(mapStateToProps, {registerUser})(Registrar);

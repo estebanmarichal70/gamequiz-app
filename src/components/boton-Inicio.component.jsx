@@ -5,7 +5,7 @@ import "../assets/sass/App.scss";
 const BotonInicio = (props) => {
   return (
     <Link className="link" to={props.ruta}>
-      <div className="center-all boton-inicio">{props.text}</div>
+      <div className="center-all boton-inicio mb-20">{props.text}</div>
     </Link>
   );
 };

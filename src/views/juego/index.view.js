@@ -6,6 +6,7 @@ import {withRouter} from "react-router";
 
 const Crear = React.lazy(() => import("./crear.view"));
 const Jugar = React.lazy(() => import("./jugar.view"));
+const Configurar = React.lazy(() => import("./configurar.view"));
 
 const Juego = ({match}) => {
     return (
@@ -23,6 +24,11 @@ const Juego = ({match}) => {
                 <Route
                     path={`${match.url}/jugar`}
                     render={(props) => <Jugar {...props} />}
+                    exact
+                />
+                <Route
+                    path={`${match.url}/configurar`}
+                    render={(props) => <Configurar {...props} />}
                     exact
                 />
             </Switch>

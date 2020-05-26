@@ -26,7 +26,7 @@ class Login extends Component {
 
 
     handleClick() {
-        if (this.state.username !== "" && this.state.password != "") {
+        if (this.state.username !== "" && this.state.password !== "") {
             this.setState({...this.state, errorPrinted: false});
             this.props.loginUser({username: this.state.username, password: this.state.password}, this.props.history);
         } else {
