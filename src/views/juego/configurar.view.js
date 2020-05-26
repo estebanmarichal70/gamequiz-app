@@ -3,8 +3,9 @@ import "../../assets/sass/App.scss";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import arrow from "./arrow.svg"
 
-class Jugar extends Component {
+class Configurar extends Component {
 
     constructor(props) {
         super(props);
@@ -44,22 +45,52 @@ class Jugar extends Component {
                     </div>
                     <div className="card-media">
                         <div className="card-header"><span>Configuración de Media</span></div>
-                        <div className="card-body center-all d-flex flex-column">
+                        <div className="card-body center-all flex-column">
                             <div className="cover center-all mb-20">
                                 <FontAwesomeIcon icon={faPlus} color="#909296"/>
                             </div>
-                            <div className="select mb-20">
-                                <select name="slct" id="slct">
-                                    <option selected disabled hidden>Música del juego</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                </select>
+                            <div className="select-box">
+                                <div className="select-box__current" tabIndex="1">
+                                <div className="select-box__value">
+                                    <input className="select-box__input" type="radio" id="1" name="Inp" checked readOnly/>
+                                    <p className="select-box__input-text">1</p>
+                                </div>
+                                <div className="select-box__value">
+                                    <input className="select-box__input" type="radio" id="2" name="Inp" checked readOnly/>
+                                    <p className="select-box__input-text">2</p>
+                                </div>
+                                <div className="select-box__value">
+                                    <input className="select-box__input" type="radio" id="3" name="Inp" checked readOnly/>
+                                    <p className="select-box__input-text">3</p>
+                                </div>
+                                <div className="select-box__value">
+                                    <input className="select-box__input" type="radio" id="4" name="Inp" checked readOnly/>
+                                    <p className="select-box__input-text">4</p>
+                                </div>
+                                <div className="select-box__value">
+                                    <input className="select-box__input" type="radio" id="5" name="Inp" checked readOnly/>
+                                    <p className="select-box__input-text">5</p>
+                                </div>
+                                <div className="select-box__value">
+                                    <input className="select-box__input" type="radio" id="6" name="Inp" checked readOnly/>
+                                    <p className="select-box__input-text">6</p>
+                                </div>
+                                <div className="select-box__value">
+                                    <input className="select-box__input" type="radio" id="0" name="Inp" checked readOnly disabled/>
+                                    <p className="select-box__input-text">Música del juego</p>
+                                </div>
+                                    <img className="select-box__icon" src={arrow} alt="Arrow" aria-hidden="true"/>
+                                </div>
+                                <ul className="select-box__list scroll">
+                                    <li><label className="select-box__option" htmlFor="1">1</label></li>
+                                    <li><label className="select-box__option" htmlFor="2">2</label></li>
+                                    <li><label className="select-box__option" htmlFor="3">3</label></li>
+                                    <li><label className="select-box__option" htmlFor="4">4</label></li>
+                                    <li><label className="select-box__option" htmlFor="5">5</label></li>
+                                    <li><label className="select-box__option" htmlFor="6">6</label></li>
+                                </ul>
                             </div>
-                            <button className="rounded-button">
-                                Aceptar
-                            </button>
+                            <button className="rounded-button mt-20">Aceptar</button>
                         </div>
                     </div>
                 </div>
@@ -68,4 +99,4 @@ class Jugar extends Component {
     }
 }
 
-export default Jugar;
+export default Configurar;
