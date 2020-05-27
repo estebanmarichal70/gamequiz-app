@@ -37,6 +37,7 @@ export default class DragAndDropFileUploader extends React.Component {
                     uppy={this.uppy}
                     target=".card-upload-image"
                     trigger='#dashboard'
+                    theme="dark"
                 />
             </div>
         )

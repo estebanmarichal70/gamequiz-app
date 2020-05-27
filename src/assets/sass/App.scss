@@ -264,7 +264,6 @@ $large-breakpoint: 1200px;
     display: none;
   }
 
-  margin-right: 20px;
   width: 1400px;
   @media (max-width: $phone-breakpoint) {
     margin: 0;
@@ -497,6 +496,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   border-color: $color-false;
   &:hover {
     background: $color-false;
+    color: $color-texto-1;
   }
 }
 
@@ -504,6 +504,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   border-color: $color-purple;
   &:hover {
     background: $color-purple;
+    color: $color-texto-1;
   }
 }
 
@@ -801,5 +802,83 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
         max-height: 80px;
       }
     }
+  }
+}
+
+/*==================================================================
+[ Estilos para Jugando ]*/
+.card-jugando {
+  @extend .card;
+  .card-header {
+    font-size: 18px;
+  }
+  .card-body {
+
+    padding: 50px;
+    .rounded-button{
+      width: 180px;
+      @media (max-width: $phone-breakpoint) {
+        margin:0;
+        margin-bottom: 10px;
+        width: 250px;
+      }
+    }
+    .arriba {
+      @media (max-width: $phone-breakpoint) {
+        margin: 0;
+      }
+    }
+    .rounded-button-s{
+      @extend .rounded-button;
+      margin: 0;
+      width: 140px;
+    }
+    .media {
+      @media (max-width: $phone-breakpoint) {
+        flex-direction: column;
+      }
+    }
+    .cover {
+      @extend .card;
+      height: 250px;
+      width: 400px;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.03);
+      }
+      @media (max-width: $phone-breakpoint) {
+        height: 150px;
+        width: 250px;
+        margin-right: 0;
+      }
+    }
+    @media (max-width: $phone-breakpoint) {
+      padding: 20px;
+    }
+  }
+  @media (max-width: $phone-breakpoint) {
+    margin: 5px;
+  }
+}
+
+.timer {
+  color: $color-texto-1;
+  border: 2px solid $color-texto-1;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: bold;
+  width: 80px;
+  height: 80px;
+  transition: 0.25s;
+  outline: none;
+  &:hover {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+  @media (max-width: $phone-breakpoint) {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
   }
 }
