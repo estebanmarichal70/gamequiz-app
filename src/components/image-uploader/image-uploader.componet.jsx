@@ -21,7 +21,8 @@ export default class DragAndDropFileUploader extends React.Component {
             id: 'uppy1',
             autoProceed: true,
             debug: true,
-            locale: Spanish
+            locale: Spanish,
+            maxNumberOfFiles: 1,
         })
             .use(Tus);
     }
@@ -37,6 +38,7 @@ export default class DragAndDropFileUploader extends React.Component {
                     uppy={this.uppy}
                     target=".card-upload-image"
                     trigger='#dashboard'
+                    theme="dark"
                 />
             </div>
         )
