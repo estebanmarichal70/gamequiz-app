@@ -27,7 +27,7 @@ class Empezar extends Component {
         return (
             <div>
                 <div className="d-flex jc-center contenedorR">
-                    <div className="card-pregunta mr-30">
+                    <div className="card-datos mr-30">
                         <div className="card-body flex-column center-all">
                             <div className="datos-cont ">
                                 <div className="imagen-juego">
@@ -60,7 +60,7 @@ class Empezar extends Component {
                                 <div>
                                 </div>
                                 <div className="d-flex cont-pregunta m-10">
-                                    <div className="card-body d-flex flex-row jc-sb w-100">
+                                    <div className="card-body d-flex flex-row jc-sb">
                                         <div className="d-flex flex-column">
                                             <div className="d-flex jc-start h-20">
                                                 1-Quiz
