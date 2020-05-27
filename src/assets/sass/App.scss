@@ -709,6 +709,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
   .card-pregunta {
     @extend .card;
+    max-width: 350px;
 
     @media (max-width: $desktop-breakpoint) {
       width: 80% !important;
@@ -785,6 +786,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
   .card-opciones-crear {
     @extend .card-media;
+    max-width: 350px;
 
     @media (min-width: $phone-breakpoint) {
       margin-bottom: 15px !important;

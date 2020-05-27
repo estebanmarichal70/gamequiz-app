@@ -76,8 +76,6 @@ class Crear extends Component {
                                 <input id="publico" name="check" type="radio" onClick={this.onClick}/>
                                 <label htmlFor="publico">True/False</label>
                             </div>
-
-
                         </div>
                     </div>
                     <div className="main-card-crear">
