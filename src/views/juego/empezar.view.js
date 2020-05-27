@@ -2,12 +2,25 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import "../../assets/sass/App.scss";
 import "../../assets/empezar.scss";
+import CustomModal from "../../components/modal.component"
+
 
 class Empezar extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            modalIsOpen:false
+        };
+        this.handleClose = this.handleClose.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
+    }
+
+    handleOpen(){
+        this.setState({...this.state, modalIsOpen:true});
+    }
+    handleClose(){
+        this.setState({...this.state, modalIsOpen:false});
     }
 
     render() {
@@ -29,9 +42,13 @@ class Empezar extends Component {
                                     <li>Privado/Publico</li>
                                 </div>
                             </div>
-                            <Link className="rounded-button link" to="/juego/jugar">
+                            <Link className="rounded-button link gold" to="/juego/jugar">
                                 Jugar
                             </Link>
+                            <Link className="link-blanco" onClick={this.handleOpen}>
+                                Compartir
+                            </Link>
+                            <CustomModal onModalClose={this.handleClose} modalIsOpen={this.state.modalIsOpen}/>
                         </div>
                     </div>
                     <div className="card-preguntas">

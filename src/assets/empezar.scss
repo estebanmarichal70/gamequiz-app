@@ -7,6 +7,17 @@ $color-texto-1: #d1d2d3;
 $color-texto-2: #909296;
 /*------------------- */
 
+.rounded-input {
+  background: none;
+  border: 2px solid $color-texto-1;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: $color-texto-1;
+  border-radius: 24px;
+  transition: 0.25s;
+  font-family: inherit;
+}
 .card {
   border: 2px solid $color-secondary;
   border-radius: 10px;
@@ -99,4 +110,20 @@ $color-texto-2: #909296;
       }
     }
   }
+}
+
+
+ /* cosas para join*/
+ .card-join{
+  @extend .card;
+  width: 100%;
+  .card-link {
+    padding: 8px;
+    width: 100%;
+  }
+} 
+.input-link{
+  @extend .rounded-input;
+  text-align: center;
+  width: 400px !important;
 }
