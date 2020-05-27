@@ -1,0 +1,732 @@
+/*===================================================================================================================*/
+/*[ Colores generales y de utilidad ]*/
+
+/*  Colores berreta */
+$color-primary: #202225;
+$color-secondary: #393939;
+$color-third: #53575f;
+$color-texto-1: #d1d2d3;
+$color-texto-2: #909296;
+/*------------------- */
+
+
+/* Colores re pro */
+
+$color-gold: #ffd700;
+
+/*-------------------------------------*/
+/* Aca terminan los mejores colores :) */
+/*-------------------------------------*/
+
+$phone-breakpoint: 576px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 992px;
+$large-breakpoint: 1200px;
+
+//@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+//@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) { ... }
+
+/*===================================================================================================================*/
+/*[ Funciones reutilizables ]*/
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.jc-start {
+  justify-content: start;
+}
+
+.jc-end {
+  justify-content: end;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.center-all {
+  @extend .d-flex;
+  @extend .ai-center;
+  @extend .jc-center;
+}
+
+.m-0 {
+  margin: 0 !important;
+}
+
+@for $j from 1 through 100 {
+  .h-#{$j} {
+    height: ($j * 1%);
+  }
+}
+
+@for $j from 1 through 100 {
+  .w-#{$j} {
+    width: ($j * 1%);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .mt-#{$j} {
+    margin-top: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .mb-#{$j} {
+    margin-bottom: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .ml-#{$j} {
+    margin-left: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .mr-#{$j} {
+    margin-right: ($j * 1px);
+  }
+}
+
+@for $j from 1 through 100 {
+  .m-#{$j} {
+    margin: ($j * 1px);
+  }
+}
+
+
+/*===================================================================================================================*/
+/*[ Estilo de títulos y subtítulos ]*/
+.titulo-inicio {
+  @extend .titulo;
+  font-size: 3rem;
+}
+
+.titulo {
+  color: $color-texto-1;
+}
+
+.subtitulo {
+  color: $color-texto-2;
+}
+
+
+/*===================================================================================================================*/
+/*[ Boton general ]*/
+.boton-inicio {
+  background-color: $color-secondary;
+  color: $color-texto-1;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1.5rem;
+
+  @media (max-width: $phone-breakpoint) {
+    width: 200px;
+    height: 100px;
+  }
+
+  @media (min-width: $phone-breakpoint) {
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+      background: $color-texto-1;
+      color: $color-third;
+    }
+    width: 400px;
+    height: 150px;
+  }
+}
+
+
+/*===================================================================================================================*/
+/*[ Estilo de links ]*/
+.link {
+  text-decoration: none;
+}
+
+.link-blanco {
+  @extend .link;
+  color: white;
+  font-size: 14px;
+}
+
+.link-gris {
+  @extend .link;
+  color: $color-texto-2;
+  font-size: 14px;
+}
+
+
+/*===================================================================================================================*/
+/*[ Form para registrar e iniciar sesión ]*/
+.form-login {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .form-box {
+    border-radius: 26px;
+    padding: 40px;
+    background: $color-secondary;
+    text-align: center;
+  }
+
+  .titulo-login {
+    @extend .titulo;
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+
+  .form-box input[type="text"], .form-box input[type="password"], .form-box button[type="submit"] {
+    font-family: inherit;
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid $color-texto-1;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: $color-texto-1;
+    border-radius: 24px;
+    transition: 0.25s;
+  }
+
+  .form-box input[type="text"]:focus, .form-box input[type="password"]:focus {
+    width: 250px;
+  }
+
+  .form-box button[type="submit"] {
+    border: 0;
+    background: $color-primary;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 14px 40px;
+    outline: none;
+    color: $color-texto-1;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+
+  .form-box button[type="submit"]:hover {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+}
+
+/*===================================================================================================================*/
+/*[ Tabla ]*/
+.wrap-table {
+  .hide {
+    display: none;
+  }
+
+  margin-right: 20px;
+  width: 1400px;
+  @media (max-width: $phone-breakpoint) {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 95%;
+    .table-head th {
+      display: none;
+    }
+    .hide {
+      display: block !important;
+    }
+    .table-body {
+      max-height: 200px;
+    }
+  }
+}
+
+.table {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.column1 {
+  border-radius: 5px 0px 0px 5px;
+  width: 20%;
+}
+
+.column2 {
+  width: 30%;
+}
+
+.column3 {
+  width: 8%;
+}
+
+.column4 {
+  width: 8%;
+}
+
+.column5 {
+  width: 14%;
+}
+
+.column6 {
+  border-radius: 0px 5px 5px 0px;
+  width: 20%;
+
+}
+
+.table-head th {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.table-body td {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/*==================================================================
+[ Fixeo de tamaños de tabla ]*/
+.table {
+  padding: 2px;
+  position: relative;
+  padding-top: 60px;
+}
+
+.table-head {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.table-body {
+  border-radius: 6px;
+  max-height: 600px;
+  overflow: auto;
+}
+
+/*==================================================================
+[ Estilo de Tabla]*/
+.table.style {
+  text-align: center;
+  background-color: $color-secondary;
+  border-radius: 10px;
+}
+
+.table.style th {
+  color: $color-texto-1;
+  line-height: 1.4;
+  background-color: $color-secondary;
+}
+
+.table.style td {
+  color: $color-texto-2;
+  line-height: 1.4;
+  background-color: $color-primary;
+}
+
+/*==================================================================
+[ Estilo de Scroll ]*/
+.scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #a7a7a7;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #555;
+}
+
+
+/*==================================================================
+[ Card ]*/
+.card {
+  border: 2px solid $color-secondary;
+  border-radius: 10px;
+  background-color: $color-primary;
+
+  .card-header {
+    border-radius: 5px 5px 0px 0px;
+    height: 60px;
+    @extend .titulo;
+    @extend .center-all;
+    font-weight: bold;
+    background-color: $color-secondary;
+  }
+
+  .card-body {
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+
+/*==================================================================
+[ Contenedor para responsive, muestra en columna y centra todo ]*/
+.contenedorR {
+  @media (max-width: $phone-breakpoint) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+/*==================================================================
+[ Inputs, botones y componentes rounded ]*/
+.rounded-input {
+  background: none;
+  border: 2px solid $color-texto-1;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: $color-texto-1;
+  border-radius: 24px;
+  transition: 0.25s;
+  font-family: inherit;
+}
+
+.rounded-textarea {
+  @extend .rounded-input;
+  resize: none;
+  overflow: hidden;
+}
+
+input[type="password"][disabled], input[type="text"][disabled] {
+  background-color: $color-texto-1;
+}
+
+.rounded-left-input {
+  @extend .rounded-input;
+
+  border-bottom-right-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.rounded-right-button {
+  @extend .rounded-button;
+  border-left: 0;
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+.rounded-left-button {
+  @extend .rounded-button;
+  border-right: 0;
+  border-bottom-right-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.rounded-button {
+
+  background: $color-primary;
+  border: 2px solid $color-gold;
+
+  padding: 14px 40px;
+  outline: none;
+  color: $color-texto-1;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+}
+
+/*==================================================================
+[ Estilo de Checkbox ]*/
+.checkbox {
+  background-color: none;
+  display: block;
+  position: relative;
+  border-radius: 24px;
+  border: 2px solid $color-texto-1;
+
+  label {
+    font-size: 14px;
+    border-radius: 24px;
+    padding: 12px 10px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    color: $color-texto-2;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: color 200ms ease-in;
+    overflow: hidden;
+
+    &:after {
+      width: 32px;
+      height: 32px;
+      content: '';
+      border: 2px solid $color-texto-1;
+      border-radius: 50%;
+      position: absolute;
+      right: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      transition: all 200ms ease-in;
+    }
+  }
+
+  input:checked ~ label {
+    color: $color-texto-1;
+
+    &:after {
+      background-color: #54E0C7;
+      border-color: #54E0C7;
+    }
+  }
+
+  input {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    cursor: pointer;
+    visibility: hidden;
+  }
+}
+
+*::after {
+  box-sizing: inherit;
+}
+
+
+/*==================================================================
+[ Estilos de Selectbox ]*/
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: none;
+  box-shadow: none;
+  border: 0 !important;
+  background: $color-secondary;
+}
+select::-ms-expand {
+  display: none;
+}
+
+.select {
+  position: relative;
+  display: flex;
+  width: 300px;
+  height: 48px;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+select {
+  flex: 1;
+  padding: 0 15px;
+  color: $color-texto-1;
+  cursor: pointer;
+}
+
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 15px;
+  color: $color-secondary;
+  background: $color-texto-1;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+.select:hover::after {
+  color: #54E0C7;
+}
+
+
+/*==================================================================
+[ Estilos de Perfil ]*/
+.flex-izq {
+  @media (max-width: $phone-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.card-perfil {
+  @extend .card;
+
+  @media (max-width: $phone-breakpoint) {
+    width: 240px;
+    height: 220px;
+  }
+}
+
+
+/*==================================================================
+[ Estilos para Crear Juego ]*/
+.card-pregunta {
+  @extend .card;
+
+  .card-body {
+    padding: 30px;
+  }
+
+  .preguntas-cont {
+
+    overflow: auto;
+    overflow-x: hidden;
+    max-height: 315px;
+    padding: 4px;
+
+
+    .pregunta-cont {
+      @extend .card;
+      cursor: pointer;
+      margin-right: 10px;
+      height: 150px;
+      width: 220px;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+
+
+  @media (max-width: $phone-breakpoint) {
+    width: 200px;
+    height: 220px;
+  }
+}
+
+
+/*==================================================================
+[ Estilos para Configurar Juego ]*/
+
+.card-summary {
+  @extend .card;
+  .card-body {
+    padding: 50px;
+    .rounded-input {
+      width: 280px;
+    }
+    .rounded-textarea {
+      height: 100px;
+    }
+  }
+}
+
+.card-media {
+  @extend .card;
+  width: 50%;
+
+  .card-body {
+    padding: 30px;
+  }
+  .cover {
+    @extend .card;
+    height: 400px;
+    width: 400px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}
+
+.rounded-input-youtube {
+  @extend .rounded-input;
+  width: 400px !important;
+  @media (max-width: $phone-breakpoint) {
+    width: 200px !important;
+  }
+
+}
+
+.rounded-input-time {
+  @extend .rounded-input;
+  width: 170px !important;
+}
+
+.time {
+  width: 400px;
+  @media (max-width: $phone-breakpoint) {
+    flex-direction: column;
+  }
+}
+
+.video-wrapper {
+  min-height: 300px;
+  min-width: 500px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.card-youtube {
+  @media (max-width: $phone-breakpoint) {
+    width: 300px;
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+}
+
+.button-youtube {
+  @media (max-width: $phone-breakpoint) {
+    width: 150px;
+  }
+}
+

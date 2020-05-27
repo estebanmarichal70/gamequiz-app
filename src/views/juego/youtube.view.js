@@ -1,0 +1,136 @@
+import React,{Component}  from 'react';
+import "../../assets/sass/youtube.scss";
+
+import Video from "../../components/video-youtube.component"
+
+
+class Link extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            inputValueUrl: "",
+            minStart: null,
+            secStart: null,
+            minEnd: null,
+            secEnd: null,
+            showVideoPlayer: false
+        };
+    }
+
+    handleChangeUrl = event => { this.setState({inputValueUrl : event.target.value}) }
+
+    handleChangeStartMin = event => { this.setState({minStart : event.target.value}) }
+
+    handleChangeStartSec = event => { this.setState({secStart : event.target.value}) }
+
+    handleChangeEndMin = event => { this.setState({ minEnd : event.target.value}) }
+
+    handleChangeEndSec = event => { this.setState({ secEnd : event.target.value }) }
+
+    removeData = () => {
+        this.setState({
+            inputValueUrl: "",
+            minStart: "",
+            secStart: "",
+            minEnd: "",
+            secEnd: "",
+            showVideoPlayer: false
+        })
+    }
+
+    handleSubmit = async event => {
+        event.preventDefault();
+        await this.setState({
+            showVideoPlayer:true
+        })
+    }
+
+    render() {
+        const videoData = {
+            url: this.state.inputValueUrl,
+            start: parseInt(this.state.minStart) * 60 + parseInt(this.state.secStart),
+            end: parseInt(this.state.minEnd) * 60 + parseInt(this.state.secEnd)
+        }
+        return (
+            <div className="center-all">
+                <div className="d-flex jc-center contenedorR">
+                    <div className="card-summary mr-30 card-youtube">
+                        <div className="card-header"><span>Configuración de Video</span></div>
+                        <div className="card-body d-flex flex-column center-all">
+                            <input
+                                onChange={this.handleChangeUrl}
+                                className="rounded-input-youtube mb-10"
+                                type="text"
+                                placeholder="Link del Video"
+                                value={this.state.inputValueUrl}
+                            />
+                            <p className="titulo">Start Video</p>
+                            <div className="d-flex jc-sb center-all time">
+                                <input
+                                    onChange={this.handleChangeStartMin}
+                                    className="rounded-input-time mb-10"
+                                    type="number"
+                                    min="0"
+                                    placeholder="Minutos"
+                                    value={this.state.minStart}
+                                />
+                                <input
+                                    onChange={this.handleChangeStartSec}
+                                    className="rounded-input-time mb-10"
+                                    type="number"
+                                    min="0"
+                                    max="60"
+                                    placeholder="Segundos"
+                                    value={this.state.secStart}
+                                />
+                            </div>
+                            <p className="titulo">End Video</p>
+                            <div className="d-flex jc-sb center-all time">
+                                <input
+                                    onChange={this.handleChangeEndMin}
+                                    className="rounded-input-time mb-10"
+                                    type="number"
+                                    min="0"
+                                    placeholder="Minutos"
+                                    value={this.state.minEnd}
+                                />
+                                <input
+                                    onChange={this.handleChangeEndSec}
+                                    className="rounded-input-time mb-10"
+                                    type="number"
+                                    min="0"
+                                    max="60"
+                                    placeholder="Segundos"
+                                    value={this.state.secEnd}
+                                />
+                            </div>
+                                <button className="rounded-button button-youtube w-40 mb-10 mt-15" onClick={this.handleSubmit}>
+                                    Cargar
+                                </button>
+
+                        </div>
+                    </div>
+                    <div className="card-media">
+                        <div className="card-header"><span>Vista del Video</span></div>
+                        <div className="card-body center-all d-flex flex-column">
+                            <div className="card-media video-wrapper">
+                                { this.state.showVideoPlayer && <Video videoData={videoData}/> }
+                            </div>
+                            <div className="d-flex">
+                                <button className="rounded-left-button">
+                                    Aceptar
+                                </button>
+                                <button className="rounded-right-button" onClick={this.removeData}>
+                                    Remover
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+export default Link;
