@@ -4,15 +4,13 @@ import "../assets/sass/youtube.scss";
 import ReactPlayer from 'react-player'
 
 const video = (props) => {
-    console.log(props)
     return (
             <ReactPlayer
                 url={props.videoData.url}
-
                 className='react-player'
                 playing
-                width='500px'
-                height='300px'
+                width={props.videoData.width}
+                height={props.videoData.height}
                 config={{
                     youtube: {
                         playerVars: {

@@ -669,12 +669,56 @@ select {
   }
 }
 
-.card-media {
+.card-youtube {
   @extend .card;
   width: 50%;
 
   .card-body {
     padding: 30px;
+
+    .card-video {
+      @extend .card;
+      @media (max-width: $phone-breakpoint) {
+        width: 200px;
+      }
+    }
+
+    .rounded-input-youtube {
+      @extend .rounded-input;
+      width: 400px !important;
+      @media (max-width: $phone-breakpoint) {
+        width: 200px !important;
+      }
+    }
+
+    .rounded-input-time {
+      @extend .rounded-input;
+      width: 170px !important;
+    }
+
+    .time {
+      width: 400px;
+      @media (max-width: $phone-breakpoint) {
+        flex-direction: column;
+      }
+    }
+
+    .video-wrapper {
+      min-height: 300px;
+      min-width: 500px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      @media (max-width: $phone-breakpoint) {
+        min-width: 270px;
+        min-height: 170px;
+      }
+    }
+
+    .button-youtube {
+      @media (max-width: $phone-breakpoint) {
+        width: 150px;
+      }
+    }
   }
   .cover {
     @extend .card;
@@ -686,37 +730,6 @@ select {
       transform: scale(1.03);
     }
   }
-}
-
-.rounded-input-youtube {
-  @extend .rounded-input;
-  width: 400px !important;
-  @media (max-width: $phone-breakpoint) {
-    width: 200px !important;
-  }
-
-}
-
-.rounded-input-time {
-  @extend .rounded-input;
-  width: 170px !important;
-}
-
-.time {
-  width: 400px;
-  @media (max-width: $phone-breakpoint) {
-    flex-direction: column;
-  }
-}
-
-.video-wrapper {
-  min-height: 300px;
-  min-width: 500px;
-  margin-bottom: 20px;
-  overflow: hidden;
-}
-
-.card-youtube {
   @media (max-width: $phone-breakpoint) {
     width: 300px;
     margin-bottom: 20px;
@@ -724,9 +737,7 @@ select {
   }
 }
 
-.button-youtube {
-  @media (max-width: $phone-breakpoint) {
-    width: 150px;
-  }
-}
+
+
+
 

@@ -10,12 +10,30 @@ class Link extends Component {
         super(props);
         this.state = {
             inputValueUrl: "",
-            minStart: null,
-            secStart: null,
-            minEnd: null,
-            secEnd: null,
-            showVideoPlayer: false
+            minStart: "",
+            secStart: "",
+            minEnd: "",
+            secEnd: "",
+            showVideoPlayer: false,
+            width: "",
+            height: ""
         };
+    }
+
+    handleSizeVideo = event => {
+        let screenSize = window.innerWidth;
+        if (screenSize < 577) {
+            this.setState({
+                width:"270px",
+                height:"170px"
+            })
+        }
+        else {
+            this.setState({
+                width:"500px",
+                height:"300px"
+            })
+        }
     }
 
     handleChangeUrl = event => { this.setState({inputValueUrl : event.target.value}) }
@@ -41,6 +59,7 @@ class Link extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
+        this.handleSizeVideo(event);
         await this.setState({
             showVideoPlayer:true
         })
@@ -50,7 +69,9 @@ class Link extends Component {
         const videoData = {
             url: this.state.inputValueUrl,
             start: parseInt(this.state.minStart) * 60 + parseInt(this.state.secStart),
-            end: parseInt(this.state.minEnd) * 60 + parseInt(this.state.secEnd)
+            end: parseInt(this.state.minEnd) * 60 + parseInt(this.state.secEnd),
+            width: this.state.width,
+            height: this.state.height
         }
         return (
             <div className="center-all">
@@ -111,10 +132,10 @@ class Link extends Component {
 
                         </div>
                     </div>
-                    <div className="card-media">
+                    <div className="card-youtube">
                         <div className="card-header"><span>Vista del Video</span></div>
                         <div className="card-body center-all d-flex flex-column">
-                            <div className="card-media video-wrapper">
+                            <div className="video-wrapper card-video">
                                 { this.state.showVideoPlayer && <Video videoData={videoData}/> }
                             </div>
                             <div className="d-flex">
