@@ -33,7 +33,7 @@ class Configurar extends Component {
                             <input className="rounded-input mb-10" type="text" placeholder="Título" name="titulo" autoFocus required/>
                             <textarea className="rounded-textarea mb-30" placeholder="Descripción" name="descripcion" maxLength="200"/>
                             <div className="checkbox mb-15">
-                                <input id="privado" name="check" type="radio" onClick={this.onClick}/>
+                                <input id="privado" name="check" type="radio" onClick={this.onClick} defaultChecked/>
                                 <label htmlFor="privado">Público</label>
                             </div>
                             <div className="checkbox mb-15">
@@ -90,7 +90,7 @@ class Configurar extends Component {
                                     <li><label className="select-box__option" htmlFor="6">6</label></li>
                                 </ul>
                             </div>
-                            <button className="rounded-button mt-20">Aceptar</button>
+                            <button className="rounded-button success mt-20">Aceptar</button>
                         </div>
                     </div>
                 </div>

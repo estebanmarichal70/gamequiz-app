@@ -14,6 +14,8 @@ $color-texto-2: #909296;
 
 $color-gold: #ffd700;
 $color-true: #54E0C7;
+$color-false: #c91a1a;
+$color-purple: #a419b1;
 
 /*-------------------------------------*/
 /* Aca terminan los mejores colores :) */
@@ -435,8 +437,9 @@ table {
   overflow: hidden;
 }
 
-input[type="password"][disabled], input[type="text"][disabled] {
+input[type="password"][disabled], input[type="text"][disabled], textarea[disabled], button[disabled] {
   background-color: $color-texto-1;
+  color: $color-texto-2;
 }
 
 .rounded-left-input {
@@ -454,9 +457,8 @@ input[type="password"][disabled], input[type="text"][disabled] {
 }
 
 .rounded-button {
-
   background: $color-primary;
-  border: 2px solid $color-gold;
+  border: 2px solid $color-texto-1;
 
   padding: 14px 40px;
   outline: none;
@@ -465,9 +467,39 @@ input[type="password"][disabled], input[type="text"][disabled] {
   transition: 0.25s;
   cursor: pointer;
 
-  &:hover {
+  &:hover:not([disabled]) {
     background: $color-texto-1;
+    color: $color-third;
+  }
+}
+
+.gold:not([disabled]) {
+  border-color: $color-gold;
+  &:hover {
+    background: $color-gold;
     color: $color-secondary;
+  }
+}
+
+.success:not([disabled]) {
+  border-color: $color-true;
+  &:hover {
+    background: $color-true;
+    color: $color-secondary;
+  }
+}
+
+.error:not([disabled]) {
+  border-color: $color-false;
+  &:hover {
+    background: $color-false;
+  }
+}
+
+.purple:not([disabled]) {
+  border-color: $color-purple;
+  &:hover {
+    background: $color-purple;
   }
 }
 
@@ -484,7 +516,7 @@ input[type="password"][disabled], input[type="text"][disabled] {
     font-size: 14px;
     border-radius: 24px;
     padding: 12px 10px;
-    width: 100%;
+    width: 92%;
     display: block;
     text-align: left;
     color: $color-texto-2;
@@ -501,7 +533,7 @@ input[type="password"][disabled], input[type="text"][disabled] {
       border: 2px solid $color-texto-1;
       border-radius: 50%;
       position: absolute;
-      right: 30px;
+      right: 20px;
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
@@ -511,7 +543,6 @@ input[type="password"][disabled], input[type="text"][disabled] {
 
   input:checked ~ label {
     color: $color-texto-1;
-
     &:after {
       background-color: $color-true;
       border-color: $color-true;
@@ -752,10 +783,6 @@ input[type="password"][disabled], input[type="text"][disabled] {
     .scroll::-webkit-scrollbar{
       width: 9px;
     }
-    .rounded-button{
-      border: 2px solid $color-true;
-    }
-    
   }
   
   @media (max-width: $phone-breakpoint) {
