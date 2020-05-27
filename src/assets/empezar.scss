@@ -7,6 +7,22 @@ $color-texto-1: #d1d2d3;
 $color-texto-2: #909296;
 /*------------------- */
 
+$phone-breakpoint: 576px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 992px;
+$large-breakpoint: 1200px;
+
+.rounded-input {
+  background: none;
+  border: 2px solid $color-texto-1;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: $color-texto-1;
+  border-radius: 24px;
+  transition: 0.25s;
+  font-family: inherit;
+}
 .card {
   border: 2px solid $color-secondary;
   border-radius: 10px;
@@ -24,79 +40,112 @@ $color-texto-2: #909296;
     text-align: center;
   }
 }
+// desde aca hay que agregar 
 
-.datos-cont {
-
-  overflow: auto;
-  overflow-x: hidden;
-  max-height: 315px;
-  padding: 15px;
-
-
-  .imagen-juego {
-    @extend .card;
-    cursor: pointer;
-    margin-right: 10px;
-    height: 135px;
-    width: 220px;
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-      transform: scale(1.03);
-    }
-
-  }
-}
-
- .datos{
-  font-size:14px;
-  color: #d1d2d3;
-}
-
-.datos li{
-  list-style:none;
-  border-bottom:dotted;
-  border-bottom-color: #393939;
-  margin-top:10px;
-  padding-bottom:8px;
-}
 
 .card-preguntas {
   @extend .card;
-  width: 50%;
 
   .card-body {
     padding: 8px;
-  }
 
-  .cont-preguntas{
-    overflow: auto;
-    max-height: 350px;
-  }
-  .cont-pregunta {
-    @extend .card;
-    height: 100px;
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    &:hover {
-      transform: scale(1.02);
+    .cont-preguntas{
+      overflow: auto;
+      max-height: 350px;
     }
-  
-    .cont-texto{
-      padding: 10px;
-      width: 500px;
-    }
-
-    .imagen-juego {
+    .cont-pregunta {
       @extend .card;
-      cursor: pointer;
-      height: 80px;
-      width: 130px;
+      height: 100px;
       transition: all 0.2s ease-in-out;
-  
+      cursor: pointer;
       &:hover {
-        transform: scale(1.03);
+        transform: scale(1.02);
+      }
+    
+      .cont-texto{
+        padding: 10px;
+        width: 500px;
+      }
+  
+      .imagen-juego {
+        @extend .card;
+        cursor: pointer;
+        height: 80px;
+        width: 130px;
+        transition: all 0.2s ease-in-out;
+          @media(max-width:$phone-breakpoint){
+            height: 80px;
+            width: 80px;
+          }
+        &:hover {
+          transform: scale(1.03);
+        }
       }
     }
   }
+
+  
+}
+.card-datos {
+  @extend .card;
+  @media(max-width: $phone-breakpoint){
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .card-body {
+    padding: 30px;
+
+    .datos-cont {
+      overflow: auto;
+      overflow-x: hidden;
+      max-height: 315px;
+      padding: 15px;
+    
+    
+      .imagen-juego {
+        @extend .card;
+        cursor: pointer;
+        margin-right: 10px;
+        height: 135px;
+        width: 220px;
+        transition: all 0.2s ease-in-out;
+    
+        &:hover {
+          transform: scale(1.03);
+        }
+      }
+      .datos{
+        font-size:14px;
+        color: #d1d2d3;
+      }
+      
+      .datos li{
+        list-style:none;
+        border-bottom:dotted;
+        border-bottom-color: #393939;
+        margin-top:10px;
+        padding-bottom:8px;
+      }
+    }
+  }
+  
+  
+}
+
+
+ /* cosas para join*/
+ .card-join{
+  @extend .card;
+  width: 100%;
+  .card-link {
+    padding: 8px;
+    width: 100%;
+  }
+} 
+
+//modal 
+.input-link{
+  @extend .rounded-input;
+  text-align: center;
+  width: 400px !important;
 }
