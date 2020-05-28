@@ -16,7 +16,6 @@ const crearJuegoAsync = async (data) =>
 
 function* crearJuego({payload}) {
     const {history} = payload;
-    console.log(payload);
     try {
         const response = yield call(crearJuegoAsync, payload.juego);
         if (response.data) {

@@ -6,7 +6,7 @@ const AuthRoute = ({component: Component, user, ...rest}) => {
         <Route
             {...rest}
             render={props =>
-                user ? (
+                user != null ? (
                     <Component {...props} />
                 ) : (
                     <Redirect

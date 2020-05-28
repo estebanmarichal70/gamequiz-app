@@ -1,7 +1,8 @@
 import React, {Suspense} from "react";
 import "../../assets/sass/App.scss";
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import {withRouter} from "react-router";
+import ViewError from "../error";
 
 
 const Crear = React.lazy(() => import("./crear.view"));
@@ -47,7 +48,7 @@ const Juego = ({match}) => {
                     render={(props) => <Jugando {...props} />}
                     exact
                 />
-                 <Route
+                <Route
                     path={`${match.url}/youtube`}
                     render={(props) => <Youtube {...props} />}
                     exact
@@ -62,7 +63,7 @@ const Juego = ({match}) => {
                     render={(props) => <Correccion {...props} />}
                     exact
                 />
-                    <Route
+                <Route
                     path={`${match.url}/inicio`}
                     render={(props) => <Inicio {...props} />}
                     exact
@@ -72,6 +73,8 @@ const Juego = ({match}) => {
                     render={(props) => <Ranking {...props} />}
                     exact
                 />
+                <Route path="/error" exact render={props => <ViewError {...props} />}/>
+                <Redirect to="/error"/>
             </Switch>
         </Suspense>
     );

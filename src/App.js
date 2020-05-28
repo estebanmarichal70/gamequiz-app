@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import './assets/sass/App.scss';
 
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom'
-import AuthRoute from "./components/auth-route/auth-route.component";
 
 import './assets/sass/image-uploader.scss';
 
@@ -15,20 +14,19 @@ import Perfil from './views/usuario/perfil.view';
 
 
 import ViewError from "./views/error";
+import AuthRoute from "./components/auth-route/auth-route.component";
 
 class App extends Component {
     render() {
-        console.log(this.props.user);
         return (
             <div className="App h-100">
                 <Suspense fallback={<div/>}>
                     <BrowserRouter>
                         <Switch>
                             <Route path='/' render={props => <VistaInicio {...props}/>} exact/>
-                            <AuthRoute path='/usuario/perfil' user={this.props.user} exact
-                                       render={props => <Perfil {...props}/>}/>
+                            <AuthRoute path='/usuario/perfil' user={this.props.user} exact component={Perfil}/>
                             <Route path='/usuario' render={props => <Auth {...props}/>}/>
-                            <AuthRoute path='/juego' user={this.props.user} render={props => <Juego {...props}/>}/>
+                            <AuthRoute path='/juego' user={this.props.user} component={Juego}/>
                             <Route path="/error" exact render={props => <ViewError {...props} />}/>
                             <Redirect to="/error"/>
                         </Switch>

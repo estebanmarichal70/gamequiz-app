@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../../assets/sass/App.scss';
 
 
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import {connect} from "react-redux";
@@ -37,8 +37,9 @@ class Perfil extends Component {
                         </div>
 
                         <div className="mb-20 w-100 d-flex center-all">
-                            <Link className="rounded-button gold link mr-10">Logout <FontAwesomeIcon icon={faSignOutAlt}
-                                                                                                     color="#909296"/></Link>
+                            <Link className="rounded-button gold link mr-10" to="/">Logout <FontAwesomeIcon
+                                icon={faSignOutAlt}
+                                color="#909296"/></Link>
                             <Link to="/juego/configurar" className="rounded-button gold link">Crear Juego</Link>
                         </div>
                     </div>
@@ -238,4 +239,4 @@ const mapStateToProps = ({authUser}) => {
     return {user};
 };
 
-export default connect(mapStateToProps)(Perfil);
+export default withRouter(connect(mapStateToProps)(Perfil));
