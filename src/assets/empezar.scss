@@ -23,6 +23,33 @@ $large-breakpoint: 1200px;
   transition: 0.25s;
   font-family: inherit;
 }
+.rounded-left-input {
+  @extend .rounded-input;
+  border-bottom-right-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.rounded-button {
+  background: $color-primary;
+  border: 2px solid $color-texto-1;
+  padding: 14px 40px;
+  outline: none;
+  color: $color-texto-1;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+
+  &:hover:not([disabled]) {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+}
+
+.rounded-right-button {
+  @extend .rounded-button;
+  border-left: none;
+  border-bottom-left-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
 .card {
   border: 2px solid $color-secondary;
   border-radius: 10px;
@@ -40,12 +67,16 @@ $large-breakpoint: 1200px;
     text-align: center;
   }
 }
+
 // desde aca hay que agregar 
 
-
+// vista empezar
 .card-preguntas {
   @extend .card;
-
+  @media(max-width: $phone-breakpoint){
+    margin: 0;
+    margin-bottom: 10px;
+  }
   .card-body {
     padding: 8px;
 
@@ -55,11 +86,15 @@ $large-breakpoint: 1200px;
     }
     .cont-pregunta {
       @extend .card;
-      height: 100px;
+      height: 140px;
+      padding: 8px;
       transition: all 0.2s ease-in-out;
       cursor: pointer;
       &:hover {
         transform: scale(1.02);
+      }
+      @media(max-width:$phone-breakpoint){
+        width: 270px;
       }
     
       .cont-texto{
@@ -70,12 +105,13 @@ $large-breakpoint: 1200px;
       .imagen-juego {
         @extend .card;
         cursor: pointer;
-        height: 80px;
-        width: 130px;
+        height: 110px;
+        width: 140px;
         transition: all 0.2s ease-in-out;
           @media(max-width:$phone-breakpoint){
             height: 80px;
             width: 80px;
+            margin-top: 20px;
           }
         &:hover {
           transform: scale(1.03);
@@ -129,19 +165,8 @@ $large-breakpoint: 1200px;
     }
   }
   
-  
+  ///--------------//
 }
-
-
- /* cosas para join*/
- .card-join{
-  @extend .card;
-  width: 100%;
-  .card-link {
-    padding: 8px;
-    width: 100%;
-  }
-} 
 
 //modal 
 .input-link{
@@ -149,3 +174,34 @@ $large-breakpoint: 1200px;
   text-align: center;
   width: 400px !important;
 }
+
+//------------------//
+
+/* cosas para vista join*/
+.card-join{
+  border: 2px;
+  border-radius: 10px;
+  margin-left: 275px;
+  margin-top: 20px;
+}
+  .cont-pass{
+    padding-top: 10px;
+    margin-left: 500px;
+  }
+  .boton-buscar{
+  @extend .rounded-right-button;  
+  padding: 13px 20px !important;
+    
+  }
+
+  .input-buscar{
+    @extend .rounded-left-input;
+    padding: 14px 20px !important;
+  }
+
+.input-join{
+  @extend .rounded-input;
+  width: 700px;
+}
+
+/*----------------*/

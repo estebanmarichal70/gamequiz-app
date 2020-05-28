@@ -59,72 +59,68 @@ class Empezar extends Component {
                             <div className=" cont-preguntas scroll">
                                 <div>
                                 </div>
-                                <div className="d-flex cont-pregunta m-10">
-                                    <div className="card-body d-flex flex-row jc-sb">
-                                        <div className="d-flex flex-column">
-                                            <div className="d-flex jc-start h-20">
-                                                1-Quiz
-                                            </div>
-                                            <div className="d-flex ai-center h-80">
-                                                Pregunta del juego que pregunta algo para responder
-                                            </div>
+                                <div className="d-flex cont-pregunta m-10 jc-sb">
+                                    <div className="d-flex flex-column">
+                                        <div className="d-flex jc-start h-20">
+                                            <span>1-Quiz</span>
                                         </div>
-                                        <div className="d-flex flex-column">
-                                            <div className="imagen-juego">
-                                            </div>
-                                            20s
+                                        <div className="d-flex ai-center h-80">
+                                            <span>Pregunta del juego que pregunta</span> 
                                         </div>
                                     </div>
-                                </div>
-                                <div className="d-flex cont-pregunta m-10">
-                                    <div className="card-body d-flex flex-row jc-sb w-100">
-                                        <div className="d-flex flex-column">
-                                            <div className="d-flex jc-start h-20">
-                                                1-Quiz
-                                            </div>
-                                            <div className="d-flex ai-center h-80">
-                                                Pregunta del juego que pregunta algo para responder
-                                            </div>
+                                    <div className="d-flex flex-column ml-50">
+                                        <div className="imagen-juego">
+                                            imagen 
                                         </div>
-                                        <div className="d-flex flex-column">
-                                            <div className="imagen-juego">
-                                            </div>
-                                            20s
-                                        </div>
+                                        <span>20s</span>
                                     </div>
                                 </div>
-                                <div className="d-flex cont-pregunta m-10">
-                                    <div className="card-body d-flex flex-row jc-sb w-100">
-                                        <div className="d-flex flex-column">
-                                            <div className="d-flex jc-start h-20">
-                                                1-Quiz
-                                            </div>
-                                            <div className="d-flex ai-center h-80">
-                                                Pregunta del juego que pregunta algo para responder
-                                            </div>
+                                <div className="d-flex cont-pregunta m-10 jc-sb">
+                                    <div className="d-flex flex-column">
+                                        <div className="d-flex jc-start h-20">
+                                            <span>1-Quiz</span>
                                         </div>
-                                        <div className="d-flex flex-column">
-                                            <div className="imagen-juego">
-                                            </div>
-                                            20s
+                                        <div className="d-flex ai-center h-80">
+                                            <span>Pregunta del juego que pregunta</span> 
                                         </div>
                                     </div>
+                                    <div className="d-flex flex-column ml-50">
+                                        <div className="imagen-juego">
+                                            imagen 
+                                        </div>
+                                        <span>20s</span>
+                                    </div>
                                 </div>
-                                <div className="d-flex cont-pregunta m-10">
-                                    <div className="card-body d-flex flex-row jc-sb w-100">
-                                        <div className="d-flex flex-column">
-                                            <div className="d-flex jc-start h-20">
-                                                1-Quiz
-                                            </div>
-                                            <div className="d-flex ai-center h-80">
-                                                Pregunta del juego que pregunta algo para responder
-                                            </div>
+                                <div className="d-flex cont-pregunta m-10 jc-sb">
+                                    <div className="d-flex flex-column">
+                                        <div className="d-flex jc-start h-20">
+                                            <span>1-Quiz</span>
                                         </div>
-                                        <div className="d-flex flex-column">
-                                            <div className="imagen-juego">
-                                            </div>
-                                            20s
+                                        <div className="d-flex ai-center h-80">
+                                            <span>Pregunta del juego que pregunta</span>
                                         </div>
+                                    </div>
+                                    <div className="d-flex flex-column ml-50">
+                                        <div className="imagen-juego">
+                                            imagen 
+                                        </div>
+                                        <span>20s</span>
+                                    </div>
+                                </div>
+                                <div className="d-flex cont-pregunta m-10 jc-sb">
+                                    <div className="d-flex flex-column">
+                                        <div className="d-flex jc-start h-20">
+                                            <span>1-Quiz</span>
+                                        </div>
+                                        <div className="d-flex ai-center h-80">
+                                            <span>Pregunta del juego que pregunta</span> 
+                                        </div>
+                                    </div>
+                                    <div className="d-flex flex-column ml-50">
+                                        <div className="imagen-juego">
+                                            imagen 
+                                        </div>
+                                        <span>20s</span>
                                     </div>
                                 </div>
                             </div>

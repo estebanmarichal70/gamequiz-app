@@ -123,7 +123,9 @@ class Crear extends Component {
                     </div>
                 </div>
                 <div className="d-flex jc-center">
-                    <button className="rounded-button success fin w-30">Finalizar</button>
+                    <Link className="rounded-button success fin w-30" to="/juego/empezar">
+                        Finalizar
+                    </Link>
                 </div>
             </div>
         );
