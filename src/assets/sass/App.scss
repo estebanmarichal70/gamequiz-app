@@ -941,8 +941,10 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
     }
 
     .time {
-      width: 400px;
       @media (max-width: $phone-breakpoint) {
+        .rounded-input-time {
+          margin-right: 0;
+        }
         flex-direction: column;
       }
     }

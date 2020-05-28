@@ -87,10 +87,10 @@ class Link extends Component {
                                 value={this.state.inputValueUrl}
                             />
                             <p className="titulo">Start Video</p>
-                            <div className="d-flex jc-sb center-all time">
+                            <div className="d-flex center-all time">
                                 <input
                                     onChange={this.handleChangeStartMin}
-                                    className="rounded-input-time mb-10"
+                                    className="rounded-input-time mr-10 mb-10"
                                     type="number"
                                     min="0"
                                     placeholder="Minutos"
@@ -107,10 +107,10 @@ class Link extends Component {
                                 />
                             </div>
                             <p className="titulo">End Video</p>
-                            <div className="d-flex jc-sb center-all time">
+                            <div className="d-flex center-all time">
                                 <input
                                     onChange={this.handleChangeEndMin}
-                                    className="rounded-input-time mb-10"
+                                    className="rounded-input-time mr-10 mb-10"
                                     type="number"
                                     min="0"
                                     placeholder="Minutos"
@@ -129,7 +129,6 @@ class Link extends Component {
                                 <button className="rounded-button button-youtube gold w-40 mb-10 mt-15" onClick={this.handleSubmit}>
                                     Cargar
                                 </button>
-
                         </div>
                     </div>
                     <div className="card-youtube">
