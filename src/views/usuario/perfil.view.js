@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import '../../assets/sass/App.scss';
 
-import BotonInicio from "../../components/boton-Inicio.component";
+
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import {connect} from "react-redux";
 
 class Perfil extends Component {
@@ -33,10 +33,12 @@ class Perfil extends Component {
                                 <p>{this.state.user ? `Nombre: ${this.state.user.Nombre} ${this.state.user.Apellido}` : null}</p>
                                 <p>{this.state.user ? `Usuario: ${this.state.user.Username}` : null}</p>
                                 <p>{this.state.user && this.state.user.Juegos !== undefined ? `Creados: ${this.state.user.Juegos.length}` : `Creados: 0`}</p>
-                                
                             </div>
                         </div>
-                        <BotonInicio ruta="/juego/crear" text="Crear Juego"/>
+                        <div className="mb-20 w-100 d-flex center-all">
+                            <Link className="rounded-button gold link mr-10">Logout  <FontAwesomeIcon icon={faSignOutAlt} color="#909296"/></Link>
+                            <Link to="/juego/crear" className="rounded-button gold link">Crear Juego</Link>
+                        </div>
                     </div>
                     <div className="wrap-table">
                         <div className="table style">

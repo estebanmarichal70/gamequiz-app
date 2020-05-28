@@ -131,7 +131,6 @@ $large-breakpoint: 1200px;
   }
 }
 
-
 /*===================================================================================================================*/
 /*[ Estilo de títulos y subtítulos ]*/
 .titulo-inicio {
@@ -832,7 +831,6 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   }
 }
 
-
 /*==================================================================
 [ Estilos para Configurar Juego ]*/
 .card-summary {
@@ -1075,3 +1073,128 @@ input[type=number] {
 }
 
 /*------------------------------------------- */
+
+.card-chart {
+  @extend .card;
+  .card-body {
+    padding-bottom: 0px;
+
+    .chart {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(100, 1fr);
+      grid-column-gap: 20px;
+      height: 500px;
+      width: 100%;
+      padding: 5px 10px;
+      @media (max-width: $phone-breakpoint) {
+        padding: 2px 0px;
+        grid-column-gap: 10px;
+        height: 300px;
+      }
+    }
+    
+    [class*="bar"] {
+      margin: 0;
+      padding: 15px;
+      border-radius: 5px 5px 0 0;
+      transition: all .6s ease;
+      grid-row-end: 102;
+      
+      &:hover {
+        opacity: .9;
+        color: white;
+        cursor: pointer;
+      }
+      @media (max-width: $phone-breakpoint) {
+        padding: 8px;
+       
+      }
+    }
+    
+    .bar-1 {
+      grid-row-start: 37;
+    }
+    
+    .bar-2 {
+      grid-row-start: 87;
+    }
+    
+    .bar-3 {
+      grid-row-start: 83;
+    }
+    
+    .bar-4 {
+      grid-row-start: 66;
+    }
+    
+    [class*="bar"]:nth-child(1) {
+      background-color: $color-true; 
+    }
+    
+    [class*="bar"]:nth-child(2) {
+      background-color: $color-false;
+    }
+    
+    [class*="bar"]:nth-child(3) {
+      background-color: $color-gold;
+     }
+    
+     [class*="bar"]:nth-child(4) {
+      background-color: $color-purple;
+     }
+     
+    
+    * { box-sizing: border-box; }
+    .titulo-c {
+      color: $color-third;
+      font-size: 20px;
+      font-weight: bold;
+      @media (max-width: $phone-breakpoint) {
+        font-size: 10px;
+      }
+    }
+    @media (max-width: $phone-breakpoint) {
+      padding: 0px 5px;
+    }
+  }
+  .tit {
+      color: $color-texto-1;
+      font-size: 20px;
+      font-weight: bold;
+      @media (max-width: $phone-breakpoint) {
+        font-size: 18px;
+      }
+  }
+  .tit2 {
+    color: $color-texto-1;
+    font-size: 18px;
+    font-weight: bold;
+    @media (max-width: $phone-breakpoint) {
+      font-size: 14px;
+    }
+  }
+  .separador {
+    width: 800px;
+    height: 1px;
+    background-color: $color-texto-1;
+    border: none;
+    @media (max-width: $phone-breakpoint) {
+      width: 300px;
+    }
+  }
+    @media (max-width: $phone-breakpoint) {
+      padding: 0;
+      margin:0;
+      margin: 10px;
+    } 
+}
+
+.sig {
+  @media (max-width: $phone-breakpoint) {
+    margin-top: 10px;
+    .rounded-button {
+      width: 150px;
+    }
+  } 
+}

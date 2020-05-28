@@ -1,0 +1,1102 @@
+/*===================================================================================================================*/
+/*[ Colores generales y de utilidad ]*/
+
+/*  Colores berreta */
+$color-primary: #202225;
+$color-secondary: #393939;
+$color-third: #53575f;
+$color-texto-1: #d1d2d3;
+$color-texto-2: #909296;
+/*------------------- */
+
+
+/* Colores re pro */
+
+$color-gold: #ffd700;
+$color-true: #54E0C7;
+$color-false: #e23131;
+$color-purple: #d447e0;
+
+/*-------------------------------------*/
+/* Aca terminan los mejores colores :) */
+/*-------------------------------------*/
+
+$phone-breakpoint: 576px;
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 992px;
+$large-breakpoint: 1200px;
+
+//@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+//@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) { ... }
+
+/*===================================================================================================================*/
+/*[ Funciones reutilizables ]*/
+.d-flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.jc-start {
+  justify-content: start;
+}
+
+.jc-end {
+  justify-content: end;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+.jc-sa {
+  justify-content: space-around;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.center-all {
+  @extend .d-flex;
+  @extend .ai-center;
+  @extend .jc-center;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+@for $j from 1 through 100 {
+  .h-#{$j} {
+    height: ($j * 1%);
+  }
+}
+
+@for $j from 1 through 100 {
+  .w-#{$j} {
+    width: ($j * 1%);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .mt-#{$j} {
+    margin-top: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .mb-#{$j} {
+    margin-bottom: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .ml-#{$j} {
+    margin-left: ($j * 1px);
+  }
+}
+
+
+@for $j from 1 through 100 {
+  .mr-#{$j} {
+    margin-right: ($j * 1px);
+  }
+}
+
+@for $j from 1 through 100 {
+  .m-#{$j} {
+    margin: ($j * 1px);
+  }
+}
+
+
+/*===================================================================================================================*/
+/*[ Estilo de títulos y subtítulos ]*/
+.titulo-inicio {
+  @extend .titulo;
+  font-size: 3rem;
+}
+
+.titulo {
+  color: $color-texto-1;
+}
+
+.subtitulo {
+  color: $color-texto-2;
+}
+
+
+/*===================================================================================================================*/
+/*[ Boton general ]*/
+.boton-inicio {
+  background-color: $color-secondary;
+  color: $color-texto-1;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1.5rem;
+
+  @media (max-width: $phone-breakpoint) {
+    width: 200px;
+    height: 100px;
+  }
+
+  @media (min-width: $phone-breakpoint) {
+    transition: all 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.05);
+      background: $color-texto-1;
+      color: $color-third;
+    }
+    width: 400px;
+    height: 150px;
+  }
+}
+
+
+/*===================================================================================================================*/
+/*[ Estilo de links ]*/
+.link {
+  text-decoration: none;
+}
+
+.link-blanco {
+  @extend .link;
+  color: white;
+  font-size: 14px;
+}
+
+.link-gris {
+  @extend .link;
+  color: $color-texto-2;
+  font-size: 14px;
+}
+
+
+/*===================================================================================================================*/
+/*[ Form para registrar e iniciar sesión ]*/
+.form-login {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .form-box {
+    border-radius: 26px;
+    padding: 40px;
+    background: $color-secondary;
+    text-align: center;
+  }
+
+  .titulo-login {
+    @extend .titulo;
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+
+  .form-box input[type="text"], .form-box input[type="password"], .form-box button[type="submit"] {
+    font-family: inherit;
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid $color-texto-1;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: $color-texto-1;
+    border-radius: 24px;
+    transition: 0.25s;
+  }
+
+  .form-box input[type="text"]:focus, .form-box input[type="password"]:focus {
+    width: 250px;
+  }
+
+  .form-box button[type="submit"] {
+    border: 0;
+    background: $color-primary;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    padding: 14px 40px;
+    outline: none;
+    color: $color-texto-1;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+
+  .form-box button[type="submit"]:hover {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+}
+
+/*===================================================================================================================*/
+/*[ Tabla ]*/
+.wrap-table {
+  .hide {
+    display: none;
+  }
+
+  width: 1400px;
+  @media (max-width: $phone-breakpoint) {
+    margin: 0;
+    margin-bottom: 10px;
+    width: 95%;
+    .table-head th {
+      display: none;
+    }
+    .hide {
+      display: block !important;
+    }
+    .table-body {
+      max-height: 200px;
+    }
+  }
+}
+
+.table {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.column1 {
+  border-radius: 5px 0px 0px 5px;
+  width: 20%;
+}
+
+.column2 {
+  width: 30%;
+}
+
+.column3 {
+  width: 8%;
+}
+
+.column4 {
+  width: 8%;
+}
+
+.column5 {
+  width: 14%;
+}
+
+.column6 {
+  border-radius: 0px 5px 5px 0px;
+  width: 20%;
+
+}
+
+.table-head th {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.table-body td {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/*==================================================================
+[ Fixeo de tamaños de tabla ]*/
+.table {
+  padding: 2px;
+  position: relative;
+  padding-top: 60px;
+}
+
+.table-head {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.table-body {
+  border-radius: 6px;
+  max-height: 600px;
+  overflow: auto;
+}
+
+/*==================================================================
+[ Estilo de Tabla]*/
+.table.style {
+  text-align: center;
+  background-color: $color-secondary;
+  border-radius: 10px;
+}
+
+.table.style th {
+  color: $color-texto-1;
+  line-height: 1.4;
+  background-color: $color-secondary;
+}
+
+.table.style td {
+  color: $color-texto-2;
+  line-height: 1.4;
+  background-color: $color-primary;
+}
+
+/*==================================================================
+[ Estilo de Scroll ]*/
+.scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #a7a7a7;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #555;
+}
+
+
+/*==================================================================
+[ Card ]*/
+.card {
+  border: 2px solid $color-secondary;
+  border-radius: 10px;
+  background-color: $color-primary;
+
+  .card-header {
+    border-radius: 5px 5px 0px 0px;
+    height: 60px;
+    @extend .titulo;
+    @extend .center-all;
+    font-weight: bold;
+    background-color: $color-secondary;
+  }
+
+  .card-body {
+    padding: 20px;
+    text-align: center;
+  }
+}
+
+
+/*==================================================================
+[ Contenedor para responsive, muestra en columna y centra todo ]*/
+.contenedorR {
+  @media (max-width: $phone-breakpoint) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+/*==================================================================
+[ Inputs, botones y componentes rounded ]*/
+.rounded-input {
+  background: none;
+  border: 2px solid $color-texto-1;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: $color-texto-1;
+  border-radius: 24px;
+  transition: 0.25s;
+  font-family: inherit;
+}
+
+.rounded-textarea {
+  @extend .rounded-input;
+  resize: none;
+  overflow: hidden;
+}
+
+input[type="password"][disabled], input[type="text"][disabled], textarea[disabled], button[disabled] {
+  background-color: $color-texto-1;
+  color: $color-texto-2;
+}
+
+.rounded-button {
+  background: $color-primary;
+  border: 2px solid $color-texto-1;
+  padding: 14px 40px;
+  outline: none;
+  color: $color-texto-1;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+
+  &:hover:not([disabled]) {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+}
+
+.rounded-left-input {
+  @extend .rounded-input;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.rounded-left-button {
+  @extend .rounded-button;
+  padding: 14px 25px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.rounded-right-button {
+  @extend .rounded-button;
+  padding: 14px 25px;
+  border-left: none;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.gold:not([disabled]) {
+  border-color: $color-gold;
+
+  &:hover {
+    background: $color-gold;
+    color: $color-secondary;
+  }
+}
+
+.success:not([disabled]) {
+  border-color: $color-true;
+
+  &:hover {
+    background: $color-true;
+    color: $color-secondary;
+  }
+}
+
+.error:not([disabled]) {
+  border-color: $color-false;
+
+  &:hover {
+    background: $color-false;
+    color: white;
+  }
+}
+
+.purple:not([disabled]) {
+  border-color: $color-purple;
+
+  &:hover {
+    background: $color-purple;
+    color: white;
+  }
+}
+
+.gold-i:not([disabled]) {
+  border-color: $color-gold;
+  color: $color-gold;
+}
+
+.success-i:not([disabled]) {
+  border-color: $color-true;
+  color: $color-true;
+}
+
+.error-i:not([disabled]) {
+  border-color: $color-false;
+  color: $color-false;
+}
+
+.purple-i:not([disabled]) {
+  border-color: $color-purple;
+  color: $color-purple;
+}
+
+/*==================================================================
+[ Estilo de Checkbox ]*/
+.checkbox {
+  background-color: none;
+  display: block;
+  position: relative;
+  border-radius: 24px;
+  border: 2px solid $color-texto-1;
+
+  label {
+    font-size: 14px;
+    border-radius: 24px;
+    padding: 12px 10px;
+    width: 92%;
+    display: block;
+    text-align: left;
+    color: $color-texto-2;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: color 200ms ease-in;
+    overflow: hidden;
+
+    &:after {
+      width: 32px;
+      height: 32px;
+      content: '';
+      border: 2px solid $color-texto-1;
+      border-radius: 50%;
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      transition: all 200ms ease-in;
+    }
+  }
+
+  input:checked ~ label {
+    color: $color-texto-1;
+
+    &:after {
+      background-color: $color-true;
+      border-color: $color-true;
+    }
+  }
+
+  input {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    cursor: pointer;
+    visibility: hidden;
+  }
+}
+
+*::after {
+  box-sizing: inherit;
+}
+
+
+/*==================================================================
+[ Estilos de Selectbox ]*/
+.select-box {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 16px;
+  color: $color-texto-1;
+  width: 40%;
+
+  &__current {
+    position: relative;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+    cursor: pointer;
+    outline: none;
+
+    &:focus {
+      & + .select-box__list {
+        opacity: 1;
+        animation-name: none;
+
+        .select-box__option {
+          cursor: pointer;
+        }
+      }
+
+      .select-box__icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 20px;
+    opacity: 0.3;
+    transition: 0.2s ease;
+  }
+
+  &__value {
+    display: flex;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .select-box__input-text {
+      display: block;
+    }
+  }
+
+  &__input-text {
+    border-radius: 5px;
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    background-color: $color-secondary;
+  }
+
+  &__list {
+    overflow-x: auto;
+    max-height: 160px;
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    animation-name: HideList;
+    animation-duration: 0.5s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: step-start;
+    box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
+  }
+
+  &__option {
+    display: block;
+    padding: 15px;
+    background-color: $color-secondary;
+
+
+    &:hover,
+    &:focus {
+      color: $color-texto-1;
+      background-color: $color-third;
+    }
+  }
+}
+
+@keyframes HideList {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
+
+/*==================================================================
+[ Estilos de Perfil ]*/
+.flex-izq {
+  @media (max-width: $phone-breakpoint) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.card-perfil {
+  @extend .card;
+
+  @media (max-width: $phone-breakpoint) {
+    width: 240px;
+    height: 220px;
+  }
+}
+
+
+/*==================================================================
+[ Estilos para Crear Juego ]*/
+.nombre-config {
+  .rounded-left-input {
+    width: 300px;
+  }
+  @media (max-width: $phone-breakpoint) {
+    .rounded-left-input {
+      width: 160px;
+    }
+  }
+}
+
+.fin {
+  @media (max-width: $phone-breakpoint) {
+    margin: 20px;
+    width: 160px;
+  }
+}
+
+.crear-cont {
+  @media (max-width: $phone-breakpoint) {
+    margin: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-pregunta {
+    @extend .card;
+
+    .card-body {
+      padding: 30px;
+    }
+
+    .preguntas-cont {
+      overflow: auto;
+      overflow-x: hidden;
+      max-height: 315px;
+      padding: 4px;
+
+
+      .pregunta-cont {
+        @extend .card;
+        cursor: pointer;
+        margin-right: 10px;
+        height: 151px;
+        width: 200px;
+
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.03);
+        }
+      }
+    }
+    @media (max-width: $phone-breakpoint) {
+      margin: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.card-opciones-crear {
+  @extend .card;
+
+  .rounded-small-input {
+    @extend .rounded-input;
+    width: 230px;
+  }
+
+  .checkbox-small{
+    @extend .checkbox;
+    width: 250px;
+  }
+  @media (max-width: $phone-breakpoint) {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.main-card-crear {
+
+  .card-body {
+    @media (max-width: $phone-breakpoint) {
+      .arriba {
+        margin:0;
+      }
+      .rounded-input {
+        margin: 0;
+        margin-bottom: 10px;
+      }
+    }
+
+  }
+  .separador {
+    height: 1px;
+    background-color: $color-true;
+    border: none;
+  }
+
+  @media (max-width: $desktop-breakpoint) {
+    margin: 0;
+  }
+}
+
+
+/*==================================================================
+[ Estilos para Configurar Juego ]*/
+.card-summary {
+  @extend .card;
+
+  .card-body {
+    padding: 50px;
+
+    .rounded-input {
+      width: 280px;
+    }
+
+    .rounded-textarea {
+      height: 100px;
+    }
+
+    @media (max-width: $phone-breakpoint) {
+      align-items: center;
+      .rounded-input {
+        width: 220px;
+      }
+      .checkbox {
+        width: 240px;
+      }
+    }
+  }
+
+  @media (max-width: $phone-breakpoint) {
+    width: 300px;
+    margin: 0;
+  }
+}
+
+.card-media {
+  @extend .card;
+  width: 50%;
+
+  .card-body {
+    padding: 30px;
+
+    .cover {
+      @extend .card;
+      height: 400px;
+      width: 400px;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+
+      @media (max-width: $phone-breakpoint) {
+        width: 200px;
+        height: 150px;
+      }
+    }
+
+    .scroll::-webkit-scrollbar {
+      width: 9px;
+    }
+  }
+
+  @media (max-width: $phone-breakpoint) {
+    width: 300px;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    .select-box {
+      font-size: 12px;
+      width: 200px;
+
+      .select-box__list {
+        max-height: 80px;
+      }
+    }
+  }
+}
+
+/*==================================================================
+[ Estilos para Youtube  ]*/
+.card-youtube {
+  @extend .card;
+  width: 50%;
+
+  .card-body {
+    padding: 30px;
+
+    .card-video {
+      @extend .card;
+      @media (max-width: $phone-breakpoint) {
+        width: 200px;
+      }
+    }
+
+    .rounded-input-youtube {
+      @extend .rounded-input;
+      width: 400px;
+      @media (max-width: $phone-breakpoint) {
+        width: 200px;
+      }
+    }
+
+    .rounded-input-time {
+      @extend .rounded-input;
+      width: 170px;
+    }
+
+    .time {
+      @media (max-width: $phone-breakpoint) {
+        .rounded-input-time {
+          margin-right: 0;
+        }
+        flex-direction: column;
+      }
+    }
+
+    .video-wrapper {
+      min-height: 300px;
+      min-width: 500px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      @media (max-width: $phone-breakpoint) {
+        min-width: 270px;
+        min-height: 170px;
+      }
+    }
+
+    .button-youtube {
+      @media (max-width: $phone-breakpoint) {
+        width: 150px;
+      }
+    }
+  }
+  .cover {
+    @extend .card;
+    height: 400px;
+    width: 400px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+  @media (max-width: $phone-breakpoint) {
+    width: 300px;
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+}
+
+/*==================================================================
+[ Estilos para Jugando ]*/
+.card-jugando {
+  @extend .card;
+  .card-header {
+    font-size: 18px;
+  }
+  .card-body {
+
+    padding: 50px;
+    .rounded-button{
+      width: 180px;
+      @media (max-width: $phone-breakpoint) {
+        margin:0;
+        margin-bottom: 10px;
+        width: 250px;
+      }
+    }
+    .arriba {
+      @media (max-width: $phone-breakpoint) {
+        margin: 0;
+      }
+    }
+    .rounded-button-s{
+      @extend .rounded-button;
+      margin: 0;
+      width: 140px;
+    }
+    .media {
+      @media (max-width: $phone-breakpoint) {
+        flex-direction: column;
+      }
+    }
+    .cover {
+      @extend .card;
+      height: 250px;
+      width: 400px;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.03);
+      }
+      @media (max-width: $phone-breakpoint) {
+        height: 150px;
+        width: 250px;
+        margin-right: 0;
+      }
+    }
+    @media (max-width: $phone-breakpoint) {
+      padding: 20px;
+    }
+  }
+  @media (max-width: $phone-breakpoint) {
+    margin: 5px;
+  }
+}
+
+.timer {
+  color: $color-texto-1;
+  border: 2px solid $color-texto-1;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: bold;
+  width: 80px;
+  height: 80px;
+  transition: 0.25s;
+  outline: none;
+  &:hover {
+    background: $color-texto-1;
+    color: $color-third;
+  }
+  @media (max-width: $phone-breakpoint) {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+  }
+}
+
+/* PARA SACAR SPINNER DEL INPUT NUMERICO*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/*------------------------------------------- */
+
+.card-ranking {
+  @extend .card;
+  .barra {
+    width: 500px;
+    @media (max-width: $phone-breakpoint) {
+      width: 300px;
+    }
+  }
+  .column1 {
+    width: 50px;
+  }
+  .column2 {
+    width: 150px;
+  }
+  .column3 {
+    width: 50px;
+  }
+  .table-body {
+    border-radius: 6px;
+    max-height: 242px;
+    overflow: auto;
+  }
+
+}
