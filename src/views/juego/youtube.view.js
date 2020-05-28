@@ -76,7 +76,7 @@ class Link extends Component {
         return (
             <div className="center-all">
                 <div className="d-flex jc-center contenedorR">
-                    <div className="card-summary mr-30 card-youtube">
+                    <div className="mr-30 card-youtube">
                         <div className="card-header"><span>Configuración de Video</span></div>
                         <div className="card-body center-all flex-column">
                             <input

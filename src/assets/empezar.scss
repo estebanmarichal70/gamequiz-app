@@ -112,29 +112,104 @@
 
 /* cosas para vista join*/
 .card-join{
-  border: 2px;
-  border-radius: 10px;
-  margin-left: 275px;
-  margin-top: 20px;
-}
+  width: 730px;
+  margin-left: 270px;
+  @media(max-width: $phone-breakpoint){
+    margin: 0;
+    margin-bottom: 10px;
+    width: 350px;
+  }
+
   .cont-pass{
     padding-top: 10px;
     margin-left: 500px;
+    @media(max-width: $phone-breakpoint){
+      margin: 0;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
   }
+
+  .cont-filtro{
+    @media(max-width: $phone-breakpoint){
+      justify-content: center;
+      margin: 0;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+  }
+
+  .card-juegos{
+    border: 2px solid $color-texto-1;
+    margin-top: 20px;
+    height: 195px;
+    overflow: auto;
+    overflow-y: hidden;
+    max-width: 730px;
+    @media(max-width: $phone-breakpoint){
+      margin: 0;
+      margin-left: 50px;
+      margin-top: 20px;
+      max-width: 250px;
+      flex-direction: column;
+      overflow: auto;
+      overflow-x: hidden;
+    }
+
+    .card-juego{
+      border: 2px solid $color-texto-2;
+      margin: 20px;
+      height: 150px;
+      width: 160px;
+      transition: all 0.2s ease-in-out;
+      @media(max-width: $phone-breakpoint){
+        margin: 0;
+        margin-left: 45px;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        flex-direction: column;
+      }
+  
+      &:hover {
+        transform: scale(1.03);
+      }
+
+      .imagen{
+        border: 2px solid $color-texto-2;
+        margin: 10px;
+        width: 135px;
+        height: 100px;
+        transition: all 0.2s ease-in-out;
+    
+        &:hover {
+          transform: scale(1.03);
+        }
+      }
+      }
+    }
+    .cont-boton{
+      @media(max-width: $phone-breakpoint){
+        padding: 20px ;
+      }
+  }
+
+  .input-join{
+    @extend .rounded-input;
+    width: 96%;
+  }
+
   .boton-buscar{
   @extend .rounded-right-button;  
-  padding: 13px 20px !important;
-    
+  padding: 15px 20px !important;
   }
 
   .input-buscar{
     @extend .rounded-left-input;
-    padding: 14px 20px !important;
+    padding: 16px 20px !important;
   }
-
-.input-join{
-  @extend .rounded-input;
-  width: 700px;
 }
+  
+
+
 
 /*----------------*/
