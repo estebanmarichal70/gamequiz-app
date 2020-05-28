@@ -1,15 +1,18 @@
 import React from 'react';
-import Uppy from '@uppy/core'
-import Tus from '@uppy/tus'
-import Dashboard from '@uppy/react/lib/Dashboard'
+import Uppy from '@uppy/core';
+import Dashboard from '@uppy/react/lib/Dashboard';
 
 import Spanish from "@uppy/locales/lib/es_ES";
 
 import '@uppy/core/dist/style.css';
 import '@uppy/dashboard/dist/style.css';
+import XHRUpload from "@uppy/xhr-upload";
 
+import {API_URL} from "../../constants/constants";
+import {connect} from "react-redux";
 
-export default class DragAndDropFileUploader extends React.Component {
+class DragAndDropFileUploader extends React.Component {
+
     constructor(props) {
         super(props)
 
@@ -19,12 +22,18 @@ export default class DragAndDropFileUploader extends React.Component {
 
         this.uppy = Uppy({
             id: 'uppy1',
-            autoProceed: true,
+            autoProceed: false,
             debug: true,
             locale: Spanish,
-            maxNumberOfFiles: 1,
+            restrictions: {
+                maxNumberOfFiles: 1,
+                minNumberOfFiles: 1,
+                allowedFileTypes: ['image/*']
+            },
+        }).use(XHRUpload, {
+            endpoint: API_URL + `/upload_image?tipo=${this.props.tipo}&id=${this.props.tipoId}`,
+            method: "POST"
         })
-            .use(Tus);
     }
 
     componentWillUnmount() {
@@ -39,8 +48,16 @@ export default class DragAndDropFileUploader extends React.Component {
                     target=".card-upload-image"
                     trigger='#dashboard'
                     theme="dark"
+                    hideUploadButton={true}
                 />
             </div>
         )
     }
 }
+
+const mapStateToProps = ({authUser}) => {
+    const {token} = authUser;
+    return {token};
+};
+
+export default connect(mapStateToProps)(DragAndDropFileUploader);

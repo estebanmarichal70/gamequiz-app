@@ -11,7 +11,9 @@ class Perfil extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+
+        };
     }
 
     componentDidMount() {
@@ -33,10 +35,9 @@ class Perfil extends Component {
                                 <p>{this.state.user ? `Nombre: ${this.state.user.Nombre} ${this.state.user.Apellido}` : null}</p>
                                 <p>{this.state.user ? `Usuario: ${this.state.user.Username}` : null}</p>
                                 <p>{this.state.user && this.state.user.Juegos !== undefined ? `Creados: ${this.state.user.Juegos.length}` : `Creados: 0`}</p>
-                                
                             </div>
                         </div>
-                        <BotonInicio ruta="/juego/crear" text="Crear Juego"/>
+                        <BotonInicio ruta="/juego/configurar" text="Crear Juego"/>
                     </div>
                     <div className="wrap-table">
                         <div className="table style">
@@ -67,8 +68,10 @@ class Perfil extends Component {
                                         <td className="column6">
                                             <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
                                                                                                 color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
+                                            {
+                                                /*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
+                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/
+                                            }
                                         </td>
                                     </tr>
                                     <tr>
@@ -214,7 +217,7 @@ class Perfil extends Component {
                                                 <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
                                         </td>
                                     </tr>
-                                    
+
                                     </tbody>
                                 </table>
                             </div>

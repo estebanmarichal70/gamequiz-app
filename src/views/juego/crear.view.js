@@ -16,10 +16,16 @@ class Crear extends Component {
         return (
             <div className="d-flex flex-column contenedorR">
                 <div className="nombre-config d-flex jc-center mb-25">
-                    <input className="rounded-left-input" type="text" value={this.state.nombre}
-                            onChange={event => this.setState({...this.state, nombre: event.target.value})}
-                            placeholder="Nombre" autoFocus/>
-                    <Link className="rounded-right-button success link" to="/juego/configurar">Configurar</Link>   
+                    <div className="texto">
+                        100 preguntas sobre otakus
+                    </div>
+                    {
+
+                        /*<input className="rounded-left-input" type="text" value={this.state.nombre}
+                           onChange={event => this.setState({...this.state, nombre: event.target.value})}
+                           placeholder="Nombre" autoFocus/>
+                        <Link className="rounded-right-button success link" to="/juego/configurar">Configurar</Link>*/
+                    }
                 </div>
                 <div className="crear-cont mb-40 d-flex jc-center">
                     <div className="card-pregunta mr-60">
@@ -77,7 +83,7 @@ class Crear extends Component {
                     <div className="main-card-crear">
                         <div className="card-body">
                             <div className="center-all mb-20 flex-column">
-                                <DragAndDropFileUploader/>
+                                <DragAndDropFileUploader tipo="PREGUNTA" tipoId={1}/>
                                 <div className="d-flex mt-10 w-90">
                                     <hr className="w-30 separador"/>
                                     <span className="titulo">o</span>
@@ -96,7 +102,8 @@ class Crear extends Component {
                                                respuesta_a: event.target.value
                                            })}
                                            placeholder="A - Respuesta"/>
-                                    <input className="rounded-input success-i" type="text" value={this.state.respuesta_b}
+                                    <input className="rounded-input success-i" type="text"
+                                           value={this.state.respuesta_b}
                                            onChange={event => this.setState({
                                                ...this.state,
                                                respuesta_b: event.target.value
@@ -123,7 +130,8 @@ class Crear extends Component {
                     </div>
                 </div>
                 <div className="d-flex jc-center">
-                    <Link className="rounded-button success link center-all fin w-30" to="/juego/empezar">Finalizar</Link>
+                    <Link className="rounded-button success link center-all fin w-30"
+                          to="/juego/empezar">Finalizar</Link>
                 </div>
             </div>
         );

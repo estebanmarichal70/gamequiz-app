@@ -13,6 +13,9 @@ export default {
         },
         login(params) {
             return axios.post(API_URL + "/acceder", params);
+        },
+        crearJuego(params){
+            return axios.post(API_URL + "/juego", params);
         }
     }
 }

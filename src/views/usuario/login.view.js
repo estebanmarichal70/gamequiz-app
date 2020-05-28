@@ -13,7 +13,6 @@ import {withRouter} from "react-router";
 
 class Login extends Component {
 
-
     constructor(props) {
         super(props);
         this.state = {
@@ -21,9 +20,7 @@ class Login extends Component {
             password: "",
             errorPrinted: false
         };
-
     }
-
 
     handleClick() {
         if (this.state.username !== "" && this.state.password !== "") {

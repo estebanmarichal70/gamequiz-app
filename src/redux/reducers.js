@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import authUser from './authUser/reducer';
+import juegoModule from "./juego/reducers"
 
 const rootReducer = combineReducers({
-    authUser
+    authUser,
+    juegoModule
 });
 
 export default rootReducer;

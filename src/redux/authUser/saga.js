@@ -32,7 +32,7 @@ function* loginWithEmailPassword({payload}) {
 
                 yield put(loginUserSuccess(user, token));
 
-                yield put(history.push("/perfil"));
+                yield put(history.push("/usuario/perfil"));
             } else {
                 yield put(loginUserError(response.data.data.message));
             }
