@@ -15,21 +15,69 @@ class Join extends Component {
     render() {
         return (
             <div className="d-flex flex-column contenedorR">
-                <div className="d-flex center-all flex-column">
-                    <input className="input-join" placeholder="Join Game (link)"/>
-                    <div className="cont-pass">
-                        <input className="rounded-input" type="password" placeholder="Password" name="password" required/>
+                <div className="d-flex flex-column card-join">
+                    <div className="d-flex center-all flex-column">
+                        <input className="input-join" placeholder="Join Game (link)"/>
+                        <div className="cont-pass">
+                            <input className="rounded-input" type="password" placeholder="Password" name="password" required/>
+                        </div>
+                    </div>
+                    <div className="d-flex jc-start cont-filtro">
+                        <input className="input-buscar" type="text" 
+                        placeholder="Buscar" autoFocus/>
+                        <Link className="boton-buscar success link">
+                            <FontAwesomeIcon icon={faSearch}
+                                            color="#909296"/>
+                        </Link>   
+                    </div>
+                    <div className=" d-flex flex-row card-juegos scroll">
+                        <div className="d-flex flex-column card-juego">
+                            <div className="imagen">
+                            asdas
+                            </div>
+                            <div className="d-flex center-all">
+                                <span>Futbol Quiz(15)</span>
+                            </div>
+                        </div>
+                        <div className="d-flex flex-column card-juego">
+                            <div className="imagen">
+                            asdas
+                            </div>
+                            <div className="d-flex center-all">
+                                <span>Futbol Quiz(15)</span>
+                            </div>
+                        </div>
+                        <div className="d-flex flex-column card-juego">
+                            <div className="imagen">
+                            asdas
+                            </div>
+                            <div className="d-flex center-all">
+                                <span>Futbol Quiz(15)</span>
+                            </div>
+                        </div>
+                        <div className="d-flex flex-column card-juego">
+                            <div className="imagen">
+                            asdas
+                            </div>
+                            <div className="d-flex center-all">
+                                <span>Futbol Quiz(15)</span>
+                            </div>
+                        </div>
+                        <div className="d-flex flex-column card-juego">
+                            <div className="imagen">
+                            asdas
+                            </div>
+                            <div className="d-flex center-all">
+                                <span>Futbol Quiz(15)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="d-flex center-all mt-10 cont-boton">
+                        <Link className="rounded-button link gold" to="/juego/jugar">
+                            Iniciar
+                        </Link>
                     </div>
                 </div>
-                <div className="card-join ">
-                    <input className="input-buscar" type="text"   
-                            placeholder="Buscar" autoFocus/>
-                    <Link className="boton-buscar gold link">
-                    <FontAwesomeIcon icon={faSearch}
-                                    color="#909296"/>
-                    </Link>
-                </div>
-                
             </div>
         );
     }
