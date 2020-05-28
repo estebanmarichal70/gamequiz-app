@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import '../../assets/sass/ranking.scss';
-import {Link} from "react-router-dom";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit} from "@fortawesome/free-solid-svg-icons";
 
 class Ranking extends Component {
     render() {

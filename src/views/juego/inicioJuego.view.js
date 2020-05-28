@@ -18,7 +18,7 @@ class InicioJuego extends Component {
                             </div>
                         </div>
                         <div className="card-imagen">
-                            <img src="https://static.guiainfantil.com/pictures/jugar-y-aprender/33000/33008-adivinanzas-con-mi-cara-tan-cuadrada-lisa-o-con-dibujitos.jpg"/>
+                            <img src="https://static.guiainfantil.com/pictures/jugar-y-aprender/33000/33008-adivinanzas-con-mi-cara-tan-cuadrada-lisa-o-con-dibujitos.jpg" alt="Imagen"/>
                         </div>
                     </div>
                     <div className="mt-30 center-all card-inicio-nombre">

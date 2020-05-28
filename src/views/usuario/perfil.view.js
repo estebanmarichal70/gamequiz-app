@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../../assets/sass/App.scss';
 
-import BotonInicio from "../../components/boton-Inicio.component";
+
 import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
