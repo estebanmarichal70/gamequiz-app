@@ -12,6 +12,7 @@ const Jugando = React.lazy(() => import("./jugando.view"));
 const Youtube = React.lazy(() => import("./youtube.view"));
 const Join = React.lazy(() => import("./join.view"));
 const Inicio = React.lazy(() => import("./inicioJuego.view"));
+const Ranking = React.lazy(() => import("./ranking.view"));
 
 const Juego = ({match}) => {
     return (
@@ -58,6 +59,11 @@ const Juego = ({match}) => {
                 <Route
                     path={`${match.url}/inicio`}
                     render={(props) => <Inicio {...props} />}
+                    exact
+                />
+                <Route
+                    path={`${match.url}/ranking`}
+                    render={(props) => <Ranking {...props} />}
                     exact
                 />
             </Switch>
