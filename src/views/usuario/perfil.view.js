@@ -25,8 +25,8 @@ class Perfil extends Component {
                 <div className="center-all">
                     <h1 className="titulo-inicio">GameQuiz</h1>
                 </div>
-                <div className="d-flex jc-sb contenedorR">
-                    <div className="flex-izq ml-25">
+                <div className="d-flex jc-center contenedorR">
+                    <div className="flex-izq mr-25">
                         <div className="card-perfil mb-20">
                             <div className="card-header"><span>Perfil</span></div>
                             <div className="card-body subtitulo">

@@ -1,8 +1,7 @@
 import React,{Component}  from 'react';
 import "../../assets/sass/App.scss";
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import DragAndDropFileUploader from "../../components/image-uploader/image-uploader.componet";
 import arrow from "./arrow.svg"
 
 class Configurar extends Component {
@@ -47,7 +46,7 @@ class Configurar extends Component {
                         <div className="card-header"><span>Configuración de Media</span></div>
                         <div className="card-body center-all flex-column">
                             <div className="cover center-all mb-20">
-                                <FontAwesomeIcon icon={faPlus} color="#909296"/>
+                                <DragAndDropFileUploader/>
                             </div>
                             <div className="select-box">
                                 <div className="select-box__current" tabIndex="1">
