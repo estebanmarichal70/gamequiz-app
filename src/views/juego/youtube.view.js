@@ -1,5 +1,5 @@
 import React,{Component}  from 'react';
-import "../../assets/sass/youtube.scss";
+import '../../assets/sass/App.scss';
 
 import Video from "../../components/video-youtube.component"
 
@@ -78,7 +78,7 @@ class Link extends Component {
                 <div className="d-flex jc-center contenedorR">
                     <div className="card-summary mr-30 card-youtube">
                         <div className="card-header"><span>Configuración de Video</span></div>
-                        <div className="card-body d-flex flex-column center-all">
+                        <div className="card-body center-all flex-column">
                             <input
                                 onChange={this.handleChangeUrl}
                                 className="rounded-input-youtube mb-10"
@@ -126,7 +126,7 @@ class Link extends Component {
                                     value={this.state.secEnd}
                                 />
                             </div>
-                                <button className="rounded-button button-youtube w-40 mb-10 mt-15" onClick={this.handleSubmit}>
+                                <button className="rounded-button button-youtube gold w-40 mb-10 mt-15" onClick={this.handleSubmit}>
                                     Cargar
                                 </button>
 
@@ -139,10 +139,10 @@ class Link extends Component {
                                 { this.state.showVideoPlayer && <Video videoData={videoData}/> }
                             </div>
                             <div className="d-flex">
-                                <button className="rounded-left-button">
+                                <button className="rounded-left-button gold">
                                     Aceptar
                                 </button>
-                                <button className="rounded-right-button" onClick={this.removeData}>
+                                <button className="rounded-right-button gold" onClick={this.removeData}>
                                     Remover
                                 </button>
                             </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import "../assets/sass/youtube.scss";
 
 import ReactPlayer from 'react-player'
 

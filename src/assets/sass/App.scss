@@ -14,8 +14,8 @@ $color-texto-2: #909296;
 
 $color-gold: #ffd700;
 $color-true: #54E0C7;
-$color-false: #c91a1a;
-$color-purple: #a419b1;
+$color-false: #e23131;
+$color-purple: #d447e0;
 
 /*-------------------------------------*/
 /* Aca terminan los mejores colores :) */
@@ -82,7 +82,7 @@ $large-breakpoint: 1200px;
 }
 
 .m-0 {
-  margin: 0 !important;
+  margin: 0;
 }
 
 @for $j from 1 through 100 {
@@ -445,19 +445,6 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   color: $color-texto-2;
 }
 
-.rounded-left-input {
-  @extend .rounded-input;
-  border-bottom-right-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
-
-.rounded-right-button {
-  @extend .rounded-button;
-  border-left: none;
-  border-bottom-left-radius: 0 !important;
-  border-top-left-radius: 0 !important;
-}
-
 .rounded-button {
   background: $color-primary;
   border: 2px solid $color-texto-1;
@@ -472,6 +459,27 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
     background: $color-texto-1;
     color: $color-third;
   }
+}
+
+.rounded-left-input {
+  @extend .rounded-input;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.rounded-left-button {
+  @extend .rounded-button;
+  padding: 14px 25px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.rounded-right-button {
+  @extend .rounded-button;
+  padding: 14px 25px;
+  border-left: none;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
 }
 
 .gold:not([disabled]) {
@@ -497,7 +505,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
   &:hover {
     background: $color-false;
-    color: $color-texto-1;
+    color: white;
   }
 }
 
@@ -506,8 +514,28 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
   &:hover {
     background: $color-purple;
-    color: $color-texto-1;
+    color: white;
   }
+}
+
+.gold-i:not([disabled]) {
+  border-color: $color-gold;
+  color: $color-gold;
+}
+
+.success-i:not([disabled]) {
+  border-color: $color-true;
+  color: $color-true;
+}
+
+.error-i:not([disabled]) {
+  border-color: $color-false;
+  color: $color-false;
+}
+
+.purple-i:not([disabled]) {
+  border-color: $color-purple;
+  color: $color-purple;
 }
 
 /*==================================================================
@@ -700,9 +728,27 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 /*==================================================================
 [ Estilos para Crear Juego ]*/
-.crear-cont {
+.nombre-config {
+  .rounded-left-input {
+    width: 300px;
+  }
+  @media (max-width: $phone-breakpoint) {
+    .rounded-left-input {
+      width: 160px;
+    }
+  }
+}
 
-  @media (max-width: $desktop-breakpoint) {
+.fin {
+  @media (max-width: $phone-breakpoint) {
+      margin: 20px;
+      width: 160px;
+  }
+}
+
+.crear-cont {
+  @media (max-width: $phone-breakpoint) {
+    margin: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -710,16 +756,6 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
   .card-pregunta {
     @extend .card;
-    max-width: 350px;
-
-    @media (max-width: $desktop-breakpoint) {
-      width: 80% !important;
-      margin: 0;
-    }
-
-    @media (min-width: $phone-breakpoint) {
-      margin-bottom: 15px;
-    }
 
     .card-body {
       padding: 30px;
@@ -736,7 +772,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
         @extend .card;
         cursor: pointer;
         margin-right: 10px;
-        height: 150px;
+        height: 151px;
         width: 200px;
 
         transition: all 0.2s ease-in-out;
@@ -746,109 +782,59 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
         }
       }
     }
-  }
-
-  .main-card-crear {
-
-    @media (max-width: $desktop-breakpoint) {
-      width: 80% !important;
-      margin: 0;
-    }
-
-    .card-bottom {
-      .cont-respuestas {
-        display: flex;
-        margin-top: 18px;
-
-        .left {
-          margin-right: 15px;
-
-          @media (max-width: $large-breakpoint) {
-            margin-right: 0;
-          }
-        }
-
-        @media (max-width: $large-breakpoint) {
-          margin-top: 0;
-          flex-direction: column;
-          text-align: center;
-
-          .rounded-input {
-            margin-top: 10px;
-          }
-        }
-      }
-
-      @media (max-width: $large-breakpoint) {
-        width: auto;
-      }
-    }
-  }
-
-  .card-opciones-crear {
-    @extend .card-media;
-    max-width: 350px;
-
-    @media (min-width: $phone-breakpoint) {
-      margin-bottom: 15px !important;
-    }
-
-    @media (min-width: $desktop-breakpoint) {
-      max-width: 280px;
-    }
-
-    @media (max-width: $desktop-breakpoint) {
-      width: 80% !important;
-      margin: 0;
-    }
-
-    .rounded-small-input {
-      @extend .rounded-input;
-      @extend .gold;
-      width: 180px;
-    }
-
-    .checkbox-small{
-      @extend .checkbox;
-      width: 200px;
-    }
-  }
-
-  .uppy-Root {
-    height: 300px;
-    width: 300px;
-
     @media (max-width: $phone-breakpoint) {
-      width: 270px !important;
       margin: 0;
-    }
-
-    .uppy-Dashboard-inner {
-      border: none;
+      margin-bottom: 10px;
     }
   }
+}
 
+.card-opciones-crear {
+  @extend .card;
+
+  .rounded-small-input {
+    @extend .rounded-input;
+    width: 230px;
+  }
+
+  .checkbox-small{
+    @extend .checkbox;
+    width: 250px;
+  }
+  @media (max-width: $phone-breakpoint) {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.main-card-crear {
+
+  .card-body {
+    @media (max-width: $phone-breakpoint) {
+      .arriba {
+        margin:0;
+      }
+      .rounded-input {
+        margin: 0;
+        margin-bottom: 10px;
+      }
+    }
+    
+  }
   .separador {
     height: 1px;
-    background-color: gold;
+    background-color: $color-true;
     border: none;
   }
 
-  .texto {
-    color: #d1d2d3;
-    text-decoration: none;
+  @media (max-width: $desktop-breakpoint) {
+    margin: 0;
   }
-
-  .jc-se {
-    justify-content: space-evenly;
-  }
-
-
 }
+
 
 /*==================================================================
 [ Estilos para Configurar Juego ]*/
-
 .card-summary {
   @extend .card;
 
@@ -925,6 +911,75 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   }
 }
 
+/*==================================================================
+[ Estilos para Youtube  ]*/
+.card-youtube {
+  @extend .card;
+  width: 50%;
+
+  .card-body {
+    padding: 30px;
+
+    .card-video {
+      @extend .card;
+      @media (max-width: $phone-breakpoint) {
+        width: 200px;
+      }
+    }
+
+    .rounded-input-youtube {
+      @extend .rounded-input;
+      width: 400px;
+      @media (max-width: $phone-breakpoint) {
+        width: 200px;
+      }
+    }
+
+    .rounded-input-time {
+      @extend .rounded-input;
+      width: 170px;
+    }
+
+    .time {
+      width: 400px;
+      @media (max-width: $phone-breakpoint) {
+        flex-direction: column;
+      }
+    }
+
+    .video-wrapper {
+      min-height: 300px;
+      min-width: 500px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      @media (max-width: $phone-breakpoint) {
+        min-width: 270px;
+        min-height: 170px;
+      }
+    }
+
+    .button-youtube {
+      @media (max-width: $phone-breakpoint) {
+        width: 150px;
+      }
+    }
+  }
+  .cover {
+    @extend .card;
+    height: 400px;
+    width: 400px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+  @media (max-width: $phone-breakpoint) {
+    width: 300px;
+    margin-bottom: 20px;
+    margin-right: 0px;
+  }
+}
 
 /*==================================================================
 [ Estilos para Jugando ]*/
