@@ -20,13 +20,13 @@ class Crear extends Component {
                         <input className="rounded-left-input" type="text" value={this.state.nombre}
                                onChange={event => this.setState({...this.state, nombre: event.target.value})}
                                placeholder="Nombre" autoFocus/>
-                        <Link className="rounded-right-button link" to="/juego/configurar">
+                        <Link className="rounded-right-button gold link" to="/juego/configurar">
                             Configurar
                         </Link>
                     </div>
                 </div>
-                <div className="m-50 d-flex contenedorR flex-row jc-sa">
-                    <div className="card-pregunta">
+                <div className="m-30 d-flex crear-cont flex-row jc-center">
+                    <div className="card-pregunta mr-60">
                         <div className="card-header">
                             Tablero de preguntas
                         </div>
@@ -45,12 +45,40 @@ class Crear extends Component {
 
                                 </div>
                             </div>
-                            <button className="rounded-button mt-16 ">
+                            <button className="rounded-button gold mt-16 ">
                                 Nuevo
                             </button>
                         </div>
                     </div>
-                    <div className="card-media">
+                    <div className="card-opciones-crear mr-60">
+                        <div className="card-header">Opciones de pregunta</div>
+                        <div className="card-body d-flex flex-column jc-center">
+                            <input className="rounded-small-input mt-15"
+                                   type="text"
+                                   placeholder="Escribe aqui tu pregunta"
+                            />
+                            <input className="rounded-small-input mt-15"
+                                   type="number"
+                                   placeholder="Segundos para responder"
+                            />
+
+                            <input className="rounded-small-input mt-15"
+                                   type="number"
+                                   placeholder="Puntaje de respuesta"
+                            />
+
+                            <div className="checkbox-small mt-15">
+                                <input id="privado" name="check" type="radio" onClick={this.onClick}
+                                       defaultChecked/>
+                                <label htmlFor="privado">Quiz</label>
+                            </div>
+                            <div className="checkbox-small mt-15">
+                                <input id="publico" name="check" type="radio" onClick={this.onClick}/>
+                                <label htmlFor="publico">True/False</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="main-card-crear">
                         <div className="card-body center-all d-flex flex-column">
                             <div className="cover card-upload-image center-all mb-20 d-flex flex-column">
                                 <DragAndDropFileUploader/>
@@ -63,38 +91,43 @@ class Crear extends Component {
                                     Agregar video
                                 </Link>
                             </div>
-                            <div className="d-flex flex-column jc-sa w-100">
-                                <div className="d-flex jc-se">
-                                    <input className="rounded-input color" type="text" value={this.state.respuesta_a}
+                            <div className="d-flex flex-column w-100 card-bottom">
+                                <div className="d-flex cont-respuestas">
+                                    <input className="rounded-input left error" type="text"
+                                           value={this.state.respuesta_a}
                                            onChange={event => this.setState({
                                                ...this.state,
                                                respuesta_a: event.target.value
                                            })}
-                                           placeholder="A - Respuesta 1" autoFocus/>
-                                    <input className="rounded-input" type="text" value={this.state.respuesta_b}
+                                           placeholder="A - Respuesta"/>
+                                    <input className="rounded-input success" type="text" value={this.state.respuesta_b}
                                            onChange={event => this.setState({
                                                ...this.state,
                                                respuesta_b: event.target.value
                                            })}
-                                           placeholder="B - Respuesta 2" autoFocus/>
+                                           placeholder="B - Respuesta"/>
                                 </div>
-                                <div className="d-flex jc-se mt-20">
-                                    <input className="rounded-input" type="text" value={this.state.respuesta_c}
+                                <div className="cont-respuestas">
+                                    <input className="rounded-input left purple" type="text"
+                                           value={this.state.respuesta_c}
                                            onChange={event => this.setState({
                                                ...this.state,
                                                respuesta_c: event.target.value
                                            })}
-                                           placeholder="C - Respuesta 3" autoFocus/>
-                                    <input className="rounded-input" type="text" value={this.state.respuesta_d}
+                                           placeholder="C - Respuesta"/>
+                                    <input className="rounded-input gold" type="text" value={this.state.respuesta_d}
                                            onChange={event => this.setState({
                                                ...this.state,
                                                respuesta_d: event.target.value
                                            })}
-                                           placeholder="D - Respuesta 4" autoFocus/>
+                                           placeholder="D - Respuesta"/>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="w-100 d-flex jc-center">
+                    <button className="rounded-button success w-30">Finalizar</button>
                 </div>
             </div>
         );

@@ -19,22 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac0c81e9-95ad-482d-b243-831a48df0038" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/constants/constants.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/authUser/actions.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/authUser/reducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/authUser/saga.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/reducers.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/sagas.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/redux/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="47c1d0a4-7dd7-4385-9280-e77ad31b7fc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/gamequizServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/gamequizServices.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/usuario/login.view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/usuario/login.view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/sass/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/sass/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/juego/crear.view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/juego/crear.view.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1buS4ZtYNtkXzfFw0Gj2G3ydo88" />
+  <component name="ProjectId" id="1cSOldOZv5utOTNz9o0QdEClb9g" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -60,44 +48,23 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-<<<<<<< HEAD
-    <property name="ts.external.directory.path" value="C:\Users\tesla\AppData\Local\JetBrains\Toolbox\apps\WebStorm\ch-0\201.6668.106\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
-=======
->>>>>>> 41bf245a7a54b30f6eaef88336217e882bd1187e
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\tesla\Documents\RIA\gamequiz-app\src\redux" />
-      <recent name="C:\Users\Gabriel\Desktop\Programacion\RIA y .NET\gamequiz-app\src\views\usuario" />
-    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ac0c81e9-95ad-482d-b243-831a48df0038" name="Default Changelist" comment="" />
-      <created>1589480294567</created>
+      <changelist id="47c1d0a4-7dd7-4385-9280-e77ad31b7fc6" name="Default Changelist" comment="" />
+      <created>1590518682341</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1589480294567</updated>
-      <workItem from="1589480296165" duration="4059000" />
-<<<<<<< HEAD
-      <workItem from="1590174768559" duration="11532000" />
-=======
-      <workItem from="1589614864185" duration="3000" />
-      <workItem from="1590175294469" duration="45000" />
-      <workItem from="1590175352181" duration="7131000" />
->>>>>>> 41bf245a7a54b30f6eaef88336217e882bd1187e
+      <updated>1590518682341</updated>
+      <workItem from="1590518697214" duration="16750000" />
+      <workItem from="1590540986007" duration="626000" />
+      <workItem from="1590608909448" duration="6668000" />
     </task>
     <servers />
   </component>
@@ -117,39 +84,25 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom" timestamp="1590177537429">
+    <state width="1880" height="278" key="GridCell.Tab.0.bottom" timestamp="1590535653423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590177537429" />
-    <state width="1899" height="282" key="GridCell.Tab.0.center" timestamp="1590177537429">
+    <state width="1880" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590535653423" />
+    <state width="1880" height="278" key="GridCell.Tab.0.center" timestamp="1590535653423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590177537429" />
-    <state width="1899" height="282" key="GridCell.Tab.0.left" timestamp="1590177537429">
+    <state width="1880" height="278" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590535653423" />
+    <state width="1880" height="278" key="GridCell.Tab.0.left" timestamp="1590535653422">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590177537429" />
-    <state width="1899" height="282" key="GridCell.Tab.0.right" timestamp="1590177537429">
+    <state width="1880" height="278" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590535653422" />
+    <state width="1880" height="278" key="GridCell.Tab.0.right" timestamp="1590535653423">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-<<<<<<< HEAD
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589480568164" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1590175387762">
+    <state width="1880" height="278" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590535653423" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1590521050987">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1590175387762" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1590186214393">
-=======
-    <state width="1899" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590177537429" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1590175388157">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="165" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590175388157" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1589484107524">
->>>>>>> 41bf245a7a54b30f6eaef88336217e882bd1187e
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1589484107524" />
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1590186214393" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590521050987" />
   </component>
 </project>

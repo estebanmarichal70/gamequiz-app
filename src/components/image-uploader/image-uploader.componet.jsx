@@ -21,7 +21,8 @@ export default class DragAndDropFileUploader extends React.Component {
             id: 'uppy1',
             autoProceed: true,
             debug: true,
-            locale: Spanish
+            locale: Spanish,
+            maxNumberOfFiles: 1,
         })
             .use(Tus);
     }

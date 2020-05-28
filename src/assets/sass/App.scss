@@ -313,7 +313,7 @@ table {
 .column6 {
   border-radius: 0px 5px 5px 0px;
   width: 20%;
-  
+
 }
 
 .table-head th {
@@ -447,14 +447,13 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 .rounded-left-input {
   @extend .rounded-input;
-
   border-bottom-right-radius: 0 !important;
   border-top-right-radius: 0 !important;
 }
 
 .rounded-right-button {
   @extend .rounded-button;
-  border-left: 0;
+  border-left: none;
   border-bottom-left-radius: 0 !important;
   border-top-left-radius: 0 !important;
 }
@@ -462,7 +461,6 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 .rounded-button {
   background: $color-primary;
   border: 2px solid $color-texto-1;
-
   padding: 14px 40px;
   outline: none;
   color: $color-texto-1;
@@ -478,6 +476,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 .gold:not([disabled]) {
   border-color: $color-gold;
+
   &:hover {
     background: $color-gold;
     color: $color-secondary;
@@ -486,6 +485,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 .success:not([disabled]) {
   border-color: $color-true;
+
   &:hover {
     background: $color-true;
     color: $color-secondary;
@@ -494,6 +494,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 .error:not([disabled]) {
   border-color: $color-false;
+
   &:hover {
     background: $color-false;
     color: $color-texto-1;
@@ -502,6 +503,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 .purple:not([disabled]) {
   border-color: $color-purple;
+
   &:hover {
     background: $color-purple;
     color: $color-texto-1;
@@ -516,7 +518,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   position: relative;
   border-radius: 24px;
   border: 2px solid $color-texto-1;
-  
+
   label {
     font-size: 14px;
     border-radius: 24px;
@@ -548,6 +550,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
   input:checked ~ label {
     color: $color-texto-1;
+
     &:after {
       background-color: $color-true;
       border-color: $color-true;
@@ -580,29 +583,29 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   font-size: 16px;
   color: $color-texto-1;
   width: 40%;
-  
+
   &__current {
     position: relative;
     box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
     cursor: pointer;
     outline: none;
-    
+
     &:focus {
       & + .select-box__list {
         opacity: 1;
         animation-name: none;
-        
+
         .select-box__option {
           cursor: pointer;
         }
       }
-      
+
       .select-box__icon {
         transform: translateY(-50%) rotate(180deg);
       }
     }
   }
-  
+
   &__icon {
     position: absolute;
     top: 50%;
@@ -612,19 +615,19 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
     opacity: 0.3;
     transition: 0.2s ease;
   }
-  
+
   &__value {
     display: flex;
   }
-  
+
   &__input {
     display: none;
-    
+
     &:checked + .select-box__input-text {
       display: block;
     }
   }
-  
+
   &__input-text {
     border-radius: 5px;
     display: none;
@@ -633,7 +636,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
     padding: 15px;
     background-color: $color-secondary;
   }
-  
+
   &__list {
     overflow-x: auto;
     max-height: 160px;
@@ -649,12 +652,12 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
     animation-timing-function: step-start;
     box-shadow: 0 15px 30px -10px transparentize(#000, 0.9);
   }
-  
+
   &__option {
     display: block;
     padding: 15px;
     background-color: $color-secondary;
-    
+
 
     &:hover,
     &:focus {
@@ -697,56 +700,169 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 /*==================================================================
 [ Estilos para Crear Juego ]*/
-.card-pregunta {
-  @extend .card;
+.crear-cont {
 
-  .card-body {
-    padding: 30px;
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
-  .preguntas-cont {
+  .card-pregunta {
+    @extend .card;
+    max-width: 350px;
 
-    overflow: auto;
-    overflow-x: hidden;
-    max-height: 315px;
-    padding: 4px;
+    @media (max-width: $desktop-breakpoint) {
+      width: 80% !important;
+      margin: 0;
+    }
+
+    @media (min-width: $phone-breakpoint) {
+      margin-bottom: 15px;
+    }
+
+    .card-body {
+      padding: 30px;
+    }
+
+    .preguntas-cont {
+      overflow: auto;
+      overflow-x: hidden;
+      max-height: 315px;
+      padding: 4px;
 
 
-    .pregunta-cont {
-      @extend .card;
-      cursor: pointer;
-      margin-right: 10px;
-      height: 150px;
-      width: 220px;
-      transition: all 0.2s ease-in-out;
+      .pregunta-cont {
+        @extend .card;
+        cursor: pointer;
+        margin-right: 10px;
+        height: 150px;
+        width: 200px;
 
-      &:hover {
-        transform: scale(1.03);
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.03);
+        }
       }
     }
   }
 
+  .main-card-crear {
 
-  @media (max-width: $phone-breakpoint) {
-    width: 200px;
-    height: 220px;
+    @media (max-width: $desktop-breakpoint) {
+      width: 80% !important;
+      margin: 0;
+    }
+
+    .card-bottom {
+      .cont-respuestas {
+        display: flex;
+        margin-top: 18px;
+
+        .left {
+          margin-right: 15px;
+
+          @media (max-width: $large-breakpoint) {
+            margin-right: 0;
+          }
+        }
+
+        @media (max-width: $large-breakpoint) {
+          margin-top: 0;
+          flex-direction: column;
+          text-align: center;
+
+          .rounded-input {
+            margin-top: 10px;
+          }
+        }
+      }
+
+      @media (max-width: $large-breakpoint) {
+        width: auto;
+      }
+    }
   }
-}
 
+  .card-opciones-crear {
+    @extend .card-media;
+    max-width: 350px;
+
+    @media (min-width: $phone-breakpoint) {
+      margin-bottom: 15px !important;
+    }
+
+    @media (min-width: $desktop-breakpoint) {
+      max-width: 280px;
+    }
+
+    @media (max-width: $desktop-breakpoint) {
+      width: 80% !important;
+      margin: 0;
+    }
+
+    .rounded-small-input {
+      @extend .rounded-input;
+      @extend .gold;
+      width: 180px;
+    }
+
+    .checkbox-small{
+      @extend .checkbox;
+      width: 200px;
+    }
+  }
+
+  .uppy-Root {
+    height: 300px;
+    width: 300px;
+
+    @media (max-width: $phone-breakpoint) {
+      width: 270px !important;
+      margin: 0;
+    }
+
+    .uppy-Dashboard-inner {
+      border: none;
+    }
+  }
+
+  .separador {
+    height: 1px;
+    background-color: gold;
+    border: none;
+  }
+
+  .texto {
+    color: #d1d2d3;
+    text-decoration: none;
+  }
+
+  .jc-se {
+    justify-content: space-evenly;
+  }
+
+
+}
 
 /*==================================================================
 [ Estilos para Configurar Juego ]*/
 
 .card-summary {
   @extend .card;
+
   .card-body {
     padding: 50px;
+
     .rounded-input {
       width: 280px;
     }
+
     .rounded-textarea {
       height: 100px;
     }
+
     @media (max-width: $phone-breakpoint) {
       align-items: center;
       .rounded-input {
@@ -760,7 +876,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
   @media (max-width: $phone-breakpoint) {
     width: 300px;
-    margin:0;
+    margin: 0;
   }
 }
 
@@ -770,40 +886,45 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
   .card-body {
     padding: 30px;
-    
+
     .cover {
       @extend .card;
       height: 400px;
       width: 400px;
       transition: all 0.2s ease-in-out;
       cursor: pointer;
+
       &:hover {
         transform: scale(1.03);
       }
+
       @media (max-width: $phone-breakpoint) {
         width: 200px;
         height: 150px;
       }
     }
-    .scroll::-webkit-scrollbar{
+
+    .scroll::-webkit-scrollbar {
       width: 9px;
     }
   }
-  
+
   @media (max-width: $phone-breakpoint) {
     width: 300px;
-    margin:0;
+    margin: 0;
     margin-top: 10px;
     margin-bottom: 10px;
     .select-box {
       font-size: 12px;
       width: 200px;
+
       .select-box__list {
         max-height: 80px;
       }
     }
   }
 }
+
 
 /*==================================================================
 [ Estilos para Jugando ]*/
@@ -882,3 +1003,18 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
     font-size: 22px;
   }
 }
+
+/* PARA SACAR SPINNER DEL INPUT NUMERICO*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+/*------------------------------------------- */
