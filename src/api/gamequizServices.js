@@ -3,7 +3,7 @@ import axios from "axios";
 import {API_URL} from "../constants/constants";
 
 let addDefaultHeaders = () => {
-    axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem('access_token'));
+    axios.defaults.headers.common['Authorization'] = "Bearer " + JSON.parse(localStorage.getItem('token'));
 }
 
 export default {
@@ -14,7 +14,12 @@ export default {
         login(params) {
             return axios.post(API_URL + "/acceder", params);
         },
-        crearJuego(params){
+        fetchUserData() {
+            addDefaultHeaders();
+            return axios.get(API_URL + "/me");
+        },
+        crearJuego(params) {
+            addDefaultHeaders();
             return axios.post(API_URL + "/juego", params);
         }
     }

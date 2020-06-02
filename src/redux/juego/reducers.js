@@ -12,7 +12,7 @@ export default (state = INIT_STATE, action) => {
         case CREAR_JUEGO:
             return {...state, error: ''};
         case CREAR_JUEGO_SUCCESS:
-            return {...state, juego: action.payload.user, error: ''};
+            return {...state, juego: action.payload.juego, error: ''};
         case CREAR_JUEGO_ERROR:
             return {...state, user: '', error: action.payload.message};
         default:

@@ -20,9 +20,9 @@ function* crearJuego({payload}) {
         const response = yield call(crearJuegoAsync, payload.juego);
         if (response.data) {
             if (!response.data.data.success) {
-                let juego = response.data.data.juego;
+                let juego = response.data.data;
                 yield put(crearJuegoSuccess(juego));
-                yield put(history.push("/juego/crear"));
+                //history.push("/juego/crear");
             } else {
                 yield put(crearJuegoError(response.data.data.message));
             }

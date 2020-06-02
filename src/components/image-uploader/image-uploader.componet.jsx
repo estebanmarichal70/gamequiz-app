@@ -17,7 +17,8 @@ class DragAndDropFileUploader extends React.Component {
         super(props)
 
         this.state = {
-            open: false
+            open: false,
+            hasFiles: false
         }
 
         this.uppy = Uppy({
@@ -30,14 +31,40 @@ class DragAndDropFileUploader extends React.Component {
                 minNumberOfFiles: 1,
                 allowedFileTypes: ['image/*']
             },
-        }).use(XHRUpload, {
-            endpoint: API_URL + `/upload_image?tipo=${this.props.tipo}&id=${this.props.tipoId}`,
-            method: "POST"
         })
+
+        this.uppy.on('file-added', (file) => {
+            this.setState({hasFiles: true})
+        });
     }
 
     componentWillUnmount() {
         this.uppy.close();
+    }
+
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.tipoId != null) {
+
+            if (!this.state.hasFiles) {
+                return this.props.history.push("/juego/configurar")
+            }
+
+            this.uppy.use(XHRUpload, {
+                endpoint: API_URL + `/upload_image?tipo=${this.props.tipo}&id=${this.props.tipoId}`,
+                method: "POST",
+                headers: {
+                    authorization: `Bearer ${this.props.token}`
+                }
+            })
+
+            await this.uppy.upload();
+
+            this.uppy.removePlugin(XHRUpload);
+
+            if (this.props.tipo == "JUEGO") {
+                this.props.history.push("/juego/configurar")
+            }
+        }
     }
 
     render() {

@@ -12,8 +12,7 @@ export function* watchLoginUser() {
 
 const loginWithEmailPasswordAsync = async (username, password) =>
     await gamequizServices.services.login({username, password})
-        .then(authUser => authUser)
-        .catch(error => error);
+        .then(authUser => authUser);
 
 
 function* loginWithEmailPassword({payload}) {
@@ -21,24 +20,17 @@ function* loginWithEmailPassword({payload}) {
     const {history} = payload;
     try {
         const response = yield call(loginWithEmailPasswordAsync, username, password);
-        if (response.data) {
-            if (!response.data.data.success) {
-                let user = response.data.data.user;
-                let token = response.data.data.token;
 
-                localStorage.setItem('user', JSON.stringify(user));
-                localStorage.setItem('token', JSON.stringify(token));
+        let user = response.data.data.user;
+        let token = response.data.data.token;
+
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('token', JSON.stringify(token));
 
 
-                yield put(loginUserSuccess(user, token));
+        yield put(loginUserSuccess(user, token));
 
-                yield put(history.push("/usuario/perfil"));
-            } else {
-                yield put(loginUserError(response.data.data.message));
-            }
-        } else {
-            yield put(loginUserError(response));
-        }
+        history.push("/usuario/perfil");
     } catch (error) {
         yield put(loginUserError(error));
     }
@@ -51,8 +43,7 @@ export function* watchRegisterUser() {
 
 const registerWithEmailPasswordAsync = async (payload) =>
     await gamequizServices.services.registrar({...payload})
-        .then(authUser => authUser)
-        .catch(error => error);
+        .then(authUser => authUser);
 
 function* registerWithEmailPassword({payload}) {
     yield put(registerUserSuccess(''));
@@ -60,16 +51,16 @@ function* registerWithEmailPassword({payload}) {
     const {history} = payload
     try {
         const registerUser = yield call(registerWithEmailPasswordAsync, payload.user);
-        if (registerUser.data) {
-            if (!registerUser.data.data.success) {
-                yield put(registerUserSuccess("Se ha registrado el usuario correctamente."));
-                setTimeout(() => history.push('/usuario/login'), 3000)
-            } else {
-                yield put(registerUserError(registerUser.message));
-            }
-        } else {
+        /*if (registerUser.data) {
+            if (!registerUser.data.data.success) {*/
+        yield put(registerUserSuccess("Se ha registrado el usuario correctamente."));
+        setTimeout(() => history.push('/usuario/login'), 3000)
+        /*} else {
             yield put(registerUserError(registerUser.message));
         }
+    } else {
+        yield put(registerUserError(registerUser.message));
+    }*/
     } catch (error) {
         yield put(registerUserError(error));
     }

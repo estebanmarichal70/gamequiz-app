@@ -5,7 +5,8 @@ import '../../assets/sass/App.scss';
 import {Link, withRouter} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
-import {connect} from "react-redux";
+import http from "../../api/gamequizServices";
+import {toast} from "react-toastify";
 
 class Perfil extends Component {
 
@@ -14,9 +15,12 @@ class Perfil extends Component {
         this.state = {};
     }
 
-    componentDidMount() {
-        let user = this.props.user;
-        this.setState({...this.state, user});
+    async componentDidMount() {
+        await http.services.fetchUserData()
+            .then(res => {
+                this.setState({user: res.data.data})
+            })
+            .catch(err => toast.error(err.toString()))
     }
 
     render() {
@@ -40,7 +44,7 @@ class Perfil extends Component {
                             <Link className="rounded-button gold link mr-10" to="/">Logout <FontAwesomeIcon
                                 icon={faSignOutAlt}
                                 color="#909296"/></Link>
-                            <Link to="/juego/configurar" className="rounded-button gold link">Crear Juego</Link>
+                            <Link to="/juego/crear" className="rounded-button gold link">Crear Juego</Link>
                         </div>
                     </div>
                     <div className="wrap-table">
@@ -234,9 +238,5 @@ class Perfil extends Component {
 
 }
 
-const mapStateToProps = ({authUser}) => {
-    const {user} = authUser;
-    return {user};
-};
 
-export default withRouter(connect(mapStateToProps)(Perfil));
+export default withRouter(Perfil);
