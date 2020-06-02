@@ -14,7 +14,7 @@ export default {
         login(params) {
             return axios.post(API_URL + "/acceder", params);
         },
-        fetchUserData() {
+        fetchUserData(data) {
             addDefaultHeaders();
             return axios.get(API_URL + "/me");
         },

@@ -67,165 +67,24 @@ class Perfil extends Component {
                             <div className="table-body scroll">
                                 <table>
                                     <tbody>
-                                    <tr>
-                                        <td className="column1">El juegazo</td>
-                                        <td className="column2">Ni idea bro</td>
-                                        <td className="column3">80</td>
-                                        <td className="column4">55</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {
-                                                /*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/
-                                            }
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="column1">Futboliño</td>
-                                        <td className="column2">Sopa do macaco</td>
-                                        <td className="column3">33</td>
-                                        <td className="column4">11</td>
-                                        <td className="column5">23/05/2020</td>
-                                        <td className="column6">
-                                            <Link className="link-gris" to="#"><FontAwesomeIcon icon={faEdit}
-                                                                                                color="#909296"/> Editar</Link><br/>
-                                            {/*<Link className="link-gris"><FontAwesomeIcon icon={faCheckCircle} color="#909296"/> Activar</Link>
-                                                <Link className="link-gris"><FontAwesomeIcon icon={faTimesCircle} color="#909296"/> Desactivar</Link>*/}
-                                        </td>
-                                    </tr>
-
+                                    {
+                                        this.state.user ? this.state.user.Juegos.map((juego, index) => {
+                                            return (
+                                                <tr key={juego.Id}>
+                                                    <td className="column1">{juego.Nombre}</td>
+                                                    <td className="column2">{juego.Descripcion}</td>
+                                                    <td className="column3">cambiar</td>
+                                                    <td className="column4">{juego.Jugados}</td>
+                                                    <td className="column5">{juego.Creado}</td>
+                                                    <td className="column6">
+                                                        <Link className="link-gris" to="#"><FontAwesomeIcon
+                                                            icon={faEdit}
+                                                            color="#909296"/> {juego.Activo ? "Desactivar" : "Activar"}
+                                                        </Link><br/>
+                                                    </td>
+                                                </tr>)
+                                        }) : null
+                                    }
                                     </tbody>
                                 </table>
                             </div>
