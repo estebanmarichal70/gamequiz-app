@@ -15,6 +15,9 @@ import Perfil from './views/usuario/perfil.view';
 
 import ViewError from "./views/error";
 import AuthRoute from "./components/auth-route/auth-route.component";
+import {persistor} from "./redux/store";
+
+import { PersistGate } from "redux-persist/integration/react";
 
 class App extends Component {
     render() {
@@ -22,14 +25,16 @@ class App extends Component {
             <div className="App h-100">
                 <Suspense fallback={<div/>}>
                     <BrowserRouter>
-                        <Switch>
-                            <Route path='/' render={props => <VistaInicio {...props}/>} exact/>
-                            <AuthRoute path='/usuario/perfil' user={this.props.user} exact component={Perfil}/>
-                            <Route path='/usuario' render={props => <Auth {...props}/>}/>
-                            <AuthRoute path='/juego' user={this.props.user} component={Juego}/>
-                            <Route path="/error" exact render={props => <ViewError {...props} />}/>
-                            <Redirect to="/error"/>
-                        </Switch>
+                        <PersistGate persistor={persistor}>
+                            <Switch>
+                                <Route path='/' render={props => <VistaInicio {...props}/>} exact/>
+                                <AuthRoute path='/usuario/perfil' user={this.props.user} exact component={Perfil}/>
+                                <Route path='/usuario' render={props => <Auth {...props}/>}/>
+                                <AuthRoute path='/juego' user={this.props.user} component={Juego}/>
+                                <Route path="/error" exact render={props => <ViewError {...props} />}/>
+                                <Redirect to="/error"/>
+                            </Switch>
+                        </PersistGate>
                     </BrowserRouter>
                 </Suspense>
             </div>
