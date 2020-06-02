@@ -1,5 +1,5 @@
 import {all, call, fork, put, takeEvery} from 'redux-saga/effects';
-import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, registerUserSuccess,} from '../actions';
+import {LOGIN_USER, LOGOUT_USER, logoutUser, REGISTER_USER, registerUserSuccess,} from '../actions';
 
 import {loginUserError, loginUserSuccess, registerUserError,} from './actions';
 
@@ -50,7 +50,7 @@ function* registerWithEmailPassword({payload}) {
     yield put(registerUserError(''));
     const {history} = payload
     try {
-        const registerUser = yield call(registerWithEmailPasswordAsync, payload.user);
+        yield call(registerWithEmailPasswordAsync, payload.user);
         /*if (registerUser.data) {
             if (!registerUser.data.data.success) {*/
         yield put(registerUserSuccess("Se ha registrado el usuario correctamente."));
@@ -73,10 +73,10 @@ export function* watchLogoutUser() {
 
 // eslint-disable-next-line
 function* logout({payload}) {
-    try {
-        localStorage.removeItem('user');
-    } catch (error) {
-    }
+    const {history} = payload;
+    localStorage.removeItem('user');
+    localStorage.removeItem('token');
+    history.push("/");
 }
 
 

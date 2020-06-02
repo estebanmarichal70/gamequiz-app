@@ -15,14 +15,12 @@ const crearJuegoAsync = async (data) =>
 
 
 function* crearJuego({payload}) {
-    const {history} = payload;
     try {
         const response = yield call(crearJuegoAsync, payload.juego);
         if (response.data) {
             if (!response.data.data.success) {
                 let juego = response.data.data;
                 yield put(crearJuegoSuccess(juego));
-                //history.push("/juego/crear");
             } else {
                 yield put(crearJuegoError(response.data.data.message));
             }

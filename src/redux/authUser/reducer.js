@@ -32,7 +32,7 @@ export default (state = INIT_STATE, action) => {
         case REGISTER_USER_ERROR:
             return {...state, user: '', error: action.payload.message};
         case LOGOUT_USER:
-            return {...state, user: null, error: ''};
+            return {...state, user: null, token: null, error: ''};
         default:
             return {...state};
     }

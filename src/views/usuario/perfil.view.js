@@ -7,6 +7,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import http from "../../api/gamequizServices";
 import {toast} from "react-toastify";
+import {timeago} from "../../utils";
+import {logoutUser} from "../../redux/actions";
+import {connect} from "react-redux";
+
 
 class Perfil extends Component {
 
@@ -22,6 +26,12 @@ class Perfil extends Component {
             })
             .catch(err => toast.error(err.toString()))
     }
+
+    handleLogout = () => {
+        this.props.logoutUser(this.props.history);
+    }
+
+
 
     render() {
         return (
@@ -41,9 +51,10 @@ class Perfil extends Component {
                         </div>
 
                         <div className="mb-20 w-100 d-flex center-all">
-                            <Link className="rounded-button gold link mr-10" to="/">Logout <FontAwesomeIcon
-                                icon={faSignOutAlt}
-                                color="#909296"/></Link>
+                            <button className="rounded-button gold link mr-10" onClick={this.handleLogout}>
+                                Cerrar sesion
+                                <FontAwesomeIcon icon={faSignOutAlt} color="#909296"/>
+                            </button>
                             <Link to="/juego/crear" className="rounded-button gold link">Crear Juego</Link>
                         </div>
                     </div>
@@ -75,7 +86,7 @@ class Perfil extends Component {
                                                     <td className="column2">{juego.Descripcion}</td>
                                                     <td className="column3">cambiar</td>
                                                     <td className="column4">{juego.Jugados}</td>
-                                                    <td className="column5">{juego.Creado}</td>
+                                                    <td className="column5">{timeago(juego.Creado)}</td>
                                                     <td className="column6">
                                                         <Link className="link-gris" to="#"><FontAwesomeIcon
                                                             icon={faEdit}
@@ -98,4 +109,4 @@ class Perfil extends Component {
 }
 
 
-export default withRouter(Perfil);
+export default withRouter(connect(null, {logoutUser})(Perfil));
