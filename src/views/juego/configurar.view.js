@@ -3,15 +3,27 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import DragAndDropFileUploader from "../../components/image-uploader/image-uploader.componet";
 import {withRouter} from "react-router";
+import arrow from "./arrow.svg";
+
+import {crearPregunta} from "../../redux/actions";
 
 class Crear extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            nombre: ''
+            nombre: '',
+            quiz: true
         };
 
+    }
+
+    onClick = () => {
+        if (document.getElementById("quiz").checked === true) {
+            this.setState({quiz: true});
+        } else {
+            this.setState({quiz: false});
+        }
     }
 
     render() {
@@ -80,6 +92,46 @@ class Crear extends Component {
                                 <input id="tf" name="check" type="radio" onClick={this.onClick}/>
                                 <label htmlFor="tf">True/False</label>
                             </div>
+                            <div className="select-box respuesta-correcta-select w-100 mt-15">
+                                <div className="select-box__current" tabIndex="1">
+                                    <div className="select-box__value">
+                                        <input className="select-box__input" type="radio" id="A" name="Inp" checked
+                                               readOnly/>
+                                        <p className="select-box__input-text">A</p>
+                                    </div>
+                                    <div className="select-box__value">
+                                        <input className="select-box__input" type="radio" id="B" name="Inp" checked
+                                               readOnly/>
+                                        <p className="select-box__input-text">B</p>
+                                    </div>
+                                    <div className="select-box__value"
+                                         style={{display: !this.state.quiz ? "none" : null}}>
+                                        <input className="select-box__input" type="radio" id="C" name="Inp" checked
+                                               readOnly/>
+                                        <p className="select-box__input-text">C</p>
+                                    </div>
+                                    <div className="select-box__value"
+                                         style={{display: !this.state.quiz ? "none" : null}}>
+                                        <input className="select-box__input" type="radio" id="D" name="Inp" checked
+                                               readOnly/>
+                                        <p className="select-box__input-text">D</p>
+                                    </div>
+                                    <div className="select-box__value">
+                                        <input className="select-box__input" type="radio" id="0" name="Inp" checked
+                                               readOnly disabled/>
+                                        <p className="select-box__input-text">Respuesta correcta</p>
+                                    </div>
+                                    <img className="select-box__icon" src={arrow} alt="Arrow" aria-hidden="true"/>
+                                </div>
+                                <ul className="select-box__list scroll">
+                                    <li><label className="select-box__option" htmlFor="1">A</label></li>
+                                    <li><label className="select-box__option" htmlFor="2">B</label></li>
+                                    <li style={{display: !this.state.quiz ? "none" : null}}><label
+                                        className="select-box__option" htmlFor="3">C</label></li>
+                                    <li style={{display: !this.state.quiz ? "none" : null}}><label
+                                        className="select-box__option" htmlFor="4">D</label></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div className="main-card-crear">
@@ -112,7 +164,7 @@ class Crear extends Component {
                                            })}
                                            placeholder="B - Respuesta"/>
                                 </div>
-                                <div className="contenedorR d-flex">
+                                <div className="contenedorR d-flex" style={{display: !this.state.quiz ? "none" : null}}>
                                     <input className="rounded-input gold-i mr-10" type="text"
                                            value={this.state.respuesta_c}
                                            onChange={event => this.setState({
@@ -141,8 +193,8 @@ class Crear extends Component {
 }
 
 const mapStateToProps = ({juegoModule}) => {
-    const {juego} = juegoModule;
+    const {juego, preguntas} = juegoModule;
     return {juego};
 };
 
-export default withRouter(connect(mapStateToProps)(Crear));
+export default withRouter(connect(mapStateToProps, {crearPregunta})(Crear));

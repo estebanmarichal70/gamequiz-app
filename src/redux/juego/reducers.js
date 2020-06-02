@@ -1,9 +1,17 @@
-import {CREAR_JUEGO, CREAR_JUEGO_ERROR, CREAR_JUEGO_SUCCESS} from '../actions';
+import {
+    CREAR_JUEGO,
+    CREAR_JUEGO_ERROR,
+    CREAR_JUEGO_SUCCESS,
+    CREAR_PREGUNTA,
+    CREAR_PREGUNTA_ERROR,
+    CREAR_PREGUNTA_SUCCESS
+} from '../actions';
 
 
 const INIT_STATE = {
     error: null,
-    juego: null
+    juego: null,
+    preguntas: []
 };
 
 
@@ -15,6 +23,12 @@ export default (state = INIT_STATE, action) => {
             return {...state, juego: action.payload.juego, error: ''};
         case CREAR_JUEGO_ERROR:
             return {...state, user: '', error: action.payload.message};
+        case CREAR_PREGUNTA:
+            return {...state, error: ''}
+        case CREAR_PREGUNTA_SUCCESS:
+            return {...state, preguntas: state.preguntas.push(action.payload.pregunta)}
+        case CREAR_PREGUNTA_ERROR:
+            return {...state, error: action.payload.message}
         default:
             return {...state};
     }

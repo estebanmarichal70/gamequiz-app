@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "../../assets/sass/App.scss";
+import mp3 from "../../assets/music/limbo.mp3";
 
 import DragAndDropFileUploader from "../../components/image-uploader/image-uploader.componet";
 import arrow from "./arrow.svg"
@@ -7,6 +8,7 @@ import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import {crearJuego} from "../../redux/juego/actions";
 import {toast, ToastContainer} from "react-toastify";
+import ReactPlayer from "react-player";
 
 class Configurar extends Component {
 
@@ -154,6 +156,7 @@ class Configurar extends Component {
                                     <li><label className="select-box__option" htmlFor="6">6</label></li>
                                 </ul>
                             </div>
+                            <ReactPlayer className="audio-player-crear mt-15" width="250px" height="33px"  url={mp3} controls={true}/>
                             <button className="rounded-button success mt-20" onClick={this.handleSubmit}>Crear juego y
                                 configurar
                             </button>

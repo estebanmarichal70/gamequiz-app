@@ -731,6 +731,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   .rounded-left-input {
     width: 300px;
   }
+
   @media (max-width: $phone-breakpoint) {
     .rounded-left-input {
       width: 160px;
@@ -740,8 +741,8 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 .fin {
   @media (max-width: $phone-breakpoint) {
-      margin: 20px;
-      width: 160px;
+    margin: 20px;
+    width: 160px;
   }
 }
 
@@ -781,6 +782,7 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
         }
       }
     }
+
     @media (max-width: $phone-breakpoint) {
       margin: 0;
       margin-bottom: 10px;
@@ -796,10 +798,16 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
     width: 230px;
   }
 
-  .checkbox-small{
+  .respuesta-correcta-select {
+    margin-top: 15px !important;
+    width: 100% !important;
+  }
+
+  .checkbox-small {
     @extend .checkbox;
     width: 250px;
   }
+
   @media (max-width: $phone-breakpoint) {
     margin: 0;
     margin-bottom: 10px;
@@ -808,18 +816,20 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 
 .main-card-crear {
 
+
   .card-body {
     @media (max-width: $phone-breakpoint) {
       .arriba {
-        margin:0;
+        margin: 0;
       }
       .rounded-input {
         margin: 0;
         margin-bottom: 10px;
       }
     }
-    
+
   }
+
   .separador {
     height: 1px;
     background-color: $color-true;
@@ -868,8 +878,15 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   @extend .card;
   width: 50%;
 
+
   .card-body {
     padding: 30px;
+
+    /*.audio-player-crear{
+      width: 250px !important;
+      height: 20px !important;
+    }*/
+
 
     .cover {
       @extend .card;
@@ -964,16 +981,19 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
       }
     }
   }
+
   .cover {
     @extend .card;
     height: 400px;
     width: 400px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+
     &:hover {
       transform: scale(1.03);
     }
   }
+
   @media (max-width: $phone-breakpoint) {
     width: 300px;
     margin-bottom: 20px;
@@ -985,54 +1005,65 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
 [ Estilos para Jugando ]*/
 .card-jugando {
   @extend .card;
+
   .card-header {
     font-size: 18px;
   }
+
   .card-body {
 
     padding: 50px;
-    .rounded-button{
+
+    .rounded-button {
       width: 180px;
       @media (max-width: $phone-breakpoint) {
-        margin:0;
+        margin: 0;
         margin-bottom: 10px;
         width: 250px;
       }
     }
+
     .arriba {
       @media (max-width: $phone-breakpoint) {
         margin: 0;
       }
     }
-    .rounded-button-s{
+
+    .rounded-button-s {
       @extend .rounded-button;
       margin: 0;
       width: 140px;
     }
+
     .media {
       @media (max-width: $phone-breakpoint) {
         flex-direction: column;
       }
     }
+
     .cover {
       @extend .card;
       height: 250px;
       width: 400px;
       transition: all 0.2s ease-in-out;
       cursor: pointer;
+
       &:hover {
         transform: scale(1.03);
       }
+
       @media (max-width: $phone-breakpoint) {
         height: 150px;
         width: 250px;
         margin-right: 0;
       }
     }
+
     @media (max-width: $phone-breakpoint) {
       padding: 20px;
     }
   }
+
   @media (max-width: $phone-breakpoint) {
     margin: 5px;
   }
@@ -1048,10 +1079,12 @@ input[type="password"][disabled], input[type="text"][disabled], textarea[disable
   height: 80px;
   transition: 0.25s;
   outline: none;
+
   &:hover {
     background: $color-texto-1;
     color: $color-third;
   }
+
   @media (max-width: $phone-breakpoint) {
     width: 60px;
     height: 60px;
@@ -1076,6 +1109,7 @@ input[type=number] {
 
 .card-chart {
   @extend .card;
+
   .card-body {
     padding-bottom: 0px;
 
@@ -1093,59 +1127,63 @@ input[type=number] {
         height: 300px;
       }
     }
-    
+
     [class*="bar"] {
       margin: 0;
       padding: 15px;
       border-radius: 5px 5px 0 0;
       transition: all .6s ease;
       grid-row-end: 102;
-      
+
       &:hover {
         opacity: .9;
         color: white;
         cursor: pointer;
       }
+
       @media (max-width: $phone-breakpoint) {
         padding: 8px;
-       
+
       }
     }
-    
+
     .bar-1 {
       grid-row-start: 37;
     }
-    
+
     .bar-2 {
       grid-row-start: 87;
     }
-    
+
     .bar-3 {
       grid-row-start: 83;
     }
-    
+
     .bar-4 {
       grid-row-start: 66;
     }
-    
+
     [class*="bar"]:nth-child(1) {
-      background-color: $color-true; 
+      background-color: $color-true;
     }
-    
+
     [class*="bar"]:nth-child(2) {
       background-color: $color-false;
     }
-    
+
     [class*="bar"]:nth-child(3) {
       background-color: $color-gold;
-     }
-    
-     [class*="bar"]:nth-child(4) {
+    }
+
+    [class*="bar"]:nth-child(4) {
       background-color: $color-purple;
-     }
-     
-    
-    * { box-sizing: border-box; }
+    }
+
+
+    * {
+      box-sizing: border-box;
+    }
+
     .titulo-c {
       color: $color-third;
       font-size: 20px;
@@ -1154,18 +1192,21 @@ input[type=number] {
         font-size: 10px;
       }
     }
+
     @media (max-width: $phone-breakpoint) {
       padding: 0px 5px;
     }
   }
+
   .tit {
-      color: $color-texto-1;
-      font-size: 20px;
-      font-weight: bold;
-      @media (max-width: $phone-breakpoint) {
-        font-size: 18px;
-      }
+    color: $color-texto-1;
+    font-size: 20px;
+    font-weight: bold;
+    @media (max-width: $phone-breakpoint) {
+      font-size: 18px;
+    }
   }
+
   .tit2 {
     color: $color-texto-1;
     font-size: 18px;
@@ -1174,6 +1215,7 @@ input[type=number] {
       font-size: 14px;
     }
   }
+
   .separador {
     width: 800px;
     height: 1px;
@@ -1183,11 +1225,12 @@ input[type=number] {
       width: 300px;
     }
   }
-    @media (max-width: $phone-breakpoint) {
-      padding: 0;
-      margin:0;
-      margin: 10px;
-    } 
+
+  @media (max-width: $phone-breakpoint) {
+    padding: 0;
+    margin: 0;
+    margin: 10px;
+  }
 }
 
 .sig {
@@ -1196,5 +1239,5 @@ input[type=number] {
     .rounded-button {
       width: 150px;
     }
-  } 
+  }
 }
