@@ -6,7 +6,7 @@ import {
     CREAR_JUEGO_SUCCESS,
     CREAR_PREGUNTA,
     CREAR_PREGUNTA_ERROR,
-    CREAR_PREGUNTA_SUCCESS
+    CREAR_PREGUNTA_SUCCESS, SET_SUCCESS_MESSAGE
 } from '../actions';
 
 import {REHYDRATE} from 'redux-persist/lib/constants';
@@ -17,8 +17,9 @@ const INIT_STATE = {
     juego: null,
     preguntas: {
         hasPreguntas: false,
-        list: [{}, {}]
-    }
+        list: []
+    },
+    success: null
 };
 
 
@@ -34,12 +35,40 @@ export default (state = INIT_STATE, action) => {
             return {...state, error: ''}
         // esta accion agrega la pregunta al array pero todavia no sea a creado en el backend
         case AGREGAR_PREGUNTA_TMP:
-            return {...state, preguntas: {hasPreguntas: true, list: [...state.preguntas.list, action.payload.pregunta]}}
+            if (state.preguntas.list.find(pregunta => pregunta.tmpId == action.payload.pregunta.tmpId)) {
+                return {
+                    ...state,
+                    preguntas: {
+                        hasPreguntas: true,
+                        list: [...state.preguntas.list.filter(pregunta => pregunta.tmpId != action.payload.pregunta.tmpId), action.payload.pregunta]
+                    }
+                }
+            } else {
+                return {
+                    ...state,
+                    preguntas: {hasPreguntas: true, list: [...state.preguntas.list, action.payload.pregunta]}
+                }
+            }
         // esta accion agrega la pregunta que responde la API
         case CREAR_PREGUNTA_SUCCESS:
-            return {...state, preguntas: {hasPreguntas: true, list: [...state.preguntas.list, action.payload.pregunta]}}
+            if (state.preguntas.list.find(pregunta => pregunta.tmpId == action.payload.pregunta.tmpId)) {
+                return {
+                    ...state,
+                    preguntas: {
+                        hasPreguntas: true,
+                        list: [...state.preguntas.list.filter(pregunta => pregunta.tmpId != action.payload.pregunta.tmpId), action.payload.pregunta]
+                    }
+                }
+            } else {
+                return {
+                    ...state,
+                    preguntas: {hasPreguntas: true, list: [...state.preguntas.list, action.payload.pregunta]}
+                }
+            }
         case CREAR_PREGUNTA_ERROR:
-            return {...state, error: action.payload.message}
+            return {...state, error: action.payload.message, success: null}
+        case SET_SUCCESS_MESSAGE:
+            return {...state, success: action.payload.success, error: null}
         case AGREGAR_VIDEO:
             return {
                 ...state,

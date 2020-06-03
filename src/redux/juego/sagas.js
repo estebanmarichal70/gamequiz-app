@@ -1,6 +1,6 @@
 import {all, call, fork, put, takeEvery} from 'redux-saga/effects';
 import gamequizServices from "../../api/gamequizServices";
-import {CREAR_JUEGO, CREAR_PREGUNTA, crearPreguntaError, crearPreguntaSuccess} from "../actions";
+import {CREAR_JUEGO, CREAR_PREGUNTA, crearPreguntaError, crearPreguntaSuccess, setSuccessMessage} from "../actions";
 import {crearJuegoError, crearJuegoSuccess} from "./actions";
 
 
@@ -43,9 +43,13 @@ const crearPreguntaAsync = async (data) =>
         .catch(error => error);
 
 function* crearPregunta({payload}) {
+    yield put(setSuccessMessage(null))
+    yield put(crearPreguntaError(null))
     try {
         let response = yield call(crearPreguntaAsync, payload.pregunta)
-        yield put(crearPreguntaSuccess(response.data.data))
+        let pregunta = response.data.data;
+        yield put(crearPreguntaSuccess({...pregunta, tmpId: payload.pregunta.tmpId}))
+        yield put(setSuccessMessage(`Se ha creado la pregunta ${pregunta.Id} correctamente.`))
     } catch (error) {
         yield put(crearPreguntaError(error));
     }

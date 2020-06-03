@@ -14,13 +14,17 @@ export default {
         login(params) {
             return axios.post(API_URL + "/acceder", params);
         },
-        fetchUserData(data) {
+        fetchUserData() {
             addDefaultHeaders();
             return axios.get(API_URL + "/me");
         },
         crearJuego(params) {
             addDefaultHeaders();
             return axios.post(API_URL + "/juego", params);
+        },
+        crearPregunta(data){
+            addDefaultHeaders();
+            return axios.post(API_URL + "/pregunta", data);
         }
     }
 }

@@ -6,13 +6,16 @@ import {withRouter} from "react-router";
 import arrow from "./arrow.svg";
 
 import {agregarPreguntaTemporal, crearPregunta} from "../../redux/actions";
+import {toast, ToastContainer} from "react-toastify";
 
 class Configurar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            preguntaId: null,
             quiz: true,
+            correcta: "",
             respuesta_a: "",
             respuesta_b: "",
             respuesta_c: "",
@@ -79,9 +82,41 @@ class Configurar extends Component {
         this.setState({[event.target.name]: event.target.value});
     }
 
+    handleCrearPregunta = () => {
+        if (this.state.mensaje != "" && this.state.puntos != "" && this.state.tiempo != "" && this.state.correcta != "") {
+            if (this.state.respuesta_a != "" && this.state.respuesta_b != "" && (this.state.quiz && this.state.respuesta_c != "" && this.state.respuesta_d != "")) {
+                const {mensaje, puntos, tiempo, quiz, tmpId, video} = this.state;
+                let pregunta = {
+                    mensaje,
+                    puntos,
+                    tiempo,
+                    quiz,
+                    tmpId,
+                    video: video ? video.url : null,
+                    finVideo: video ? video.end : null,
+                    inicioVideo: video ? video.start : null,
+                    juegoId: this.props.juego.Id
+                }
+                this.props.crearPregunta(pregunta);
+            } else {
+                toast.error("Por favor, complete todas las respuestas.")
+            }
+        } else {
+            toast.error("Por favor, complete todos los campos.")
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.success != prevProps.success && this.props.success != null) {
+            const pregunta = this.props.preguntas.list.find(pregunta => pregunta.tmpId == this.state.tmpId);
+            this.setState({preguntaId: pregunta.Id})
+        }
+    }
+
     render() {
         return (
             <div className="d-flex flex-column contenedorR">
+                <ToastContainer/>
                 <div className="nombre-config d-flex jc-center mb-25">
                     <div className="texto">
                         {this.props.juego.Nombre}
@@ -107,8 +142,8 @@ class Configurar extends Component {
 
                                 </div>
                             </div>
-                            <button className="rounded-button success mt-16 ">
-                                Crear
+                            <button onClick={this.handleCrearPregunta} className="rounded-button success mt-16 ">
+                                Crear nueva pregunta
                             </button>
                         </div>
                     </div>
@@ -204,7 +239,7 @@ class Configurar extends Component {
                     <div className="main-card-crear">
                         <div className="card-body">
                             <div className="center-all mb-20 flex-column">
-                                <DragAndDropFileUploader tipo="PREGUNTA" tipoId={1}/>
+                                <DragAndDropFileUploader tipo="PREGUNTA" tipoId={this.state.preguntaId}/>
                                 <div className="d-flex mt-10 w-90">
                                     <hr className="w-30 separador"/>
                                     <span className="titulo">o</span>
@@ -216,35 +251,35 @@ class Configurar extends Component {
                             </div>
                             <div className="d-flex flex-column">
                                 <div className="contenedorR arriba d-flex mb-10">
+
                                     <input className="rounded-input error-i mr-10" type="text"
                                            value={this.state.respuesta_a}
-                                           onChange={event => this.setState({
-                                               ...this.state,
-                                               respuesta_a: event.target.value
-                                           })}
-                                           placeholder="A - Respuesta"/>
+                                           onChange={this.handleChange}
+                                           placeholder="A - Respuesta"
+                                           name="respuesta_a"
+                                    />
+
+
                                     <input className="rounded-input success-i" type="text"
                                            value={this.state.respuesta_b}
-                                           onChange={event => this.setState({
-                                               ...this.state,
-                                               respuesta_b: event.target.value
-                                           })}
-                                           placeholder="B - Respuesta"/>
+                                           onChange={this.handleChange}
+                                           placeholder="B - Respuesta"
+                                           name="respuesta_b"/>
                                 </div>
                                 <div className="contenedorR d-flex" style={{display: !this.state.quiz ? "none" : null}}>
+
                                     <input className="rounded-input gold-i mr-10" type="text"
                                            value={this.state.respuesta_c}
-                                           onChange={event => this.setState({
-                                               ...this.state,
-                                               respuesta_c: event.target.value
-                                           })}
-                                           placeholder="C - Respuesta"/>
-                                    <input className="rounded-input purple-i" type="text" value={this.state.respuesta_d}
-                                           onChange={event => this.setState({
-                                               ...this.state,
-                                               respuesta_d: event.target.value
-                                           })}
-                                           placeholder="D - Respuesta"/>
+                                           onChange={this.handleChange}
+                                           placeholder="C - Respuesta"
+                                           name="respuesta_c"/>
+
+                                    <input className="rounded-input purple-i" type="text"
+                                           value={this.state.respuesta_d}
+                                           onChange={this.handleChange}
+                                           placeholder="D - Respuesta"
+                                           name="respuesta_d"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -252,7 +287,7 @@ class Configurar extends Component {
                 </div>
                 <div className="d-flex jc-center">
                     <Link className="rounded-button success link center-all fin w-30"
-                          to="/juego/empezar">Finalizar</Link>
+                          to="/juego/empezar">Finalizar creacion de juego</Link>
                 </div>
             </div>
         );
@@ -260,8 +295,8 @@ class Configurar extends Component {
 }
 
 const mapStateToProps = ({juegoModule}) => {
-    const {juego, preguntas} = juegoModule;
-    return {juego, preguntas};
+    const {juego, preguntas, success} = juegoModule;
+    return {juego, preguntas, success};
 };
 
 export default withRouter(connect(mapStateToProps, {crearPregunta, agregarPreguntaTemporal})(Configurar));

@@ -6,7 +6,7 @@ import {
     CREAR_PREGUNTA,
     CREAR_PREGUNTA_ERROR,
     CREAR_PREGUNTA_SUCCESS,
-    AGREGAR_PREGUNTA_TMP
+    AGREGAR_PREGUNTA_TMP, SET_SUCCESS_MESSAGE
 } from '../actions';
 
 export const crearJuego = (juego, history) => ({
@@ -47,4 +47,9 @@ export const agregarVideo = (video, tmpId) => ({
 export const agregarPreguntaTemporal = (pregunta) => ({
     type: AGREGAR_PREGUNTA_TMP,
     payload: {pregunta}
+})
+
+export const setSuccessMessage = (success) => ({
+    type: SET_SUCCESS_MESSAGE,
+    payload: {success}
 })
