@@ -8,7 +8,7 @@ import coffin from "../../assets/music/coffin.mp3";
 import suspenso from "../../assets/music/suspenso.mp3";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faVolumeUp, faVolumeMute} from "@fortawesome/free-solid-svg-icons";
+import {faVolumeMute, faVolumeUp} from "@fortawesome/free-solid-svg-icons";
 
 import DragAndDropFileUploader from "../../components/image-uploader/image-uploader.componet";
 import arrow from "./arrow.svg"
@@ -18,7 +18,7 @@ import {crearJuego} from "../../redux/juego/actions";
 import {toast, ToastContainer} from "react-toastify";
 import ReactPlayer from "react-player";
 
-class Configurar extends Component {
+class Crear extends Component {
 
     constructor(props) {
         super(props);
@@ -46,7 +46,7 @@ class Configurar extends Component {
     }
 
     onClickMusic = (event) => {
-        switch(event.target.id){
+        switch (event.target.id) {
             case "1":
                 this.setState({musicaP: limbo});
                 this.setState({musica: 1})
@@ -70,9 +70,9 @@ class Configurar extends Component {
     }
 
     onClickMute = (event) => {
-        if(event.target.id === "mute"){
+        if (event.target.id === "mute") {
             this.setState({muted: true});
-        }else{
+        } else {
             this.setState({muted: false});
         }
     }
@@ -91,21 +91,21 @@ class Configurar extends Component {
             musica: this.state.musica,
             usuarioId: this.props.user.Id
         }
-        if(privado){
-            if(password !== "" && titulo !== "" && descripcion !== "" && musica !== null){
+        if (privado) {
+            if (password !== "" && titulo !== "" && descripcion !== "" && musica !== null) {
                 this.props.crearJuego(juego, this.props.history)
             } else {
                 toast.error("Por favor, complete todos los campos");
             }
         } else {
-            if(titulo !== "" && descripcion !== "" && musica !== null){
+            if (titulo !== "" && descripcion !== "" && musica !== null) {
                 this.props.crearJuego(juego, this.props.history)
             } else {
                 toast.error("Por favor, complete todos los campos");
             }
         }
-            
-                
+
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -166,19 +166,23 @@ class Configurar extends Component {
                             <div className="select-box">
                                 <div className="select-box__current" tabIndex="1">
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="1" name="sel" readOnly checked/>
+                                        <input className="select-box__input" type="radio" id="1" name="sel" readOnly
+                                               checked/>
                                         <p className="select-box__input-text">Daddy Yankee - Limbo</p>
                                     </div>
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="2" name="sel" readOnly checked/>
+                                        <input className="select-box__input" type="radio" id="2" name="sel" readOnly
+                                               checked/>
                                         <p className="select-box__input-text">Quien quiere ser millonario</p>
                                     </div>
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="3" name="sel" readOnly checked/>
+                                        <input className="select-box__input" type="radio" id="3" name="sel" readOnly
+                                               checked/>
                                         <p className="select-box__input-text">Coffin Dance</p>
                                     </div>
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="4" name="sel" readOnly checked/>
+                                        <input className="select-box__input" type="radio" id="4" name="sel" readOnly
+                                               checked/>
                                         <p className="select-box__input-text">Música de Suspenso</p>
                                     </div>
                                     <div className="select-box__value">
@@ -188,18 +192,25 @@ class Configurar extends Component {
                                     <img className="select-box__icon" src={arrow} alt="Arrow" aria-hidden="true"/>
                                 </div>
                                 <ul className="select-box__list scroll">
-                                    <li><label className="select-box__option" htmlFor="1" id="1" onClick={this.onClickMusic}>Daddy Yankee - Limbo</label></li>
-                                    <li><label className="select-box__option" htmlFor="2" id="2" onClick={this.onClickMusic}>Quien quiere ser millonario</label></li>
-                                    <li><label className="select-box__option" htmlFor="3" id="3" onClick={this.onClickMusic}>Coffin Dance</label></li>
-                                    <li><label className="select-box__option" htmlFor="4" id="4" onClick={this.onClickMusic}>Música de Suspenso</label></li>
+                                    <li><label className="select-box__option" htmlFor="1" id="1"
+                                               onClick={this.onClickMusic}>Daddy Yankee - Limbo</label></li>
+                                    <li><label className="select-box__option" htmlFor="2" id="2"
+                                               onClick={this.onClickMusic}>Quien quiere ser millonario</label></li>
+                                    <li><label className="select-box__option" htmlFor="3" id="3"
+                                               onClick={this.onClickMusic}>Coffin Dance</label></li>
+                                    <li><label className="select-box__option" htmlFor="4" id="4"
+                                               onClick={this.onClickMusic}>Música de Suspenso</label></li>
                                 </ul>
                             </div>
                             {this.state.muted ? (
-                                <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeMute} color="#53575f" size="2x" id="unmute" onClick={this.onClickMute}/>
+                                <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeMute} color="#53575f" size="2x"
+                                                 id="unmute" onClick={this.onClickMute}/>
                             ) : (
-                                <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeUp} color="#53575f" size="2x" id="mute" onClick={this.onClickMute} />
+                                <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeUp} color="#53575f" size="2x"
+                                                 id="mute" onClick={this.onClickMute}/>
                             )}
-                            <ReactPlayer width="0" height="0" url={this.state.musicaP} muted={this.state.muted} loop={true} volume={0.1} playing={true} start={60}/>
+                            <ReactPlayer width="0" height="0" url={this.state.musicaP} muted={this.state.muted}
+                                         loop={true} volume={0.1} playing={true} start={60}/>
                             <button className="rounded-button success mt-20" onClick={this.handleSubmit}>
                                 Crear juego y configurar
                             </button>
@@ -217,4 +228,4 @@ const mapStateToProps = ({authUser, juegoModule}) => {
     return {user, juego, error};
 };
 
-export default withRouter(connect(mapStateToProps, {crearJuego})(Configurar));
+export default withRouter(connect(mapStateToProps, {crearJuego})(Crear));

@@ -91,10 +91,14 @@ class YoutubeView extends Component {
         })
     }
 
-    handleAceptar = () => {
+    handleAceptar = async () => {
         if(this.state.videoData.url != "" && this.state.videoData.url != undefined && this.state.videoData.start != null && this.state.videoData.end != null){
             console.log(this.props.location.state.tmpId)
-            this.props.agregarVideo(this.state.videoData, this.props.location.state.tmpId);
+            await this.props.agregarVideo(this.state.videoData, this.props.location.state.tmpId);
+            this.props.history.push({
+                pathname: '/juego/configurar',
+                state: { tmpId: this.props.location.state.tmpId }
+            });
         }else{
             toast.error("Por favor, complete todos los datos.")
         }

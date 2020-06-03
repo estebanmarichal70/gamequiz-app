@@ -7,7 +7,7 @@ import arrow from "./arrow.svg";
 
 import {agregarPreguntaTemporal, crearPregunta} from "../../redux/actions";
 
-class Crear extends Component {
+class Configurar extends Component {
 
     constructor(props) {
         super(props);
@@ -52,8 +52,19 @@ class Crear extends Component {
         this.props.agregarPreguntaTemporal(this.state);
         this.props.history.push({
             pathname: '/juego/youtube',
-            state: { tmpId: this.state.tmpId }
+            state: {tmpId: this.state.tmpId}
         })
+    }
+
+    componentDidMount() {
+        if (this.props.preguntas) {
+            if (this.props.preguntas.list) {
+                let question = this.props.preguntas.list.find(pregunta => pregunta.tmpId == this.state.tmpId);
+                if (question) {
+                    this.setState({...this.state, ...question});
+                }
+            }
+        }
     }
 
     onClick = () => {
@@ -170,22 +181,22 @@ class Crear extends Component {
                                 <ul className="select-box__list scroll">
                                     <li>
                                         <label className="select-box__option" id="A" onClick={this.onClickCorrecta}
-                                               htmlFor="1">
+                                               htmlFor="A">
                                             A
                                         </label>
                                     </li>
                                     <li>
                                         <label className="select-box__option" id="B" onClick={this.onClickCorrecta}
-                                               htmlFor="2">
+                                               htmlFor="B">
                                             B
                                         </label>
                                     </li>
                                     <li style={{display: !this.state.quiz ? "none" : null}}><label
                                         className="select-box__option" id="C" onClick={this.onClickCorrecta}
-                                        htmlFor="3">C</label></li>
+                                        htmlFor="C">C</label></li>
                                     <li style={{display: !this.state.quiz ? "none" : null}}><label
                                         className="select-box__option" id="D" onClick={this.onClickCorrecta}
-                                        htmlFor="4">D</label></li>
+                                        htmlFor="D">D</label></li>
                                 </ul>
                             </div>
                         </div>
@@ -250,7 +261,7 @@ class Crear extends Component {
 
 const mapStateToProps = ({juegoModule}) => {
     const {juego, preguntas} = juegoModule;
-    return {juego};
+    return {juego, preguntas};
 };
 
-export default withRouter(connect(mapStateToProps, {crearPregunta, agregarPreguntaTemporal})(Crear));
+export default withRouter(connect(mapStateToProps, {crearPregunta, agregarPreguntaTemporal})(Configurar));

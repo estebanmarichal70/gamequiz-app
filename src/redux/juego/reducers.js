@@ -43,15 +43,19 @@ export default (state = INIT_STATE, action) => {
         case AGREGAR_VIDEO:
             return {
                 ...state,
-                preguntas: state.preguntas.list.map(pregunta => {
-                    if (pregunta.tmpId == action.payload.tmpId) {
-                        pregunta.video = action.payload.video;
-                    }
-                    return pregunta;
-                })
+                preguntas: {
+                    ...state.preguntas,
+                    list:
+                        state.preguntas.list.map(pregunta => {
+                            if (pregunta.tmpId == action.payload.tmpId) {
+                                pregunta.video = action.payload.video;
+                            }
+                            return pregunta;
+                        })
+                }
             }
         case REHYDRATE:
-            if (action.payload) { // <- I guess this works, but it's kinda ugly
+            if (action.payload) {
                 return {
                     ...action.payload.juegoModule,
                 };
