@@ -27,6 +27,7 @@ class Configurar extends Component {
             descripcion: "",
             privado: false,
             password: "",
+            musicaP: null,
             musica: null,
             muted: false
         };
@@ -47,17 +48,24 @@ class Configurar extends Component {
     onClickMusic = (event) => {
         switch(event.target.id){
             case "1":
-                this.setState({musica: limbo});
+                this.setState({musicaP: limbo});
+                this.setState({musica: 1})
                 break;
             case "2":
-                this.setState({musica: millonario});
+                this.setState({musicaP: millonario});
+                this.setState({musica: 2})
                 break;
             case "3":
-                this.setState({musica: coffin});
+                this.setState({musicaP: coffin});
+                this.setState({musica: 3})
                 break;
             case "4":
-                this.setState({musica: suspenso});
+                this.setState({musicaP: suspenso});
+                this.setState({musica: 4})
                 break;
+            default:
+                this.setState({musicaP: null});
+                this.setState({musica: null})
         }
     }
 
@@ -74,22 +82,30 @@ class Configurar extends Component {
     }
 
     handleSubmit = () => {
-        const {titulo, descripcion} = this.state;
-        if (titulo !== "" && descripcion !== "") {
-            let juego = {
-                nombre: this.state.nombre,
-                descripcion: this.state.descripcion,
-                privado: this.state.privado,
-                password: this.state.password,
-                musica: this.state.musica,
-                usuarioId: this.props.user.Id
-            }
-
-            this.props.crearJuego(juego, this.props.history)
-
-        } else {
-            toast.error("Por favor, complete todos los campos.");
+        const {titulo, descripcion, musica, privado, password} = this.state;
+        let juego = {
+            nombre: this.state.nombre,
+            descripcion: this.state.descripcion,
+            privado: this.state.privado,
+            password: this.state.password,
+            musica: this.state.musica,
+            usuarioId: this.props.user.Id
         }
+        if(privado){
+            if(password !== "" && titulo !== "" && descripcion !== "" && musica !== null){
+                this.props.crearJuego(juego, this.props.history)
+            } else {
+                toast.error("Por favor, complete todos los campos");
+            }
+        } else {
+            if(titulo !== "" && descripcion !== "" && musica !== null){
+                this.props.crearJuego(juego, this.props.history)
+            } else {
+                toast.error("Por favor, complete todos los campos");
+            }
+        }
+            
+                
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -101,7 +117,7 @@ class Configurar extends Component {
     render() {
         return (
             <div>
-                <ToastContainer/>
+                <ToastContainer position="top-center"/>
                 <div className="d-flex jc-center contenedorR">
                     <div className="card-summary mr-30">
                         <div className="card-header"><span>Configuración de Partida</span></div>
@@ -151,7 +167,7 @@ class Configurar extends Component {
                                 <div className="select-box__current" tabIndex="1">
                                     <div className="select-box__value">
                                         <input className="select-box__input" type="radio" id="1" name="sel" readOnly checked/>
-                                        <p className="select-box__input-text">Daddy Yankee- Limbo</p>
+                                        <p className="select-box__input-text">Daddy Yankee - Limbo</p>
                                     </div>
                                     <div className="select-box__value">
                                         <input className="select-box__input" type="radio" id="2" name="sel" readOnly checked/>
@@ -183,7 +199,7 @@ class Configurar extends Component {
                             ) : (
                                 <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeUp} color="#53575f" size="2x" id="mute" onClick={this.onClickMute} />
                             )}
-                            <ReactPlayer width="0" height="0" url={this.state.musica} muted={this.state.muted} loop={true} volume={0.1} playing={true} start={60}/>
+                            <ReactPlayer width="0" height="0" url={this.state.musicaP} muted={this.state.muted} loop={true} volume={0.1} playing={true} start={60}/>
                             <button className="rounded-button success mt-20" onClick={this.handleSubmit}>
                                 Crear juego y configurar
                             </button>

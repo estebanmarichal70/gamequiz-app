@@ -22,7 +22,7 @@ class Registrar extends Component {
             username: '',
             password: '',
             conPass: '',
-            fechaNac: new Date(),
+            fechaNac: null,
             juegos: null,
             messagePrinted: false
         };
@@ -43,20 +43,26 @@ class Registrar extends Component {
     }
 
     onSubmit(e) {
-        this.setState({...this.state, messagePrinted: false});
         e.preventDefault();
-        if (this.state.password === this.state.conPass) {
-            const usuario = {
-                nombre: this.state.nombre,
-                apellido: this.state.apellido,
-                username: this.state.username,
-                password: this.state.password,
-                fechaNac: this.state.fechaNac,
-                juegos: this.state.juegos
+        this.setState({...this.state, messagePrinted: false});
+       
+        const {nombre, apellido, username, password, conPass, fechaNac} = this.state;
+        if(nombre !== "" && apellido !== "" && username !== "" && password !== "" && conPass !== "" && fechaNac !== null){
+            if (this.state.password === this.state.conPass) {
+                const usuario = {
+                    nombre: this.state.nombre,
+                    apellido: this.state.apellido,
+                    username: this.state.username,
+                    password: this.state.password,
+                    fechaNac: this.state.fechaNac,
+                    juegos: this.state.juegos
+                }
+                this.props.registerUser(usuario, this.props.history);
+            } else {
+                toast.error('Las contraseñas no coinciden');
             }
-            this.props.registerUser(usuario, this.props.history);
         } else {
-            toast.error('Las contraseñas no coinciden');
+            toast.error('Por favor, completa todos los campos');
         }
     }
 
@@ -85,32 +91,32 @@ class Registrar extends Component {
             <div>
                 <ToastContainer position="top-center"/>
                 <form onSubmit={this.onSubmit}>
-                    <div className="titulo-login">Registrarse</div>
-                    <input type="text" placeholder="Nombre" name="nombre" value={this.state.nombre}
-                           onChange={this.onChange} autoFocus required/>
-                    <input type="text" placeholder="Apellido" name="apellido" value={this.state.apellido}
-                           onChange={this.onChange} required/>
-                    <input type="text" placeholder="Usuario" name="username" value={this.state.usuario}
-                           onChange={this.onChange} required/>
-                    <input type="password" placeholder="Contraseña" name="password" value={this.state.pass}
-                           onChange={this.onChange} required/>
-                    <input type="password" placeholder="Repetir contraseña" name="conPass" value={this.state.conPass}
-                           onChange={this.onChange} required/>
-                    <DatePicker
-                        className="m-0"
-                        dateFormat="dd/MM/yyyy"
-                        placeholderText="Fecha de Nacimiento"
-                        selected={this.state.fechaNac}
-                        onChange={this.handleChange}
-                        locale="es"
-                        required
-                    />
-                    <button type="submit">
-                        Confirmar
-                    </button>
-                    <Link className="link-blanco" to="/usuario/login">
-                        Iniciar Sesión
-                    </Link>
+                    <div className="center-all flex-column">
+                        <div className="titulo-login mb-15">Registrarse</div>
+                        <input type="text" className="rounded-input mb-15" placeholder="Nombre" name="nombre" value={this.state.nombre}
+                            onChange={this.onChange} autoFocus/>
+                        <input type="text" className="rounded-input mb-15" placeholder="Apellido" name="apellido" value={this.state.apellido}
+                            onChange={this.onChange}/>
+                        <input type="text" className="rounded-input mb-15" placeholder="Usuario" name="username" value={this.state.usuario}
+                            onChange={this.onChange}/>
+                        <input type="password" className="rounded-input mb-15" placeholder="Contraseña" name="password" value={this.state.pass}
+                            onChange={this.onChange}/>
+                        <input type="password" className="rounded-input mb-15" placeholder="Repetir contraseña" name="conPass" value={this.state.conPass}
+                            onChange={this.onChange}/>
+                        <DatePicker
+                            className="m-0 rounded-input "
+                            dateFormat="dd/MM/yyyy"
+                            placeholderText="Fecha de Nacimiento"
+                            selected={this.state.fechaNac}
+                            onChange={this.handleChange}
+                            locale="es"
+                        />
+                        <button className="rounded-button mt-15 mb-15" type="submit">Confirmar</button>
+                        <Link className="link-blanco" to="/usuario/login">
+                            Iniciar Sesión
+                        </Link>
+                    </div>
+                    
                 </form>
             </div>
         )

@@ -82,7 +82,7 @@ $large-breakpoint: 1200px;
 }
 
 .m-0 {
-  margin: 0;
+  margin: 0 !important;
 }
 
 @for $j from 1 through 100 {
@@ -190,70 +190,6 @@ $large-breakpoint: 1200px;
   @extend .link;
   color: $color-texto-2;
   font-size: 14px;
-}
-
-
-/*===================================================================================================================*/
-/*[ Form para registrar e iniciar sesión ]*/
-.form-login {
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-
-  .form-box {
-    border-radius: 26px;
-    padding: 40px;
-    background: $color-secondary;
-    text-align: center;
-  }
-
-  .titulo-login {
-    @extend .titulo;
-    font-weight: bold;
-    font-size: 2.5rem;
-  }
-
-  .form-box input[type="text"], .form-box input[type="password"], .form-box button[type="submit"] {
-    font-family: inherit;
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    border: 2px solid $color-texto-1;
-    padding: 14px 10px;
-    width: 200px;
-    outline: none;
-    color: $color-texto-1;
-    border-radius: 24px;
-    transition: 0.25s;
-  }
-
-  .form-box input[type="text"]:focus, .form-box input[type="password"]:focus {
-    width: 250px;
-  }
-
-  .form-box button[type="submit"] {
-    border: 0;
-    background: $color-primary;
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    padding: 14px 40px;
-    outline: none;
-    color: $color-texto-1;
-    border-radius: 24px;
-    transition: 0.25s;
-    cursor: pointer;
-  }
-
-  .form-box button[type="submit"]:hover {
-    background: $color-texto-1;
-    color: $color-third;
-  }
 }
 
 /*===================================================================================================================*/
@@ -713,6 +649,40 @@ input[type=number] {
   }
   to {
     transform: scaleY(0);
+  }
+}
+
+
+/*===================================================================================================================*/
+/*[ Estilo para registrar e iniciar sesión ]*/
+.form-login {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  .form-box {
+    border-radius: 26px;
+    padding: 40px;
+    background: $color-secondary;
+    text-align: center;
+  }
+
+  .titulo-login {
+    @extend .titulo;
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+
+  .rounded-input{
+    text-align: center;
+    width: 200px;
+  }
+
+  .rounded-input:focus {
+    width: 250px;
   }
 }
 
