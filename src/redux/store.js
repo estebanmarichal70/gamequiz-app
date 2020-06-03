@@ -3,32 +3,35 @@ import createSagaMiddleware from "redux-saga";
 import logger from "redux-logger";
 import rootReducer from './reducers';
 import rootSaga from "./sagas";
-import { persistStore } from "redux-persist";
 
+
+import {persistReducer, persistStore} from 'redux-persist';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+
+const persistConfig = {
+    key: 'root',
+    storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [sagaMiddleware, logger];
 
+export const store = createStore(
+    persistedReducer,
+    compose(applyMiddleware(...middlewares))
+);
+
+sagaMiddleware.run(rootSaga);
 
 
-export function configureStore(initialState) {
-
-    const store = createStore(
-        rootReducer,
-        initialState,
-        compose(applyMiddleware(...middlewares))
-    );
-
-    sagaMiddleware.run(rootSaga);
-
-    if (module.hot) {
-        module.hot.accept('./reducers', () => {
-            const nextRootReducer = require('./reducers');
-            store.replaceReducer(nextRootReducer);
-        });
-    }
-
-    return store;
+if (module.hot) {
+    module.hot.accept('./reducers', () => {
+        const nextRootReducer = require('./reducers');
+        store.replaceReducer(persistReducer(persistConfig, nextRootReducer));
+    });
 }
 
-export const persistor = persistStore(configureStore());
+export const persistor = persistStore(store);
+

@@ -4,16 +4,19 @@ import './assets/sass/index.scss';
 import * as serviceWorker from './serviceWorker';
 
 import {Provider} from 'react-redux';
-import {configureStore} from './redux/store';
+import {persistor, store} from './redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const App = React.lazy(() => import(/* webpackChunkName: "App" */'./App' ));
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={configureStore()}>
-            <Suspense fallback={<div/>}>
-                <App/>
-            </Suspense>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <Suspense fallback={<div/>}>
+                    <App/>
+                </Suspense>
+            </PersistGate>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

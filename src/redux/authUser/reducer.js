@@ -8,6 +8,8 @@ import {
     REGISTER_USER_SUCCESS,
 } from '../actions';
 
+import {REHYDRATE} from 'redux-persist/lib/constants';
+
 
 const INIT_STATE = {
     user: null,
@@ -33,6 +35,8 @@ export default (state = INIT_STATE, action) => {
             return {...state, user: '', error: action.payload.message};
         case LOGOUT_USER:
             return {...state, user: null, token: null, error: ''};
+        case REHYDRATE:
+            return {...action.payload.authUser};
         default:
             return {...state};
     }

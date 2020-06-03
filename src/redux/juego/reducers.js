@@ -7,6 +7,9 @@ import {
     CREAR_PREGUNTA_SUCCESS
 } from '../actions';
 
+import { REHYDRATE } from 'redux-persist/lib/constants';
+
+
 
 const INIT_STATE = {
     error: null,
@@ -29,6 +32,8 @@ export default (state = INIT_STATE, action) => {
             return {...state, preguntas: state.preguntas.push(action.payload.pregunta)}
         case CREAR_PREGUNTA_ERROR:
             return {...state, error: action.payload.message}
+        case REHYDRATE:
+            return {...action.payload.juegoModule};
         default:
             return {...state};
     }
