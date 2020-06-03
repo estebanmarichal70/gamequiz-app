@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
+
 import "../../assets/sass/App.scss";
-import mp3 from "../../assets/music/limbo.mp3";
+
+import limbo from "../../assets/music/limbo.mp3";
+import millonario from "../../assets/music/millonario.mp3";
+import coffin from "../../assets/music/coffin.mp3";
+import suspenso from "../../assets/music/suspenso.mp3";
+
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faVolumeUp, faVolumeMute} from "@fortawesome/free-solid-svg-icons";
 
 import DragAndDropFileUploader from "../../components/image-uploader/image-uploader.componet";
 import arrow from "./arrow.svg"
@@ -19,7 +27,8 @@ class Configurar extends Component {
             descripcion: "",
             privado: false,
             password: "",
-            musica: 1
+            musica: null,
+            muted: false
         };
     }
 
@@ -29,8 +38,34 @@ class Configurar extends Component {
             this.setState({privado: true});
             inputPass.disabled = false;
         } else {
+            this.setState({privado: false});
             inputPass.disabled = true;
             inputPass.value = "";
+        }
+    }
+
+    onClickMusic = (event) => {
+        switch(event.target.id){
+            case "1":
+                this.setState({musica: limbo});
+                break;
+            case "2":
+                this.setState({musica: millonario});
+                break;
+            case "3":
+                this.setState({musica: coffin});
+                break;
+            case "4":
+                this.setState({musica: suspenso});
+                break;
+        }
+    }
+
+    onClickMute = (event) => {
+        if(event.target.id === "mute"){
+            this.setState({muted: true});
+        }else{
+            this.setState({muted: false});
         }
     }
 
@@ -40,9 +75,13 @@ class Configurar extends Component {
 
     handleSubmit = () => {
         const {titulo, descripcion} = this.state;
-        if (titulo != "" && descripcion != "") {
+        if (titulo !== "" && descripcion !== "") {
             let juego = {
-                ...this.state,
+                nombre: this.state.nombre,
+                descripcion: this.state.descripcion,
+                privado: this.state.privado,
+                password: this.state.password,
+                musica: this.state.musica,
                 usuarioId: this.props.user.Id
             }
 
@@ -54,7 +93,7 @@ class Configurar extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.error != null && this.props.error != undefined && this.props.error != "") {
+        if (this.props.error !== null && this.props.error !== undefined && this.props.error !== "") {
             toast.error(this.props.error);
         }
     }
@@ -111,54 +150,42 @@ class Configurar extends Component {
                             <div className="select-box">
                                 <div className="select-box__current" tabIndex="1">
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="1" name="Inp" checked
-                                               readOnly/>
-                                        <p className="select-box__input-text">1</p>
+                                        <input className="select-box__input" type="radio" id="1" name="sel" readOnly checked/>
+                                        <p className="select-box__input-text">Daddy Yankee- Limbo</p>
                                     </div>
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="2" name="Inp" checked
-                                               readOnly/>
-                                        <p className="select-box__input-text">2</p>
+                                        <input className="select-box__input" type="radio" id="2" name="sel" readOnly checked/>
+                                        <p className="select-box__input-text">Quien quiere ser millonario</p>
                                     </div>
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="3" name="Inp" checked
-                                               readOnly/>
-                                        <p className="select-box__input-text">3</p>
+                                        <input className="select-box__input" type="radio" id="3" name="sel" readOnly checked/>
+                                        <p className="select-box__input-text">Coffin Dance</p>
                                     </div>
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="4" name="Inp" checked
-                                               readOnly/>
-                                        <p className="select-box__input-text">4</p>
+                                        <input className="select-box__input" type="radio" id="4" name="sel" readOnly checked/>
+                                        <p className="select-box__input-text">Música de Suspenso</p>
                                     </div>
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="5" name="Inp" checked
-                                               readOnly/>
-                                        <p className="select-box__input-text">5</p>
-                                    </div>
-                                    <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="6" name="Inp" checked
-                                               readOnly/>
-                                        <p className="select-box__input-text">6</p>
-                                    </div>
-                                    <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" id="0" name="Inp" checked
-                                               readOnly disabled/>
-                                        <p className="select-box__input-text">Música del juego</p>
+                                        <input className="select-box__input" type="radio" name="sel" readOnly checked/>
+                                        <p className="select-box__input-text">Música del Juego</p>
                                     </div>
                                     <img className="select-box__icon" src={arrow} alt="Arrow" aria-hidden="true"/>
                                 </div>
                                 <ul className="select-box__list scroll">
-                                    <li><label className="select-box__option" htmlFor="1">1</label></li>
-                                    <li><label className="select-box__option" htmlFor="2">2</label></li>
-                                    <li><label className="select-box__option" htmlFor="3">3</label></li>
-                                    <li><label className="select-box__option" htmlFor="4">4</label></li>
-                                    <li><label className="select-box__option" htmlFor="5">5</label></li>
-                                    <li><label className="select-box__option" htmlFor="6">6</label></li>
+                                    <li><label className="select-box__option" htmlFor="1" id="1" onClick={this.onClickMusic}>Daddy Yankee - Limbo</label></li>
+                                    <li><label className="select-box__option" htmlFor="2" id="2" onClick={this.onClickMusic}>Quien quiere ser millonario</label></li>
+                                    <li><label className="select-box__option" htmlFor="3" id="3" onClick={this.onClickMusic}>Coffin Dance</label></li>
+                                    <li><label className="select-box__option" htmlFor="4" id="4" onClick={this.onClickMusic}>Música de Suspenso</label></li>
                                 </ul>
                             </div>
-                            <ReactPlayer className="audio-player-crear mt-15" width="250px" height="33px"  url={mp3} controls={true}/>
-                            <button className="rounded-button success mt-20" onClick={this.handleSubmit}>Crear juego y
-                                configurar
+                            {this.state.muted ? (
+                                <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeMute} color="#53575f" size="2x" id="unmute" onClick={this.onClickMute}/>
+                            ) : (
+                                <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeUp} color="#53575f" size="2x" id="mute" onClick={this.onClickMute} />
+                            )}
+                            <ReactPlayer width="0" height="0" url={this.state.musica} muted={this.state.muted} loop={true} volume={0.1} playing={true} start={60}/>
+                            <button className="rounded-button success mt-20" onClick={this.handleSubmit}>
+                                Crear juego y configurar
                             </button>
                         </div>
                     </div>
