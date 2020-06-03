@@ -5,17 +5,55 @@ import DragAndDropFileUploader from "../../components/image-uploader/image-uploa
 import {withRouter} from "react-router";
 import arrow from "./arrow.svg";
 
-import {crearPregunta} from "../../redux/actions";
+import {agregarPreguntaTemporal, crearPregunta} from "../../redux/actions";
 
 class Crear extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            nombre: '',
-            quiz: true
+            quiz: true,
+            respuesta_a: "",
+            respuesta_b: "",
+            respuesta_c: "",
+            respuesta_d: "",
+            mensaje: "",
+            puntos: "",
+            tiempo: "",
+            tmpId: this.props.location.state
+                ?
+                this.props.location.state.tmpId
+                :
+                Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
         };
+    }
 
+    onClickCorrecta = (event) => {
+        switch (event.target.id) {
+            case "A":
+                this.setState({correcta: "A"})
+                break;
+            case "B":
+                this.setState({correcta: "B"})
+                break;
+            case "C":
+                this.setState({correcta: "C"})
+                break;
+            case "D":
+                this.setState({correcta: "D"})
+                break;
+            default:
+                this.setState({correcta: null})
+                break;
+        }
+    }
+
+    handleAgregarVideo = () => {
+        this.props.agregarPreguntaTemporal(this.state);
+        this.props.history.push({
+            pathname: '/juego/youtube',
+            state: { tmpId: this.state.tmpId }
+        })
     }
 
     onClick = () => {
@@ -26,6 +64,10 @@ class Crear extends Component {
         }
     }
 
+    handleChange = (event) => {
+        this.setState({[event.target.name]: event.target.value});
+    }
+
     render() {
         return (
             <div className="d-flex flex-column contenedorR">
@@ -33,13 +75,6 @@ class Crear extends Component {
                     <div className="texto">
                         {this.props.juego.Nombre}
                     </div>
-                    {
-
-                        /*<input className="rounded-left-input" type="text" value={this.state.nombre}
-                           onChange={event => this.setState({...this.state, nombre: event.target.value})}
-                           placeholder="Nombre" autoFocus/>
-                        <Link className="rounded-right-button success link" to="/juego/configurar">Configurar</Link>*/
-                    }
                 </div>
                 <div className="crear-cont mb-40 d-flex jc-center">
                     <div className="card-pregunta mr-60">
@@ -62,7 +97,7 @@ class Crear extends Component {
                                 </div>
                             </div>
                             <button className="rounded-button success mt-16 ">
-                                Nuevo
+                                Crear
                             </button>
                         </div>
                     </div>
@@ -72,14 +107,23 @@ class Crear extends Component {
                             <input className="rounded-small-input mt-15"
                                    type="text"
                                    placeholder="Escribe aqui tu pregunta"
+                                   value={this.state.mensaje}
+                                   name="mensaje"
+                                   onChange={this.handleChange}
                             />
                             <input className="rounded-small-input mt-15"
                                    type="number"
+                                   name="tiempo"
+                                   value={this.state.tiempo}
+                                   onChange={this.handleChange}
                                    placeholder="Segundos para responder"
                             />
 
                             <input className="rounded-small-input mt-15"
                                    type="number"
+                                   name="puntos"
+                                   value={this.state.puntos}
+                                   onChange={this.handleChange}
                                    placeholder="Puntaje de respuesta"
                             />
 
@@ -124,12 +168,24 @@ class Crear extends Component {
                                     <img className="select-box__icon" src={arrow} alt="Arrow" aria-hidden="true"/>
                                 </div>
                                 <ul className="select-box__list scroll">
-                                    <li><label className="select-box__option" htmlFor="1">A</label></li>
-                                    <li><label className="select-box__option" htmlFor="2">B</label></li>
+                                    <li>
+                                        <label className="select-box__option" id="A" onClick={this.onClickCorrecta}
+                                               htmlFor="1">
+                                            A
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label className="select-box__option" id="B" onClick={this.onClickCorrecta}
+                                               htmlFor="2">
+                                            B
+                                        </label>
+                                    </li>
                                     <li style={{display: !this.state.quiz ? "none" : null}}><label
-                                        className="select-box__option" htmlFor="3">C</label></li>
+                                        className="select-box__option" id="C" onClick={this.onClickCorrecta}
+                                        htmlFor="3">C</label></li>
                                     <li style={{display: !this.state.quiz ? "none" : null}}><label
-                                        className="select-box__option" htmlFor="4">D</label></li>
+                                        className="select-box__option" id="D" onClick={this.onClickCorrecta}
+                                        htmlFor="4">D</label></li>
                                 </ul>
                             </div>
                         </div>
@@ -143,9 +199,9 @@ class Crear extends Component {
                                     <span className="titulo">o</span>
                                     <hr className="w-30 separador"/>
                                 </div>
-                                <Link className="rounded-button link mt-5" to="/juego/youtube">
+                                <button className="rounded-button link mt-5" onClick={this.handleAgregarVideo}>
                                     Agregar video
-                                </Link>
+                                </button>
                             </div>
                             <div className="d-flex flex-column">
                                 <div className="contenedorR arriba d-flex mb-10">
@@ -197,4 +253,4 @@ const mapStateToProps = ({juegoModule}) => {
     return {juego};
 };
 
-export default withRouter(connect(mapStateToProps, {crearPregunta})(Crear));
+export default withRouter(connect(mapStateToProps, {crearPregunta, agregarPreguntaTemporal})(Crear));

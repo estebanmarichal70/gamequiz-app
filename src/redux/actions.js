@@ -16,9 +16,13 @@ export const CREAR_JUEGO = "CREAR_JUEGO";
 export const CREAR_JUEGO_ERROR = "CREAR_JUEGO_ERROR"
 export const CREAR_JUEGO_SUCCESS = "CREAR_JUEGO_SUCCESS";
 
+export const AGREGAR_PREGUNTA_TMP = "AGREGAR_PREGUNTA_TMP";
+
 export const CREAR_PREGUNTA = "CREAR_PREGUNTA";
 export const CREAR_PREGUNTA_SUCCESS = "CREAR_PREGUNTA_SUCCESS";
 export const CREAR_PREGUNTA_ERROR = "CREAR_PREGUNTA_ERROR";
+
+export const AGREGAR_VIDEO = "AGREGAR_VIDEO";
 /* ------------------------------------------------------ */
 
 export * from "./authUser/actions";

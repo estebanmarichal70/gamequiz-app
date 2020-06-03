@@ -36,7 +36,13 @@ export default (state = INIT_STATE, action) => {
         case LOGOUT_USER:
             return {...state, user: null, token: null, error: ''};
         case REHYDRATE:
-            return {...action.payload.authUser};
+            if (action.payload) { // <- I guess this works, but it's kinda ugly
+                return {
+                    ...action.payload.authUser,
+                };
+            } else {
+                return state;
+            }
         default:
             return {...state};
     }

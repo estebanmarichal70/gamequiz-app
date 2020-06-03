@@ -1,10 +1,12 @@
 import {
+    AGREGAR_VIDEO,
     CREAR_JUEGO,
     CREAR_JUEGO_ERROR,
     CREAR_JUEGO_SUCCESS,
     CREAR_PREGUNTA,
     CREAR_PREGUNTA_ERROR,
-    CREAR_PREGUNTA_SUCCESS
+    CREAR_PREGUNTA_SUCCESS,
+    AGREGAR_PREGUNTA_TMP
 } from '../actions';
 
 export const crearJuego = (juego, history) => ({
@@ -36,3 +38,13 @@ export const crearPreguntaError = (message) => ({
     type: CREAR_PREGUNTA_ERROR,
     payload: {message}
 });
+
+export const agregarVideo = (video, tmpId) => ({
+    type: AGREGAR_VIDEO,
+    payload: {video, tmpId}
+})
+
+export const agregarPreguntaTemporal = (pregunta) => ({
+    type: AGREGAR_PREGUNTA_TMP,
+    payload: {pregunta}
+})
