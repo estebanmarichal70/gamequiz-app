@@ -12,6 +12,8 @@ export const LOGOUT_USER = "LOGOUT_USER";
 
 /* ------------------------------------------------------ */
 // ACCIONES DE JUEGO
+export const RESET_CREACION_JUEGO = "RESET_CREACION_JUEGO";
+
 export const CREAR_JUEGO = "CREAR_JUEGO";
 export const CREAR_JUEGO_ERROR = "CREAR_JUEGO_ERROR"
 export const CREAR_JUEGO_SUCCESS = "CREAR_JUEGO_SUCCESS";

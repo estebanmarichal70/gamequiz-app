@@ -1,4 +1,5 @@
 import {
+    AGREGAR_PREGUNTA_TMP,
     AGREGAR_VIDEO,
     CREAR_JUEGO,
     CREAR_JUEGO_ERROR,
@@ -6,8 +7,15 @@ import {
     CREAR_PREGUNTA,
     CREAR_PREGUNTA_ERROR,
     CREAR_PREGUNTA_SUCCESS,
-    AGREGAR_PREGUNTA_TMP, SET_SUCCESS_MESSAGE
+    RESET_CREACION_JUEGO,
+    SET_SUCCESS_MESSAGE
 } from '../actions';
+
+
+export const resetCreacionJuego = () => ({
+    type: RESET_CREACION_JUEGO,
+    payload: {}
+})
 
 export const crearJuego = (juego, history) => ({
     type: CREAR_JUEGO,

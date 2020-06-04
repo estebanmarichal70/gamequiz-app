@@ -14,7 +14,7 @@ import DragAndDropFileUploader from "../../components/image-uploader/image-uploa
 import arrow from "./arrow.svg"
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
-import {crearJuego} from "../../redux/juego/actions";
+import {crearJuego, resetCreacionJuego} from "../../redux/juego/actions";
 import {toast, ToastContainer} from "react-toastify";
 import ReactPlayer from "react-player";
 
@@ -106,6 +106,11 @@ class Crear extends Component {
         }
 
 
+    }
+
+    componentDidMount() {
+        /* PARA QUE SE LIMPIE LA STORE */
+        this.props.resetCreacionJuego();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -228,4 +233,4 @@ const mapStateToProps = ({authUser, juegoModule}) => {
     return {user, juego, error};
 };
 
-export default withRouter(connect(mapStateToProps, {crearJuego})(Crear));
+export default withRouter(connect(mapStateToProps, {crearJuego, resetCreacionJuego})(Crear));

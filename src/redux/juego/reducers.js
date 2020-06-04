@@ -6,7 +6,7 @@ import {
     CREAR_JUEGO_SUCCESS,
     CREAR_PREGUNTA,
     CREAR_PREGUNTA_ERROR,
-    CREAR_PREGUNTA_SUCCESS, SET_SUCCESS_MESSAGE
+    CREAR_PREGUNTA_SUCCESS, RESET_CREACION_JUEGO, SET_SUCCESS_MESSAGE
 } from '../actions';
 
 import {REHYDRATE} from 'redux-persist/lib/constants';
@@ -25,6 +25,8 @@ const INIT_STATE = {
 
 export default (state = INIT_STATE, action) => {
     switch (action.type) {
+        case RESET_CREACION_JUEGO:
+            return {...state, error: null, juego: null, preguntas: {hasPreguntas: false, list: []}, success: null}
         case CREAR_JUEGO:
             return {...state, error: ''};
         case CREAR_JUEGO_SUCCESS:
