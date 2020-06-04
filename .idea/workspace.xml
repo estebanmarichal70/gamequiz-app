@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="47c1d0a4-7dd7-4385-9280-e77ad31b7fc6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/assets/sass/inicioJuego.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/sass/ranking.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/juego/correccion.view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/juego/inicioJuego.view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/juego/ranking.view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/empezar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/empezar.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/sass/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/sass/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/juego/index.view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/juego/index.view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/juego/join.view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/juego/join.view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/juego/youtube.view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/juego/youtube.view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/usuario/perfil.view.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/usuario/perfil.view.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1cSOldOZv5utOTNz9o0QdEClb9g" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="47c1d0a4-7dd7-4385-9280-e77ad31b7fc6" name="Default Changelist" comment="" />
+      <created>1590518682341</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1590518682341</updated>
+      <workItem from="1590518697214" duration="16750000" />
+      <workItem from="1590540986007" duration="626000" />
+      <workItem from="1590608909448" duration="14735000" />
+      <workItem from="1590631116185" duration="4000" />
+      <workItem from="1590694407151" duration="7773000" />
+      <workItem from="1590703330379" duration="1396000" />
+      <workItem from="1590704761124" duration="99000" />
+      <workItem from="1590704962688" duration="25000" />
+      <workItem from="1591121981206" duration="627000" />
+      <workItem from="1591298447325" duration="1393000" />
+      <workItem from="1591300058207" duration="1655000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1897" height="280" key="GridCell.Tab.0.bottom" timestamp="1591299089882">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591299089882" />
+    <state width="1897" height="280" key="GridCell.Tab.0.center" timestamp="1591299089882">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="280" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591299089882" />
+    <state width="1897" height="280" key="GridCell.Tab.0.left" timestamp="1591299089882">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="280" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591299089882" />
+    <state width="1897" height="280" key="GridCell.Tab.0.right" timestamp="1591299089882">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1897" height="280" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1591299089882" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1590622538052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590622538052" />
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1590703678548">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1590703678548" />
+  </component>
+</project>

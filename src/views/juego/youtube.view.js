@@ -1,14 +1,10 @@
-import React, {Component} from 'react';
+import React,{Component}  from 'react';
 import '../../assets/sass/App.scss';
 
 import Video from "../../components/video-youtube.component"
-import {connect} from "react-redux";
-import {agregarVideo} from "../../redux/juego/actions";
-import {ToastContainer, toast} from "react-toastify";
-import {withRouter} from "react-router";
 
 
-class YoutubeView extends Component {
+class Link extends Component {
 
     constructor(props) {
         super(props);
@@ -21,44 +17,39 @@ class YoutubeView extends Component {
             showVideoPlayer: false,
             width: "",
             height: "",
-            videoData: {}
+            duration: 0
         };
     }
 
-    handleSizeVideo = async event => {
+    handleDuration = (duration) => {
+        this.setState({ duration })
+    }
+
+    handleSizeVideo = event => {
         let screenSize = window.innerWidth;
         if (screenSize < 577) {
-            await this.setState({
-                width: "270px",
-                height: "170px"
+            this.setState({
+                width:"270px",
+                height:"170px"
             })
-        } else {
-            await this.setState({
-                width: "500px",
-                height: "300px"
+        }
+        else {
+            this.setState({
+                width:"500px",
+                height:"300px"
             })
         }
     }
 
-    handleChangeUrl = event => {
-        this.setState({inputValueUrl: event.target.value})
-    }
+    handleChangeUrl = event => { this.setState({inputValueUrl : event.target.value}) }
 
-    handleChangeStartMin = event => {
-        this.setState({minStart: event.target.value})
-    }
+    handleChangeStartMin = event => { this.setState({minStart : event.target.value}) }
 
-    handleChangeStartSec = event => {
-        this.setState({secStart: event.target.value})
-    }
+    handleChangeStartSec = event => { this.setState({secStart : event.target.value}) }
 
-    handleChangeEndMin = event => {
-        this.setState({minEnd: event.target.value})
-    }
+    handleChangeEndMin = event => { this.setState({ minEnd : event.target.value}) }
 
-    handleChangeEndSec = event => {
-        this.setState({secEnd: event.target.value})
-    }
+    handleChangeEndSec = event => { this.setState({ secEnd : event.target.value }) }
 
     removeData = () => {
         this.setState({
@@ -67,14 +58,19 @@ class YoutubeView extends Component {
             secStart: "",
             minEnd: "",
             secEnd: "",
-            showVideoPlayer: false,
-            videoData: {}
+            showVideoPlayer: false
         })
     }
 
     handleSubmit = async event => {
-        await this.handleSizeVideo(event);
+        event.preventDefault();
+        this.handleSizeVideo(event);
+        await this.setState({
+            showVideoPlayer:true
+        })
+    }
 
+    render() {
         const videoData = {
             url: this.state.inputValueUrl,
             start: parseInt(this.state.minStart) * 60 + parseInt(this.state.secStart),
@@ -82,31 +78,15 @@ class YoutubeView extends Component {
             width: this.state.width,
             height: this.state.height
         }
-        await this.setState({
-            videoData
-        })
-
-        await this.setState({
-            showVideoPlayer: true
-        })
-    }
-
-    handleAceptar = async () => {
-        if(this.state.videoData.url != "" && this.state.videoData.url != undefined && this.state.videoData.start != null && this.state.videoData.end != null){
-            await this.props.agregarVideo(this.state.videoData, this.props.location.state.tmpId);
-            this.props.history.push({
-                pathname: '/juego/configurar',
-                state: { tmpId: this.props.location.state.tmpId }
-            });
-        }else{
-            toast.error("Por favor, complete todos los datos.")
+        if(isNaN(videoData.start)) {
+            videoData.start = 0
         }
-    }
-
-    render() {
+        if(isNaN(videoData.end)) {
+            videoData.end = this.state.duration
+        }
+        console.log(videoData.start)
         return (
             <div className="center-all">
-                <ToastContainer/>
                 <div className="d-flex jc-center contenedorR">
                     <div className="mr-30 card-youtube">
                         <div className="card-header"><span>Configuración de Video</span></div>
@@ -158,20 +138,19 @@ class YoutubeView extends Component {
                                     value={this.state.secEnd}
                                 />
                             </div>
-                            <button className="rounded-button button-youtube gold w-40 mb-10 mt-15"
-                                    onClick={this.handleSubmit}>
-                                Cargar
-                            </button>
+                                <button className="rounded-button button-youtube gold w-40 mb-10 mt-15" onClick={this.handleSubmit}>
+                                    Cargar
+                                </button>
                         </div>
                     </div>
                     <div className="card-youtube">
                         <div className="card-header"><span>Vista del Video</span></div>
                         <div className="card-body center-all d-flex flex-column">
                             <div className="video-wrapper card-video">
-                                {this.state.showVideoPlayer && <Video videoData={this.state.videoData}/>}
+                                { this.state.showVideoPlayer && <Video handleDuration={this.handleDuration} videoData={videoData}/> }
                             </div>
                             <div className="d-flex">
-                                <button onClick={this.handleAceptar} className="rounded-left-button gold">
+                                <button className="rounded-left-button gold">
                                     Aceptar
                                 </button>
                                 <button className="rounded-right-button gold" onClick={this.removeData}>
@@ -186,4 +165,4 @@ class YoutubeView extends Component {
     }
 }
 
-export default withRouter(connect(null, {agregarVideo})(YoutubeView));
+export default Link;
