@@ -25,6 +25,19 @@ export default {
         crearPregunta(data){
             addDefaultHeaders();
             return axios.post(API_URL + "/pregunta", data);
+        },
+        cambiarEstado(id){
+            addDefaultHeaders();
+            return axios.post(API_URL + "/juego/cambiar_estado/"+id);
+        },
+        fetchJuegoData(nombre) {
+            addDefaultHeaders();
+            return axios.get(API_URL + "/juego?nombre="+nombre);
+        },
+        fetchJuegoUuid(Uuid) {
+            addDefaultHeaders();
+            return axios.get(API_URL + "/juego/"+Uuid);
         }
+
     }
 }

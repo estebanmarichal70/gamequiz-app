@@ -141,7 +141,9 @@
 
   .card-juegos{
     border: 2px solid $color-texto-1;
+    border-radius: 10px;
     margin-top: 20px;
+    padding: 10px;
     height: 195px;
     overflow: auto;
     overflow-y: hidden;
@@ -158,15 +160,14 @@
 
     .card-juego{
       border: 2px solid $color-texto-2;
-      margin: 20px;
-      height: 150px;
-      width: 160px;
+      border-radius: 10px;
+      padding: 5px;
+      margin: 10px;
       transition: all 0.2s ease-in-out;
       @media(max-width: $phone-breakpoint){
         margin: 0;
-        margin-left: 45px;
-        margin-top: 25px;
-        margin-bottom: 25px;
+        margin: 20px;
+        max-width: 150px;
         flex-direction: column;
       }
   
@@ -176,13 +177,13 @@
 
       .imagen{
         border: 2px solid $color-texto-2;
+        border-radius: 10px;
         margin: 10px;
         width: 135px;
         height: 100px;
-        transition: all 0.2s ease-in-out;
-    
-        &:hover {
-          transform: scale(1.03);
+        img {
+          width: 135px !important;
+          max-height: 100px !important;
         }
       }
       }

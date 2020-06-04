@@ -4,9 +4,9 @@ import '../../assets/sass/App.scss';
 
 import {Link, withRouter} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import {faTimesCircle, faCheckCircle, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
 import http from "../../api/gamequizServices";
-import {toast} from "react-toastify";
+import {toast,ToastContainer} from "react-toastify";
 import {timeago} from "../../utils";
 import {logoutUser} from "../../redux/actions";
 import {connect} from "react-redux";
@@ -20,6 +20,11 @@ class Perfil extends Component {
     }
 
     async componentDidMount() {
+        this.fetchData();
+        
+    }
+
+    fetchData  = async () => {
         await http.services.fetchUserData()
             .then(res => {
                 this.setState({user: res.data.data})
@@ -31,11 +36,21 @@ class Perfil extends Component {
         this.props.logoutUser(this.props.history);
     }
 
+   handleClick = async(id) => {
+        await http.services.cambiarEstado(id)
+        .then(res => {
+            toast.success(res);
+        })
+        .catch(err =>toast.error(err.toString()))
+        this.fetchData();
+    }
+
 
 
     render() {
         return (
             <div>
+                <ToastContainer/>
                 <div className="center-all">
                     <h1 className="titulo-inicio">GameQuiz</h1>
                 </div>
@@ -88,9 +103,11 @@ class Perfil extends Component {
                                                     <td className="column4">{juego.Jugados}</td>
                                                     <td className="column5">{timeago(juego.Creado)}</td>
                                                     <td className="column6">
-                                                        <Link className="link-gris" to="#"><FontAwesomeIcon
-                                                            icon={faEdit}
-                                                            color="#909296"/> {juego.Activo ? "Desactivar" : "Activar"}
+                                                        <Link className="link-gris ml-5" to="#" onClick={ () => this.handleClick(juego.Id)}>
+                                                              <FontAwesomeIcon
+                                                              icon={juego.Activo ? faTimesCircle : faCheckCircle}
+                                                              color="#909296"/>
+                                                            {juego.Activo ? " Desactivar" : " Activar"}
                                                         </Link><br/>
                                                     </td>
                                                 </tr>)
