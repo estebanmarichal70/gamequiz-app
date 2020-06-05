@@ -61,7 +61,7 @@ class YoutubeView extends Component {
     }
 
     removeData = () => {
-        this.setState({
+        /*this.setState({
             inputValueUrl: "",
             minStart: "",
             secStart: "",
@@ -69,7 +69,11 @@ class YoutubeView extends Component {
             secEnd: "",
             showVideoPlayer: false,
             videoData: {}
-        })
+        })*/
+        this.props.history.push({
+            pathname: '/juego/configurar',
+            state: { tmpId: this.props.location.state.tmpId }
+        });
     }
 
     handleSubmit = async event => {
@@ -100,7 +104,7 @@ class YoutubeView extends Component {
     }
 
     handleAceptar = async () => {
-        if(this.state.videoData.url != "" && this.state.videoData.url != undefined && this.state.videoData.start != null && this.state.videoData.end != null){
+        if(this.state.videoData.url != "" && this.state.videoData.url != undefined){
             await this.props.agregarVideo(this.state.videoData, this.props.location.state.tmpId);
             this.props.history.push({
                 pathname: '/juego/configurar',
@@ -187,7 +191,7 @@ class YoutubeView extends Component {
                                     Aceptar
                                 </button>
                                 <button className="rounded-right-button gold" onClick={this.removeData}>
-                                    Remover
+                                    Atras
                                 </button>
                             </div>
                         </div>

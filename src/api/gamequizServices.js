@@ -47,7 +47,11 @@ export default {
         },
         fetchJuegoUuid(Uuid) {
             addDefaultHeaders();
-            return axios.get(API_URL + "/juego/Uuid/"+Uuid);
+            return axios.get(API_URL + "/juego/Uuid/" + Uuid);
+        },
+        fetchPreguntaActualizada(id) {
+            addDefaultHeaders();
+            return axios.get(API_URL + `/pregunta/${id}`)
         }
 
     }

@@ -9,11 +9,14 @@ import {agregarPreguntaTemporal, crearPregunta, crearRespuesta} from "../../redu
 import {toast, ToastContainer} from "react-toastify";
 import {DEFAULT_IMAGE_URL} from "../../constants/constants";
 
+import gamequizServices from "../../api/gamequizServices";
+
 class Configurar extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            preguntas: [],
             preguntaId: null,
             quiz: true,
             correcta: "",
@@ -127,12 +130,17 @@ class Configurar extends Component {
                     }
                     this.props.crearRespuesta(respuesta);
                 });
-
-                this.resetState();
             }
         }
+    }
 
+    loadPreguntaActualizada = async () => {
 
+        await gamequizServices.services.fetchPreguntaActualizada(this.state.preguntaId)
+            .then(res => this.setState({preguntas: [...this.state.preguntas, res.data]}))
+            .catch(err => toast.error("Error al crear la pregunta.: " + err.toString()))
+
+        await this.resetState();
     }
 
     resetState = async () => {
@@ -172,21 +180,24 @@ class Configurar extends Component {
                         <div className="card-body d-flex flex-column center-all">
                             <div className="preguntas-cont scroll">
                                 {
-                                    this.props.preguntas.hasPreguntas ?
-                                        this.props.preguntas.list.map((pregunta, index) => {
-                                            if (pregunta.Id) {
-                                                return (
-                                                    <div key={pregunta.Id} className="pregunta-cont mb-5">
-                                                        <div>{pregunta.Mensaje}</div>
-                                                        <div>
-                                                            <img alt="Miniatura de pregunta"
-                                                                 src={pregunta.Imagen ? pregunta.Imagen : DEFAULT_IMAGE_URL}/>
-                                                        </div>
+                                    this.state.preguntas.map((pregunta, index) => {
+                                        if (pregunta.Id) {
+                                            return (
+                                                <div key={pregunta.Id} className="pregunta-cont mb-5">
+                                                    <div className="texto">{pregunta.Mensaje}</div>
+                                                    <div>
+                                                        <img alt="Miniatura de pregunta"
+                                                             src={pregunta.Imagen != null ? pregunta.Imagen : DEFAULT_IMAGE_URL}
+                                                             width={150} height={110}/>
                                                     </div>
-                                                )
-                                            }
-                                        }) : null
+                                                </div>
+                                            )
+                                        }
+                                    })
                                 }
+                                <div className="pregunta-cont mb-5">
+
+                                </div>
                             </div>
                             <button onClick={this.handleCrearPregunta} className="rounded-button success mt-16">
                                 Crear nueva pregunta
@@ -285,7 +296,8 @@ class Configurar extends Component {
                     <div className="main-card-crear">
                         <div className="card-body">
                             <div className="center-all mb-20 flex-column">
-                                <DragAndDropFileUploader tipo="PREGUNTA" tipoId={this.state.preguntaId}/>
+                                <DragAndDropFileUploader tipo="PREGUNTA" afterSuccess={this.loadPreguntaActualizada}
+                                                         tipoId={this.state.preguntaId}/>
                                 <div className="d-flex mt-10 w-90">
                                     <hr className="w-30 separador"/>
                                     <span className="titulo">o</span>
