@@ -65,7 +65,7 @@ class Join extends Component {
         e.preventDefault();
         if(this.state.pass === this.state.juegoU.Password){
             this.props.history.push({
-                pathname: '/juego/jugando',
+                pathname: '/juego/inicio',
                 state: {juego: this.state.juegoU}
             })
         }

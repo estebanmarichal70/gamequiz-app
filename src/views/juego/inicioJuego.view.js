@@ -26,10 +26,17 @@ class InicioJuego extends Component {
     fetchCreadorData  = async (userId) => {
         await http.services.fetchCreadorData(userId)
             .then(res => {
-                //console.log(res.data);
                 this.setState({user: res.data})
             })
             .catch(err => toast.error(err.toString()))
+    }
+
+    handleJugar = (e) =>{
+        e.preventDefault();
+            this.props.history.push({
+                pathname: '/juego/jugando',
+                state: {juego: this.state.juego}
+            })
     }
 
     render() {
@@ -57,7 +64,11 @@ class InicioJuego extends Component {
                               to="/usuario/login" style={{display: this.props.user ? "none" : null}}>Login 
                         </Link>
                         <input className="rounded-left-input" type="text" placeholder="Nombre" style={{display: this.props.user ? "none" : null}}/>
-                        <button className={`${this.props.user ? "rounded-button" : "rounded-right-button"} gold`}>Jugar </button>
+                        <form onSubmit={this.handleJugar}>
+                            <button className={`${this.props.user ? "rounded-button" : "rounded-right-button"} gold`} type="submit">
+                                Jugar 
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
