@@ -688,6 +688,79 @@ input[type=number] {
 
 
 /*==================================================================
+[ Estilo para Join ]*/
+.card-entrar {
+  @extend .card;
+
+  .card-body{
+    .rounded-input{
+      width: 300px;
+      @media (max-width: $phone-breakpoint) {
+        width: 265px;
+      }
+    }
+    
+    .rounded-left-input{
+      width: 535px;
+      @media (max-width: $phone-breakpoint) {
+        width: 200px;
+      }
+    }
+  }
+}
+
+.card-grid {
+  @extend .card;
+
+  .card-body {
+
+    .card-juegos{
+      border: 2px solid $color-secondary;
+      border-radius: 10px;
+      padding: 10px;
+      height: 195px;
+      max-width: 600px;
+      overflow: auto;
+      overflow-y: hidden;
+
+      .card-juego{
+        border: 2px solid $color-secondary;
+        border-radius: 10px;
+        margin-right: 20px;
+        padding: 10px;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+    
+        &:hover {
+          transform: scale(1.03);
+        }
+    
+        .imagen{
+          border: 2px solid $color-secondary;
+          border-radius: 10px;
+          height: 100px;
+          img {
+            width: 160px !important;
+            max-height: 100px !important;
+          }
+        }
+        @media (max-width: $phone-breakpoint) {
+          margin: 0;
+          margin: 5px;
+        }
+      }
+      @media (max-width: $phone-breakpoint) {
+        max-width: 300px;
+        flex-direction: column;
+        overflow: auto;
+        overflow-x: hidden;
+      }
+    }
+  }
+}
+
+
+/*==================================================================
 [ Estilos de Perfil ]*/
 .flex-izq {
   @media (max-width: $phone-breakpoint) {
@@ -874,18 +947,18 @@ input[type=number] {
         transform: scale(1.03);
       }
       @media (max-width: $phone-breakpoint) {
-        width: 200px;
-        height: 150px;
+        width: 286px;
+        height: 286px;
+        &:hover {
+          transform: none;
+        }
       }
     }
     .scroll::-webkit-scrollbar {
       width: 9px;
     }
-    .iconVol {
-      cursor: pointer;
-      &:hover {
-        color: $color-texto-1;
-      }
+    @media (max-width: $phone-breakpoint) {
+      padding: 10;
     }
   }
 
@@ -906,7 +979,7 @@ input[type=number] {
 }
 
 /*==================================================================
-[ Estilos para Youtube  ]*/
+[ Estilos para Youtube ]*/
 .card-youtube {
   @extend .card;
   width: 50%;

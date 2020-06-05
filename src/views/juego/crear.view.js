@@ -33,18 +33,6 @@ class Crear extends Component {
         };
     }
 
-    onClick = () => {
-        let inputPass = document.getElementById("password")
-        if (document.getElementById("publico").checked === true) {
-            this.setState({privado: true});
-            inputPass.disabled = false;
-        } else {
-            this.setState({privado: false});
-            inputPass.disabled = true;
-            inputPass.value = "";
-        }
-    }
-
     onClickMusic = (event) => {
         switch (event.target.id) {
             case "1":
@@ -63,6 +51,10 @@ class Crear extends Component {
                 this.setState({musicaP: suspenso});
                 this.setState({musica: 4})
                 break;
+            case "5":
+                this.setState({musicaP: null});
+                this.setState({musica: 0})
+            break;
             default:
                 this.setState({musicaP: null});
                 this.setState({musica: null})
@@ -82,7 +74,7 @@ class Crear extends Component {
     }
 
     handleSubmit = () => {
-        const {titulo, descripcion, musica, privado, password} = this.state;
+        const {titulo, descripcion, musica} = this.state;
         let juego = {
             nombre: this.state.nombre,
             descripcion: this.state.descripcion,
@@ -91,21 +83,11 @@ class Crear extends Component {
             musica: this.state.musica,
             usuarioId: this.props.user.Id
         }
-        if (privado) {
-            if (password !== "" && titulo !== "" && descripcion !== "" && musica !== null) {
-                this.props.crearJuego(juego, this.props.history)
-            } else {
-                toast.error("Por favor, complete todos los campos");
-            }
+        if (titulo !== "" && descripcion !== "" && musica !== null) {
+            this.props.crearJuego(juego, this.props.history)
         } else {
-            if (titulo !== "" && descripcion !== "" && musica !== null) {
-                this.props.crearJuego(juego, this.props.history)
-            } else {
-                toast.error("Por favor, complete todos los campos");
-            }
+            toast.error("Por favor, complete todos los campos");
         }
-
-
     }
 
     componentDidMount() {
@@ -153,12 +135,10 @@ class Crear extends Component {
                             </div>
                             <input className="rounded-input"
                                    type="text"
-                                   id="password"
                                    placeholder="Password"
                                    name="password"
                                    value={this.state.password}
-                                   onChange={this.handleChange}
-                                   disabled/>
+                                   onChange={this.handleChange}/>
                         </div>
                     </div>
                     <div className="card-media">
@@ -191,6 +171,11 @@ class Crear extends Component {
                                         <p className="select-box__input-text">Música de Suspenso</p>
                                     </div>
                                     <div className="select-box__value">
+                                        <input className="select-box__input" type="radio" id="5" name="sel" readOnly
+                                               checked/>
+                                        <p className="select-box__input-text">Sin Música</p>
+                                    </div>
+                                    <div className="select-box__value">
                                         <input className="select-box__input" type="radio" name="sel" readOnly checked/>
                                         <p className="select-box__input-text">Música del Juego</p>
                                     </div>
@@ -205,17 +190,11 @@ class Crear extends Component {
                                                onClick={this.onClickMusic}>Coffin Dance</label></li>
                                     <li><label className="select-box__option" htmlFor="4" id="4"
                                                onClick={this.onClickMusic}>Música de Suspenso</label></li>
+                                    <li><label className="select-box__option" htmlFor="5" id="5"
+                                               onClick={this.onClickMusic}>Sin Música</label></li>
                                 </ul>
                             </div>
-                            {this.state.muted ? (
-                                <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeMute} color="#53575f" size="2x"
-                                                 id="unmute" onClick={this.onClickMute}/>
-                            ) : (
-                                <FontAwesomeIcon className="iconVol mt-15" icon={faVolumeUp} color="#53575f" size="2x"
-                                                 id="mute" onClick={this.onClickMute}/>
-                            )}
-                            <ReactPlayer width="0" height="0" url={this.state.musicaP} muted={this.state.muted}
-                                         loop={true} volume={0.1} playing={true} start={60}/>
+                            <ReactPlayer height="0" width="0" url={this.state.musicaP} loop={true} volume={0.1} playing={true}/>
                             <button className="rounded-button success mt-20" onClick={this.handleSubmit}>
                                 Crear juego y configurar
                             </button>

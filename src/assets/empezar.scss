@@ -1,9 +1,7 @@
 
 @import "./sass/App.scss";
 
-// desde aca hay que agregar 
 
-// vista empezar
 .card-preguntas {
   @extend .card;
   @media(max-width: $phone-breakpoint){
@@ -110,107 +108,10 @@
 
 //------------------//
 
+
+
+
+
 /* cosas para vista join*/
-.card-join{
-  width: 630px;
-  margin-left: 270px;
-  @media(max-width: $phone-breakpoint){
-    margin: 0;
-    margin-bottom: 10px;
-    width: 350px;
-  }
-
-  .cont-pass{
-    padding-top: 10px;
-    //margin-left: 500px;
-    @media(max-width: $phone-breakpoint){
-      margin: 0;
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-  }
-
-  .cont-filtro{
-    @media(max-width: $phone-breakpoint){
-      justify-content: center;
-      margin: 0;
-      margin-bottom: 20px;
-      margin-top: 20px;
-    }
-  }
-
-  .card-juegos{
-    border: 2px solid $color-texto-1;
-    border-radius: 10px;
-    margin-top: 20px;
-    padding: 10px;
-    height: 195px;
-    overflow: auto;
-    overflow-y: hidden;
-    max-width: 730px;
-    @media(max-width: $phone-breakpoint){
-      margin: 0;
-      margin-left: 50px;
-      margin-top: 20px;
-      max-width: 250px;
-      flex-direction: column;
-      overflow: auto;
-      overflow-x: hidden;
-    }
-
-    .card-juego{
-      border: 2px solid $color-texto-2;
-      border-radius: 10px;
-      padding: 5px;
-      margin: 10px;
-      transition: all 0.2s ease-in-out;
-      @media(max-width: $phone-breakpoint){
-        margin: 0;
-        margin: 20px;
-        max-width: 150px;
-        flex-direction: column;
-      }
-  
-      &:hover {
-        transform: scale(1.03);
-      }
-
-      .imagen{
-        border: 2px solid $color-texto-2;
-        border-radius: 10px;
-        margin: 10px;
-        width: 135px;
-        height: 100px;
-        img {
-          width: 135px !important;
-          max-height: 100px !important;
-        }
-      }
-      }
-    }
-    .cont-boton{
-      @media(max-width: $phone-breakpoint){
-        padding: 20px ;
-      }
-  }
-
-  .input-join{
-    @extend .rounded-left-input;
-    width: 600px;
-  }
-
-  .boton-buscar{
-  @extend .rounded-right-button;  
-  padding: 15px 20px !important;
-  }
-
-  .input-buscar{
-    @extend .rounded-left-input;
-    padding: 16px 20px !important;
-  }
-}
-  
 
 
-
-/*----------------*/
