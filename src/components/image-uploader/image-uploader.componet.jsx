@@ -28,7 +28,6 @@ class DragAndDropFileUploader extends React.Component {
             locale: Spanish,
             restrictions: {
                 maxNumberOfFiles: 1,
-                minNumberOfFiles: 1,
                 allowedFileTypes: ['image/*']
             },
         })
@@ -36,6 +35,11 @@ class DragAndDropFileUploader extends React.Component {
         this.uppy.on('file-added', (file) => {
             this.setState({hasFiles: true})
         });
+
+        this.uppy.on('upload-success', (file, response) => {
+            this.uppy.reset();
+            this.props.afterSuccess();
+        })
     }
 
     componentWillUnmount() {
@@ -44,15 +48,18 @@ class DragAndDropFileUploader extends React.Component {
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.tipoId != null) {
+
             if (!this.state.hasFiles) {
                 if (this.props.tipo != "PREGUNTA")
                     return this.props.history.push("/juego/configurar")
                 else
-                    return;
+                    return this.props.afterSuccess();
+
             }
 
 
             this.uppy.use(XHRUpload, {
+                id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
                 endpoint: API_URL + `/upload_image?tipo=${this.props.tipo}&id=${this.props.tipoId}`,
                 method: "POST",
                 headers: {
@@ -62,16 +69,15 @@ class DragAndDropFileUploader extends React.Component {
 
             await this.uppy.upload();
 
-            this.uppy.removePlugin(XHRUpload);
-
             if (this.props.tipo === "JUEGO") {
                 this.props.history.push("/juego/configurar")
             }
         }
 
-        if(this.props.tipoId == null && prevProps.tipoId != null){
-            this.uppy.reset();
-        }
+    }
+
+    resetUploader = () => {
+        this.uppy.reset();
     }
 
     render() {
