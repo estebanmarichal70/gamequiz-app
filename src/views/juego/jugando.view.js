@@ -15,7 +15,6 @@ class Juegando extends Component {
       juego: this.props.location.state.juego,
       preguntaActiva: this.props.location.state.juego.Preguntas[0],
     });
-    //console.log(this.props.location.state.juego);
   }
 
   render() {

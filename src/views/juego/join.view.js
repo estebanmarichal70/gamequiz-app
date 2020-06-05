@@ -74,6 +74,13 @@ class Join extends Component {
         }
     }
 
+    handleJugar = (juego) => {
+        this.props.history.push({
+            pathname: '/juego/inicio',
+            state: {juego}
+        })
+    }
+
 
     render() {
         return (
@@ -103,7 +110,7 @@ class Join extends Component {
                     <div className=" d-flex flex-row card-juegos scroll">
                     { this.state.juegos ? this.state.juegos.map((juego, index) => {
                         return (
-                        <div key={juego.Id} className="d-flex flex-column center-all card-juego">
+                        <div key={juego.Id} onClick={ () => this.handleJugar(juego)} className="d-flex flex-column center-all card-juego">
                             <div className="imagen center-all">
                                 <img src={juego.Caratula} alt="image"/>
                             </div>

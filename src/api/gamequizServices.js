@@ -8,6 +8,7 @@ let addDefaultHeaders = () => {
 
 export default {
     services: {
+        //----------Usuario----------//
         registrar(data) {
             return axios.post(API_URL + "/registrar", data);
         },
@@ -18,6 +19,11 @@ export default {
             addDefaultHeaders();
             return axios.get(API_URL + "/me");
         },
+        fetchCreadorData(id) {
+            addDefaultHeaders();
+            return axios.get(API_URL + "/usuario/" + id);
+        },
+        //--------------------------//
         crearJuego(params) {
             addDefaultHeaders();
             return axios.post(API_URL + "/juego", params);
