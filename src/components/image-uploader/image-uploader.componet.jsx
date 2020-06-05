@@ -76,9 +76,6 @@ class DragAndDropFileUploader extends React.Component {
 
     }
 
-    resetUploader = () => {
-        this.uppy.reset();
-    }
 
     render() {
         return (
