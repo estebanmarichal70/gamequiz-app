@@ -112,7 +112,7 @@
 
 /* cosas para vista join*/
 .card-join{
-  width: 730px;
+  width: 630px;
   margin-left: 270px;
   @media(max-width: $phone-breakpoint){
     margin: 0;
@@ -122,7 +122,7 @@
 
   .cont-pass{
     padding-top: 10px;
-    margin-left: 500px;
+    //margin-left: 500px;
     @media(max-width: $phone-breakpoint){
       margin: 0;
       margin-bottom: 20px;
@@ -195,8 +195,8 @@
   }
 
   .input-join{
-    @extend .rounded-input;
-    width: 96%;
+    @extend .rounded-left-input;
+    width: 600px;
   }
 
   .boton-buscar{
