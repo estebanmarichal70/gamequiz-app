@@ -44,10 +44,13 @@ class DragAndDropFileUploader extends React.Component {
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.tipoId != null) {
-
             if (!this.state.hasFiles) {
-                return this.props.history.push("/juego/configurar")
+                if (this.props.tipo != "PREGUNTA")
+                    return this.props.history.push("/juego/configurar")
+                else
+                    return;
             }
+
 
             this.uppy.use(XHRUpload, {
                 endpoint: API_URL + `/upload_image?tipo=${this.props.tipo}&id=${this.props.tipoId}`,
@@ -59,11 +62,15 @@ class DragAndDropFileUploader extends React.Component {
 
             await this.uppy.upload();
 
-            //this.uppy.removePlugin(XHRUpload);
+            this.uppy.removePlugin(XHRUpload);
 
             if (this.props.tipo === "JUEGO") {
                 this.props.history.push("/juego/configurar")
             }
+        }
+
+        if(this.props.tipoId == null && prevProps.tipoId != null){
+            this.uppy.reset();
         }
     }
 

@@ -6,11 +6,12 @@ import rootSaga from "./sagas";
 
 
 import {persistReducer, persistStore} from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+
+import localForage from "localforage";
 
 const persistConfig = {
     key: 'root',
-    storage,
+    storage: localForage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -4,7 +4,7 @@ import '../../assets/sass/App.scss';
 import Video from "../../components/video-youtube.component"
 import {connect} from "react-redux";
 import {agregarVideo} from "../../redux/juego/actions";
-import {ToastContainer, toast} from "react-toastify";
+import {toast, ToastContainer} from "react-toastify";
 import {withRouter} from "react-router";
 
 
@@ -70,6 +70,10 @@ class YoutubeView extends Component {
             showVideoPlayer: false,
             videoData: {}
         })
+        this.props.history.push({
+            pathname: '/juego/configurar',
+            state: {tmpId: this.props.location.state.tmpId}
+        });
     }
 
     handleSubmit = async event => {
@@ -92,13 +96,13 @@ class YoutubeView extends Component {
     }
 
     handleAceptar = async () => {
-        if(this.state.videoData.url != "" && this.state.videoData.url != undefined && this.state.videoData.start != null && this.state.videoData.end != null){
+        if (this.state.videoData.url != "" && this.state.videoData.url != undefined && this.state.videoData.start != null && this.state.videoData.end != null) {
             await this.props.agregarVideo(this.state.videoData, this.props.location.state.tmpId);
             this.props.history.push({
                 pathname: '/juego/configurar',
-                state: { tmpId: this.props.location.state.tmpId }
+                state: {tmpId: this.props.location.state.tmpId}
             });
-        }else{
+        } else {
             toast.error("Por favor, complete todos los datos.")
         }
     }
@@ -175,7 +179,7 @@ class YoutubeView extends Component {
                                     Aceptar
                                 </button>
                                 <button className="rounded-right-button gold" onClick={this.removeData}>
-                                    Remover
+                                    Atras
                                 </button>
                             </div>
                         </div>

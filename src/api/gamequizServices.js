@@ -22,9 +22,13 @@ export default {
             addDefaultHeaders();
             return axios.post(API_URL + "/juego", params);
         },
-        crearPregunta(data){
+        crearPregunta(data) {
             addDefaultHeaders();
             return axios.post(API_URL + "/pregunta", data);
+        },
+        crearRespuesta(data) {
+            addDefaultHeaders();
+            return axios.post(API_URL + "/respuesta", data);
         }
     }
 }

@@ -7,7 +7,10 @@ import {
     CREAR_PREGUNTA,
     CREAR_PREGUNTA_ERROR,
     CREAR_PREGUNTA_SUCCESS,
+    CREAR_RESPUESTA,
+    CREAR_RESPUESTA_SUCCESS,
     RESET_CREACION_JUEGO,
+    SET_ERROR_MESSAGE,
     SET_SUCCESS_MESSAGE
 } from '../actions';
 
@@ -61,3 +64,18 @@ export const setSuccessMessage = (success) => ({
     type: SET_SUCCESS_MESSAGE,
     payload: {success}
 })
+
+export const crearRespuesta = (respuesta) => ({
+    type: CREAR_RESPUESTA,
+    payload: {respuesta}
+});
+
+export const setErrorMessage = (error) => ({
+    type: SET_ERROR_MESSAGE,
+    payload: {error}
+})
+
+export const crearRespuestaSuccess = (respuesta) => ({
+    type: CREAR_RESPUESTA_SUCCESS,
+    payload: {respuesta}
+});

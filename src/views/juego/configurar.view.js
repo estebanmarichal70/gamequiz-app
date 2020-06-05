@@ -5,8 +5,9 @@ import DragAndDropFileUploader from "../../components/image-uploader/image-uploa
 import {withRouter} from "react-router";
 import arrow from "./arrow.svg";
 
-import {agregarPreguntaTemporal, crearPregunta} from "../../redux/actions";
+import {agregarPreguntaTemporal, crearPregunta, crearRespuesta} from "../../redux/actions";
 import {toast, ToastContainer} from "react-toastify";
+import {DEFAULT_IMAGE_URL} from "../../constants/constants";
 
 class Configurar extends Component {
 
@@ -84,6 +85,8 @@ class Configurar extends Component {
 
     handleCrearPregunta = () => {
         if (this.state.mensaje != "" && this.state.puntos != "" && this.state.tiempo != "" && this.state.correcta != "") {
+
+            /* QUEDA CORREGIR ESTE IF QUE PIDE LAS 4 RESPUESTAS AUNQUE SEA TRUE/FALSE */
             if (this.state.respuesta_a != "" && this.state.respuesta_b != "" && (this.state.quiz && this.state.respuesta_c != "" && this.state.respuesta_d != "")) {
                 const {mensaje, puntos, tiempo, quiz, tmpId, video} = this.state;
                 let pregunta = {
@@ -106,11 +109,50 @@ class Configurar extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.success != prevProps.success && this.props.success != null) {
             const pregunta = this.props.preguntas.list.find(pregunta => pregunta.tmpId == this.state.tmpId);
-            this.setState({preguntaId: pregunta.Id})
+            if (pregunta != null) {
+                await this.setState({preguntaId: pregunta.Id})
+
+                let respuestas_posibles = pregunta.Quiz ? ['a', 'b', 'c', 'd'] : ['a', 'b'];
+
+                respuestas_posibles.forEach(el => {
+                    let respuesta = {
+                        mensaje: this.state[`respuesta_${el}`],
+                        correcta: this.state[`correcta`] == el.toUpperCase(),
+                        preguntaId: pregunta.Id,
+                        vecesSeleccionada: 0,
+                        tmpId: pregunta.tmpId
+                    }
+                    this.props.crearRespuesta(respuesta);
+                });
+
+                this.resetState();
+            }
         }
+
+
+    }
+
+    resetState = async () => {
+        await this.setState({
+            preguntaId: null,
+            quiz: true,
+            correcta: "",
+            respuesta_a: "",
+            respuesta_b: "",
+            respuesta_c: "",
+            respuesta_d: "",
+            mensaje: "",
+            puntos: "",
+            tiempo: "",
+            tmpId: this.props.location.state
+                ?
+                this.props.location.state.tmpId
+                :
+                Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+        })
     }
 
     render() {
@@ -129,20 +171,24 @@ class Configurar extends Component {
                         </div>
                         <div className="card-body d-flex flex-column center-all">
                             <div className="preguntas-cont scroll">
-                                <div className="pregunta-cont mb-5">
-
-                                </div>
-                                <div className="pregunta-cont mb-5">
-
-                                </div>
-                                <div className="pregunta-cont mb-5">
-
-                                </div>
-                                <div className="pregunta-cont mb-5">
-
-                                </div>
+                                {
+                                    this.props.preguntas.hasPreguntas ?
+                                        this.props.preguntas.list.map((pregunta, index) => {
+                                            if (pregunta.Id) {
+                                                return (
+                                                    <div key={pregunta.Id} className="pregunta-cont mb-5">
+                                                        <div>{pregunta.Mensaje}</div>
+                                                        <div>
+                                                            <img alt="Miniatura de pregunta"
+                                                                 src={pregunta.Imagen ? pregunta.Imagen : DEFAULT_IMAGE_URL}/>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
+                                        }) : null
+                                }
                             </div>
-                            <button onClick={this.handleCrearPregunta} className="rounded-button success mt-16 ">
+                            <button onClick={this.handleCrearPregunta} className="rounded-button success mt-16">
                                 Crear nueva pregunta
                             </button>
                         </div>
@@ -287,7 +333,7 @@ class Configurar extends Component {
                 </div>
                 <div className="d-flex jc-center">
                     <Link className="rounded-button success link center-all fin w-30"
-                          to="/juego/empezar">Finalizar creacion de juego</Link>
+                          to="/juego/empezar">Finalizar configuracion</Link>
                 </div>
             </div>
         );
@@ -299,4 +345,8 @@ const mapStateToProps = ({juegoModule}) => {
     return {juego, preguntas, success};
 };
 
-export default withRouter(connect(mapStateToProps, {crearPregunta, agregarPreguntaTemporal})(Configurar));
+export default withRouter(connect(mapStateToProps, {
+    crearPregunta,
+    agregarPreguntaTemporal,
+    crearRespuesta
+})(Configurar));
