@@ -4,7 +4,7 @@ import '../../assets/sass/App.scss';
 import Video from "../../components/video-youtube.component"
 import {connect} from "react-redux";
 import {agregarVideo} from "../../redux/juego/actions";
-import {toast, ToastContainer} from "react-toastify";
+import {ToastContainer, toast} from "react-toastify";
 import {withRouter} from "react-router";
 
 
@@ -70,10 +70,6 @@ class YoutubeView extends Component {
             showVideoPlayer: false,
             videoData: {}
         })
-        this.props.history.push({
-            pathname: '/juego/configurar',
-            state: {tmpId: this.props.location.state.tmpId}
-        });
     }
 
     handleSubmit = async event => {
@@ -86,6 +82,14 @@ class YoutubeView extends Component {
             width: this.state.width,
             height: this.state.height
         }
+
+        if(isNaN(videoData.start)) {
+            videoData.start = 0
+        }
+        if(isNaN(videoData.end)) {
+            videoData.end = this.state.duration
+        }
+
         await this.setState({
             videoData
         })
@@ -96,15 +100,19 @@ class YoutubeView extends Component {
     }
 
     handleAceptar = async () => {
-        if (this.state.videoData.url != "" && this.state.videoData.url != undefined && this.state.videoData.start != null && this.state.videoData.end != null) {
+        if(this.state.videoData.url != "" && this.state.videoData.url != undefined && this.state.videoData.start != null && this.state.videoData.end != null){
             await this.props.agregarVideo(this.state.videoData, this.props.location.state.tmpId);
             this.props.history.push({
                 pathname: '/juego/configurar',
-                state: {tmpId: this.props.location.state.tmpId}
+                state: { tmpId: this.props.location.state.tmpId }
             });
-        } else {
+        }else{
             toast.error("Por favor, complete todos los datos.")
         }
+    }
+
+    handleDuration = (duration) => {
+        this.setState({ duration })
     }
 
     render() {
@@ -172,14 +180,14 @@ class YoutubeView extends Component {
                         <div className="card-header"><span>Vista del Video</span></div>
                         <div className="card-body center-all d-flex flex-column">
                             <div className="video-wrapper card-video">
-                                {this.state.showVideoPlayer && <Video videoData={this.state.videoData}/>}
+                                { this.state.showVideoPlayer && <Video handleDuration={this.handleDuration} videoData={this.state.videoData}/> }
                             </div>
                             <div className="d-flex">
                                 <button onClick={this.handleAceptar} className="rounded-left-button gold">
                                     Aceptar
                                 </button>
                                 <button className="rounded-right-button gold" onClick={this.removeData}>
-                                    Atras
+                                    Remover
                                 </button>
                             </div>
                         </div>

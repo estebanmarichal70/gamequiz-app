@@ -8,6 +8,7 @@ const video = (props) => {
                 url={props.videoData.url}
                 className='react-player'
                 playing
+                onDuration={props.handleDuration}
                 width={props.videoData.width}
                 height={props.videoData.height}
                 config={{
