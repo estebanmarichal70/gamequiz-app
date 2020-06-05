@@ -62,7 +62,7 @@ class DragAndDropFileUploader extends React.Component {
 
             await this.uppy.upload();
 
-            this.uppy.removePlugin(XHRUpload);
+            //this.uppy.removePlugin(XHRUpload);
 
             if (this.props.tipo === "JUEGO") {
                 this.props.history.push("/juego/configurar")

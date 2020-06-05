@@ -1,5 +1,4 @@
 import React,{Component}  from 'react';
-import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import '../../assets/sass/App.scss';
@@ -73,6 +72,13 @@ class Join extends Component {
         }
     }
 
+    handleJugar = (juego) => {
+        this.props.history.push({
+            pathname: '/juego/inicio',
+            state: {juego}
+        })
+    }
+
 
     render() {
         return (
@@ -105,7 +111,7 @@ class Join extends Component {
                             <div className="card-juegos d-flex scroll mt-20">
                             { this.state.juegos ? this.state.juegos.map((juego, index) => {
                                 return (
-                                <div key={juego.Id} className="card-juego center-all flex-column">
+                                <div key={juego.Id} onClick={ () => this.handleJugar(juego)} className="card-juego center-all flex-column">
                                     <div className="imagen center-all">
                                         <img src={juego.Caratula} alt="Imagen"/>
                                     </div>
