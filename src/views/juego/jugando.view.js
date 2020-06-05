@@ -10,7 +10,8 @@ class Juegando extends Component {
       preguntaActiva: {
         pregunta: null,
         index: null
-      }
+      },
+      respuestaSel: null
     };
   }
 
@@ -32,15 +33,22 @@ class Juegando extends Component {
     }
   }
 
-  handleSiguiente =() => {
+  handleSiguiente =(respuestaSel) => {
       this.props.history.push({
           pathname: '/juego/correccion',
           state: {
             preguntaActiva: this.state.preguntaActiva,
-            juego: this.state.juego
+            juego: this.state.juego,
+            respuestaSel: respuestaSel
           }
       })
   }
+
+  onClick = async (e) => {
+    e.preventDefault();
+    await this.setState({respuestaSel: e.target.name});
+    this.handleSiguiente(this.state.respuestaSel);
+}
 
   render() {
     return (
@@ -55,19 +63,19 @@ class Juegando extends Component {
               </div>
               <div>
                 <div className="arriba mb-10">
-                  <button className="rounded-button error mr-20">
+                  <button onClick={this.onClick} name={this.state.preguntaActiva.pregunta.Respuestas[0].Mensaje} className="rounded-button error mr-20">
                     A - {this.state.preguntaActiva.pregunta.Respuestas[0].Mensaje}
                   </button>
-                  <button className="rounded-button success">
+                  <button onClick={this.onClick} name={this.state.preguntaActiva.pregunta.Respuestas[1].Mensaje} className="rounded-button success">
                     B - {this.state.preguntaActiva.pregunta.Respuestas[1].Mensaje}
                   </button>
                 </div>
                 {!this.state.preguntaActiva.Quiz ?
                     <div className="mb-10">
-                      <button className="rounded-button gold mr-20">
+                      <button onClick={this.onClick} name={this.state.preguntaActiva.pregunta.Respuestas[2].Mensaje} className="rounded-button gold mr-20">
                         C - {this.state.preguntaActiva.pregunta.Respuestas[2].Mensaje}
                       </button>
-                      <button className="rounded-button purple">
+                      <button onClick={this.onClick} name={this.state.preguntaActiva.pregunta.Respuestas[3].Mensaje} className="rounded-button purple">
                         D - {this.state.preguntaActiva.pregunta.Respuestas[3].Mensaje}
                       </button>
                     </div>
@@ -80,7 +88,7 @@ class Juegando extends Component {
                                 </div>*/}
                 <div className="d-flex jc-sb ai-center">
                   <Timer time={this.state.preguntaActiva.pregunta.Tiempo}/>
-                  <button onClick={this.handleSiguiente} className="rounded-button-s">Siguiente</button>
+                  <button name="null" onClick={this.onClick} className="rounded-button-s">Siguiente</button>
                 </div>
               </div>
             </div>

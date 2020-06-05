@@ -7,16 +7,40 @@ class Correccion extends Component {
         super(props);
         this.state = {
             juego: null,
-            preguntaActiva: null
+            preguntaActiva: null,
+            respuestaSel: null,
+            respCorrecta: null
         }
     }
 
     componentWillMount() {
-        this.setState({
+         this.setState({
           juego: this.props.location.state.juego,
-          preguntaActiva: this.props.location.state.preguntaActiva
+          preguntaActiva: this.props.location.state.preguntaActiva,
+          respuestaSel: this.props.location.state.respuestaSel
         });
       }
+      
+    mapRespuestaToString = () =>{
+        this.state.preguntaActiva.Respuestas.map((respuesta, index) =>{
+            if(respuesta.Correcta == true){
+                switch(index){
+                    case 0:
+                        this.setState({respCorrecta: "A"});
+                        break;
+                    case 1: 
+                        this.setState({respCorrecta: "B"});
+                        break;
+                    case 2: 
+                        this.setState({respCorrecta: "C"});
+                        break;
+                    case 3: 
+                        this.setState({respCorrecta: "D"});
+                        break;
+                }
+            }   
+        })
+    }
 
     handleSiguiente =() => {
         let index = this.state.preguntaActiva.index + 1;
@@ -57,15 +81,32 @@ class Correccion extends Component {
                             <div className="card-body center-all flex-column">
                                 <div>
                                     <span className="tit2">Puntos: {this.state.preguntaActiva.pregunta.Puntos}</span><br/>
-                                    {this.state.preguntaActiva.pregunta.Respuestas.map((respuesta, index) => {
-                                        if(respuesta.Correcta == true){
-                                            return(
-                                                <span className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
-                                            )
-                                        }
-                                        return
-                                    })}
-                                    
+                                    {this.state.respuestaSel == "null" ?
+                                        this.state.preguntaActiva.pregunta.Respuestas.map((respuesta, index) => {
+                                            if(respuesta.Correcta == true){
+                                                return(
+                                                    <span key={respuesta.Id} className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
+                                                )
+                                            }
+                                            return
+                                        })
+                                        :
+                                        this.state.preguntaActiva.pregunta.Respuestas.map((respuesta, index) => {
+                                            if(respuesta.Correcta == true){
+                                                if(respuesta.Mensaje == this.state.respuestaSel){
+                                                    return(
+                                                        <span key={respuesta.Id} className="tit2">Respondiste correctamente</span>
+                                                    )
+                                                }
+                                                else{
+                                                    return(
+                                                        <span key={respuesta.Id} className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
+                                                    )
+                                                }
+                                            }
+                                            return
+                                        })
+                                    }
                                     <hr className="separador"/>
                                 </div>
                                 {!this.state.preguntaActiva.Quiz ? 
