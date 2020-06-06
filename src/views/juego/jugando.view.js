@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../../assets/sass/App.scss";
 import Timer from "../../components/timer";
 
-class Juegando extends Component {
+class Jugando extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,16 +11,22 @@ class Juegando extends Component {
         pregunta: null,
         index: null
       },
-      respuestaSel: null
+      respuestaSel: null,
+      puntaje: 0
     };
   }
 
   componentWillMount() {
-    if(this.props.location.state.preguntaActiva != null){
-      this.setState({
-        juego: this.props.location.state.juego,
-        preguntaActiva: this.props.location.state.preguntaActiva
-      });
+      if(this.props.location.state.preguntaActiva != null){
+        this.setState({
+          juego: this.props.location.state.juego,
+          preguntaActiva: this.props.location.state.preguntaActiva,
+        });
+        if(this.props.location.state.puntaje != null){
+          this.setState({
+            puntaje: this.props.location.state.puntaje
+        });
+      }
     }
     else{
       this.setState({
@@ -39,7 +45,8 @@ class Juegando extends Component {
           state: {
             preguntaActiva: this.state.preguntaActiva,
             juego: this.state.juego,
-            respuestaSel: respuestaSel
+            respuestaSel: respuestaSel,
+            puntaje: this.state.puntaje
           }
       })
   }
@@ -82,10 +89,6 @@ class Juegando extends Component {
                    :
                    null
                 }
-                {/*<div>
-                                    <button className="rounded-button success mr-20">Verdadero</button>
-                                    <button className="rounded-button error">Falso</button>
-                                </div>*/}
                 <div className="d-flex jc-sb ai-center">
                   <Timer time={this.state.preguntaActiva.pregunta.Tiempo}/>
                   <button name="null" onClick={this.onClick} className="rounded-button-s">Siguiente</button>
@@ -99,4 +102,4 @@ class Juegando extends Component {
   }
 }
 
-export default Juegando;
+export default Jugando;

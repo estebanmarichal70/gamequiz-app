@@ -2,6 +2,20 @@ import React, {Component} from 'react';
 import '../../assets/sass/ranking.scss';
 
 class Ranking extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            puntaje: null
+        }
+    }
+
+    componentWillMount() {
+       this.setState({
+        puntaje: this.props.location.state.puntaje
+      });
+     }
+
     render() {
         return (
             <div className="d-flex jc-center flex-column center-all contenedorR">
@@ -11,7 +25,7 @@ class Ranking extends Component {
                     </div>
                     <div className="card-body d-flex flex-column">
                         <strong className="titulo mb-2">Nombre Usuario</strong>
-                        <strong className="titulo mt-1">Puntaje: 1904358</strong>
+                        <strong className="titulo mt-1">Puntaje: {this.state.puntaje}</strong>
                         <hr className="barra mb-30"/>
                             <div className="table style">
                                 <div className="table-head">
