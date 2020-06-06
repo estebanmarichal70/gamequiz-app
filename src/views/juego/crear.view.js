@@ -14,6 +14,8 @@ import {connect} from "react-redux";
 import {crearJuego, resetCreacionJuego} from "../../redux/juego/actions";
 import {toast, ToastContainer} from "react-toastify";
 import ReactPlayer from "react-player";
+import ReactLoading from "react-loading";
+import { easings } from 'react-animation';
 
 class Crear extends Component {
 
@@ -26,7 +28,8 @@ class Crear extends Component {
             password: "",
             musicaP: null,
             musica: null,
-            muted: false
+            muted: false,
+            loading: false
         };
     }
 
@@ -102,7 +105,8 @@ class Crear extends Component {
         return (
             <div>
                 <ToastContainer position="top-center"/>
-                <div className="d-flex jc-center contenedorR">
+                {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
+                (<div className="d-flex jc-center contenedorR" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                     <div className="card-summary mr-30">
                         <div className="card-header"><span>Configuración de Partida</span></div>
                         <div className="card-body d-flex flex-column">
@@ -197,7 +201,7 @@ class Crear extends Component {
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         );
     }

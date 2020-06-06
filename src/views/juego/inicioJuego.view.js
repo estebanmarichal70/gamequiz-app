@@ -6,7 +6,8 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import ReactLoading from "react-loading";
-import { AnimateOnChange } from 'react-animation'
+import { easings } from 'react-animation';
+import {DEFAULT_IMAGE_URL} from "../../constants/constants";
 
 class InicioJuego extends Component {
 
@@ -50,9 +51,8 @@ class InicioJuego extends Component {
         return(
             <div className="center-all">
                 <ToastContainer position="top-center"/>
-                <AnimateOnChange animationIn="bounceIn" animationOut="bounceOut" durationOut={1000}>
                 {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
-                (<div className="center-all flex-column card-inicio">
+                (<div className="center-all flex-column card-inicio" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                     <div className="center-all contenedor-inicio contenedorR">
                         <div className="card-info-juego mr-30">
                             <div className="card-header">
@@ -65,7 +65,7 @@ class InicioJuego extends Component {
                             </div>
                         </div>
                         <div className="imagen">
-                            <img src={this.state.juego ? this.state.juego.Caratula : null} alt="Imagen"/>
+                            <img src={this.state.juego.Caratula != "default" ? this.state.juego.Caratula : DEFAULT_IMAGE_URL} alt="Imagen"/>
                         </div>
                     </div>
                     <div className="mt-20 card-inicio-nombre">
@@ -80,7 +80,6 @@ class InicioJuego extends Component {
                         </form>
                     </div>
                 </div>)}
-                </AnimateOnChange>
             </div>
         )
     }

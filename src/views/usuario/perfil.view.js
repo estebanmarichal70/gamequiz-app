@@ -10,8 +10,7 @@ import {timeago} from "../../utils";
 import {logoutUser} from "../../redux/actions";
 import {connect} from "react-redux";
 import ReactLoading from "react-loading";
-import { AnimateOnChange } from 'react-animation'
-
+import { easings } from 'react-animation';
 
 class Perfil extends Component {
 
@@ -42,7 +41,6 @@ class Perfil extends Component {
     }
 
    handleClick = async(id) => {
-        this.setState({loading:true})
         await http.services.cambiarEstado(id)
         .then(res => {
         })
@@ -59,9 +57,8 @@ class Perfil extends Component {
                 <div className="center-all">
                         <Link className="link" to="/"><h1 className="titulo-inicio">GameQuiz</h1></Link>
                 </div>
-                <AnimateOnChange animationIn="bounceIn" animationOut="bounceOut" durationOut={500}>
                 {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
-                (<div className="d-flex jc-center contenedorR">
+                (<div className="d-flex jc-center contenedorR" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                     <div className="flex-izq mr-25">
                         <div className="card-perfil mb-20">
                             <div className="card-header"><span>Perfil</span></div>
@@ -125,7 +122,6 @@ class Perfil extends Component {
                         </div>
                     </div>
                 </div>)}
-                </AnimateOnChange>
             </div>
         );
     }

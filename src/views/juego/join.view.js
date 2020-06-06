@@ -5,8 +5,9 @@ import '../../assets/sass/App.scss';
 import http from "../../api/gamequizServices";
 import {toast,ToastContainer} from "react-toastify";
 import ReactLoading from "react-loading";
-import { AnimateOnChange } from 'react-animation'
 import debounce from "lodash.debounce";
+import { easings } from 'react-animation';
+import {DEFAULT_IMAGE_URL} from "../../constants/constants";
 
 class Join extends Component {
 
@@ -93,9 +94,8 @@ class Join extends Component {
         return (
             <div className="center-all contenedorR">
                 <ToastContainer position="top-center"/>
-                <AnimateOnChange animationIn="bounceIn" animationOut="bounceOut" durationOut={2000}>
                 {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
-                    (<div className="center-all flex-column">
+                    (<div className="center-all flex-column" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                         <div className="d-flex flex-column mb-20">
                             <div className="card-entrar">
                                 <div className="card-header">Ingresar con Enlace</div>
@@ -127,7 +127,7 @@ class Join extends Component {
                                             <FontAwesomeIcon icon={juego.Password ? faLock : faLockOpen} color="#d1d2d3"/>
                                         </div>
                                         <div className="imagen center-all">
-                                            <img src={juego.Caratula} alt="Imagen"/>
+                                            <img src={juego.Caratula != "default" ? juego.Caratula : DEFAULT_IMAGE_URL} alt="Imagen"/>
                                         </div>
                                         <span className="titulo">{juego.Nombre}({juego.Preguntas.length})</span>
                                     </div>)
@@ -143,7 +143,6 @@ class Join extends Component {
                             </button>
                         </form>
                     </div>)}
-                </AnimateOnChange>
             </div>
         );
     }

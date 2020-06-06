@@ -775,6 +775,9 @@ input[type=number] {
           color: black ;
           text-align: center;
         }
+        .rounded-textarea {
+          height: 120px;
+        }
       }
       @media (max-width: $phone-breakpoint) {
         margin-right: 0;
@@ -1326,6 +1329,7 @@ input[type=number] {
     }
   }
 }
+
 
 .spinner {
   margin-top: 200px;
