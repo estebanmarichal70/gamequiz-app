@@ -81,7 +81,6 @@ class Registrar extends Component {
         }
         if (this.props.success_message !== '' && !this.state.messagePrinted) {
             this.setState({...this.state, messagePrinted: true});
-            toast.success(this.props.success_message);
         }
     }
 

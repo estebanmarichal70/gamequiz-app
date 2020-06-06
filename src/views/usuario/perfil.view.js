@@ -3,7 +3,7 @@ import '../../assets/sass/App.scss';
 
 import {Link, withRouter} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimesCircle, faCheckCircle, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import {faTimesCircle, faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import http from "../../api/gamequizServices";
 import {toast,ToastContainer} from "react-toastify";
 import {timeago} from "../../utils";

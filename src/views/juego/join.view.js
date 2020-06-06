@@ -5,8 +5,8 @@ import '../../assets/sass/App.scss';
 import http from "../../api/gamequizServices";
 import {toast,ToastContainer} from "react-toastify";
 import ReactLoading from "react-loading";
-import debounce from "lodash.debounce";
 import { easings } from 'react-animation';
+import debounce from "lodash.debounce";
 import {DEFAULT_IMAGE_URL} from "../../constants/constants";
 
 class Join extends Component {
@@ -121,17 +121,20 @@ class Join extends Component {
                                 </div>
                                 <div className={`${this.state.juegos ? "" : "center-all"} card-juegos d-flex scroll mt-20`}>
                                 { this.state.juegos ? this.state.juegos.map((juego) => {
-                                    return (
-                                    < div key={juego.Id} onClick={ () => this.handleJugar(juego)} className="card-juego center-all flex-column">
-                                        <div className="center-all mb-5">
-                                            <FontAwesomeIcon icon={juego.Password ? faLock : faLockOpen} color="#d1d2d3"/>
-                                        </div>
-                                        <div className="imagen center-all">
-                                            <img src={juego.Caratula != "default" ? juego.Caratula : DEFAULT_IMAGE_URL} alt="Imagen"/>
-                                        </div>
-                                        <span className="titulo">{juego.Nombre}({juego.Preguntas.length})</span>
-                                    </div>)
-                                    }) : <span className="subtitulo">No hay resultados</span>
+                                    if(!juego.Privado){
+                                        return (
+                                        < div key={juego.Id} onClick={ () => this.handleJugar(juego)} className="card-juego center-all flex-column">
+                                            <div className="center-all mb-5">
+                                                <FontAwesomeIcon icon={juego.Password ? faLock : faLockOpen} color="#d1d2d3"/>
+                                            </div>
+                                            <div className="imagen center-all">
+                                                <img src={juego.Caratula !== "default" ? juego.Caratula : DEFAULT_IMAGE_URL} alt="Imagen"/>
+                                            </div>
+                                            <span className="titulo">{juego.Nombre}({juego.Preguntas.length})</span>
+                                        </div>)
+                                    } return(null)})
+                                     : 
+                                    <span className="subtitulo">No hay resultados</span>
                                 }
                                 </div>
                             </div>

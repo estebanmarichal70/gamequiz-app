@@ -37,7 +37,7 @@ class InicioJuego extends Component {
 
     handleJugar = (e) =>{
         e.preventDefault();
-        if(this.state.juego.Preguntas && this.state.juego.Preguntas.lenght){
+        if(this.state.juego.Preguntas && this.state.juego.Preguntas.length){
             this.props.history.push({
                 pathname: '/juego/jugando',
                 state: {juego: this.state.juego}
@@ -65,7 +65,7 @@ class InicioJuego extends Component {
                             </div>
                         </div>
                         <div className="imagen">
-                            <img src={this.state.juego.Caratula != "default" ? this.state.juego.Caratula : DEFAULT_IMAGE_URL} alt="Imagen"/>
+                            <img src={this.state.juego.Caratula !== "default" ? this.state.juego.Caratula : DEFAULT_IMAGE_URL} alt="Imagen"/>
                         </div>
                     </div>
                     <div className="mt-20 card-inicio-nombre">

@@ -20,10 +20,11 @@ class Login extends Component {
             password: "",
             errorPrinted: false
         };
+
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-
+    
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
     }
@@ -39,6 +40,7 @@ class Login extends Component {
             }
         }
     }
+
 
     componentDidUpdate() {
         if (this.props.error && !this.state.errorPrinted) {
@@ -62,7 +64,7 @@ class Login extends Component {
         return (
             <div>
                 <ToastContainer position="top-center"/>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit} >
                     <div className="center-all flex-column">
                         <div className="titulo-login mb-10">Iniciar Sesión</div>
                         <input type="text"

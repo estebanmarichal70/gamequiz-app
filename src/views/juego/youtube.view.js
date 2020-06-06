@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 import {agregarVideo} from "../../redux/juego/actions";
 import {ToastContainer, toast} from "react-toastify";
 import {withRouter} from "react-router";
-
+import ReactLoading from "react-loading";
+import { easings } from 'react-animation';
 
 class YoutubeView extends Component {
 
@@ -21,7 +22,8 @@ class YoutubeView extends Component {
             showVideoPlayer: false,
             width: "",
             height: "",
-            videoData: {}
+            videoData: {},
+            loading: false
         };
     }
 
@@ -123,7 +125,8 @@ class YoutubeView extends Component {
         return (
             <div className="center-all">
                 <ToastContainer/>
-                <div className="d-flex jc-center contenedorR">
+                {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
+                (<div className="d-flex jc-center contenedorR" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                     <div className="mr-30 card-youtube">
                         <div className="card-header"><span>Configuración de Video</span></div>
                         <div className="card-body center-all flex-column">
@@ -196,7 +199,7 @@ class YoutubeView extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>)}
             </div>
         );
     }

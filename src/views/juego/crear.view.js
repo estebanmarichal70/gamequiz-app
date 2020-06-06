@@ -24,7 +24,7 @@ class Crear extends Component {
         this.state = {
             nombre: "",
             descripcion: "",
-            privado: false,
+            privado: null,
             password: "",
             musicaP: null,
             musica: null,
@@ -59,6 +59,13 @@ class Crear extends Component {
                 this.setState({musicaP: null});
                 this.setState({musica: null})
         }
+    }
+
+    onClick = (e) => {
+        if(e.target.id === "publico")
+            this.setState({privado: false})
+        else
+            this.setState({privado: true})
     }
 
     onClickMute = (event) => {
@@ -127,12 +134,12 @@ class Crear extends Component {
                                       onChange={this.handleChange}
                             />
                             <div className="checkbox mb-15">
-                                <input id="privado" name="check" type="radio" onClick={this.onClick} defaultChecked/>
-                                <label htmlFor="privado">Público</label>
+                                <input id="publico" name="check" type="radio" onClick={this.onClick} defaultChecked/>
+                                <label htmlFor="publico">Público</label>
                             </div>
                             <div className="checkbox mb-15">
-                                <input id="publico" name="check" type="radio" onClick={this.onClick}/>
-                                <label htmlFor="publico">Privado</label>
+                                <input id="privado" name="check" type="radio" onClick={this.onClick}/>
+                                <label htmlFor="privado">Privado</label>
                             </div>
                             <input className="rounded-input"
                                    type="text"
@@ -146,38 +153,38 @@ class Crear extends Component {
                         <div className="card-header"><span>Configuración de Media</span></div>
                         <div className="card-body center-all flex-column">
                             <div className="cover center-all mb-20">
-                                <DragAndDropFileUploader history={this.props.history} tipo="JUEGO"
+                                <DragAndDropFileUploader history={this.props.history} tipo="JUEGO" afterSuccess={()=>{}}
                                                          tipoId={this.props.juego ? this.props.juego.Id : null}/>
                             </div>
                             <div className="select-box">
                                 <div className="select-box__current" tabIndex="1">
                                     <div className="select-box__value">
                                         <input className="select-box__input" type="radio" id="1" name="sel" readOnly
-                                               checked/>
+                                               />
                                         <p className="select-box__input-text">Daddy Yankee - Limbo</p>
                                     </div>
                                     <div className="select-box__value">
                                         <input className="select-box__input" type="radio" id="2" name="sel" readOnly
-                                               checked/>
+                                               />
                                         <p className="select-box__input-text">Quien quiere ser millonario</p>
                                     </div>
                                     <div className="select-box__value">
                                         <input className="select-box__input" type="radio" id="3" name="sel" readOnly
-                                               checked/>
+                                               />
                                         <p className="select-box__input-text">Coffin Dance</p>
                                     </div>
                                     <div className="select-box__value">
                                         <input className="select-box__input" type="radio" id="4" name="sel" readOnly
-                                               checked/>
+                                               />
                                         <p className="select-box__input-text">Música de Suspenso</p>
                                     </div>
                                     <div className="select-box__value">
                                         <input className="select-box__input" type="radio" id="5" name="sel" readOnly
-                                               checked/>
+                                               />
                                         <p className="select-box__input-text">Sin Música</p>
                                     </div>
                                     <div className="select-box__value">
-                                        <input className="select-box__input" type="radio" name="sel" readOnly checked/>
+                                        <input className="select-box__input" type="radio" name="sel" readOnly defaultChecked/>
                                         <p className="select-box__input-text">Música del Juego</p>
                                     </div>
                                     <img className="select-box__icon" src={arrow} alt="Arrow" aria-hidden="true"/>
