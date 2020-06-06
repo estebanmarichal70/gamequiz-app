@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import '../../assets/sass/App.scss';
 
-
 import {Link, withRouter} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimesCircle, faCheckCircle, faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
@@ -10,13 +9,18 @@ import {toast,ToastContainer} from "react-toastify";
 import {timeago} from "../../utils";
 import {logoutUser} from "../../redux/actions";
 import {connect} from "react-redux";
+import ReactLoading from "react-loading";
+import { AnimateOnChange } from 'react-animation'
 
 
 class Perfil extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            loading: true
+        };
+        
     }
 
     async componentDidMount() {
@@ -30,6 +34,7 @@ class Perfil extends Component {
                 this.setState({user: res.data.data})
             })
             .catch(err => toast.error(err.toString()))
+        this.setState({loading:false})
     }
 
     handleLogout = () => {
@@ -37,9 +42,9 @@ class Perfil extends Component {
     }
 
    handleClick = async(id) => {
+        this.setState({loading:true})
         await http.services.cambiarEstado(id)
         .then(res => {
-            toast.success(res);
         })
         .catch(err =>toast.error(err.toString()))
         this.fetchData();
@@ -49,12 +54,14 @@ class Perfil extends Component {
 
     render() {
         return (
-            <div>
-                <ToastContainer/>
+            <div className="center-all flex-column">
+                <ToastContainer position="top-center"/>
                 <div className="center-all">
-                    <h1 className="titulo-inicio">GameQuiz</h1>
+                        <Link className="link" to="/"><h1 className="titulo-inicio">GameQuiz</h1></Link>
                 </div>
-                <div className="d-flex jc-center contenedorR">
+                <AnimateOnChange animationIn="bounceIn" animationOut="bounceOut" durationOut={500}>
+                {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
+                (<div className="d-flex jc-center contenedorR">
                     <div className="flex-izq mr-25">
                         <div className="card-perfil mb-20">
                             <div className="card-header"><span>Perfil</span></div>
@@ -65,10 +72,9 @@ class Perfil extends Component {
                             </div>
                         </div>
 
-                        <div className="mb-20 w-100 d-flex center-all">
-                            <button className="rounded-button gold link mr-10" onClick={this.handleLogout}>
-                                Cerrar sesion
-                                <FontAwesomeIcon icon={faSignOutAlt} color="#909296"/>
+                        <div className="botones-perfil d-flex mb-20">
+                            <button className="rounded-button gold mr-10" onClick={this.handleLogout}>
+                                Cerrar Sesión
                             </button>
                             <Link to="/juego/crear" className="rounded-button gold link">Crear Juego</Link>
                         </div>
@@ -104,11 +110,11 @@ class Perfil extends Component {
                                                     <td className="column5">{timeago(juego.Creado)}</td>
                                                     <td className="column6">
                                                         <Link className="link-gris ml-5" to="#" onClick={ () => this.handleClick(juego.Id)}>
-                                                              <FontAwesomeIcon
-                                                              icon={juego.Activo ? faTimesCircle : faCheckCircle}
-                                                              color="#909296"/>
+                                                            <FontAwesomeIcon
+                                                            icon={juego.Activo ? faTimesCircle : faCheckCircle}
+                                                            color="#909296"/>
                                                             {juego.Activo ? " Desactivar" : " Activar"}
-                                                        </Link><br/>
+                                                        </Link>
                                                     </td>
                                                 </tr>)
                                         }) : null
@@ -118,7 +124,8 @@ class Perfil extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>)}
+                </AnimateOnChange>
             </div>
         );
     }

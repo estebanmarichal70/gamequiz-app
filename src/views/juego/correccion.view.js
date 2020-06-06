@@ -8,8 +8,7 @@ class Correccion extends Component {
         this.state = {
             juego: null,
             preguntaActiva: null,
-            respuestaSel: null,
-            respCorrecta: null
+            respuestaSel: null
         }
     }
 
@@ -20,31 +19,10 @@ class Correccion extends Component {
           respuestaSel: this.props.location.state.respuestaSel
         });
       }
-      
-    mapRespuestaToString = () =>{
-        this.state.preguntaActiva.Respuestas.map((respuesta, index) =>{
-            if(respuesta.Correcta == true){
-                switch(index){
-                    case 0:
-                        this.setState({respCorrecta: "A"});
-                        break;
-                    case 1: 
-                        this.setState({respCorrecta: "B"});
-                        break;
-                    case 2: 
-                        this.setState({respCorrecta: "C"});
-                        break;
-                    case 3: 
-                        this.setState({respCorrecta: "D"});
-                        break;
-                }
-            }   
-        })
-    }
 
     handleSiguiente =() => {
         let index = this.state.preguntaActiva.index + 1;
-        if(this.state.juego.Preguntas.length != index){
+        if(this.state.juego.Preguntas.length !== index){
             this.props.history.push({
                 pathname: '/juego/jugando',
                 state: {
@@ -81,19 +59,19 @@ class Correccion extends Component {
                             <div className="card-body center-all flex-column">
                                 <div>
                                     <span className="tit2">Puntos: {this.state.preguntaActiva.pregunta.Puntos}</span><br/>
-                                    {this.state.respuestaSel == "null" ?
+                                    {this.state.respuestaSel === "null" ?
                                         this.state.preguntaActiva.pregunta.Respuestas.map((respuesta, index) => {
-                                            if(respuesta.Correcta == true){
+                                            if(respuesta.Correcta === true){
                                                 return(
                                                     <span key={respuesta.Id} className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
                                                 )
                                             }
-                                            return
+                                            return(null)
                                         })
                                         :
                                         this.state.preguntaActiva.pregunta.Respuestas.map((respuesta, index) => {
-                                            if(respuesta.Correcta == true){
-                                                if(respuesta.Mensaje == this.state.respuestaSel){
+                                            if(respuesta.Correcta === true){
+                                                if(respuesta.Mensaje === this.state.respuestaSel){
                                                     return(
                                                         <span key={respuesta.Id} className="tit2">Respondiste correctamente</span>
                                                     )
@@ -104,7 +82,7 @@ class Correccion extends Component {
                                                     )
                                                 }
                                             }
-                                            return
+                                            return(null)
                                         })
                                     }
                                     <hr className="separador"/>

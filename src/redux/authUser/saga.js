@@ -1,5 +1,5 @@
 import {all, call, fork, put, takeEvery} from 'redux-saga/effects';
-import {LOGIN_USER, LOGOUT_USER, logoutUser, REGISTER_USER, registerUserSuccess,} from '../actions';
+import {LOGIN_USER, LOGOUT_USER, REGISTER_USER, registerUserSuccess,} from '../actions';
 
 import {loginUserError, loginUserSuccess, registerUserError,} from './actions';
 

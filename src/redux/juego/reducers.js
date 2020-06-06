@@ -42,12 +42,12 @@ export default (state = INIT_STATE, action) => {
             return {...state, error: ''}
         // esta accion agrega la pregunta al array pero todavia no sea a creado en el backend
         case AGREGAR_PREGUNTA_TMP:
-            if (state.preguntas.list.find(pregunta => pregunta.tmpId == action.payload.pregunta.tmpId)) {
+            if (state.preguntas.list.find(pregunta => pregunta.tmpId === action.payload.pregunta.tmpId)) {
                 return {
                     ...state,
                     preguntas: {
                         hasPreguntas: true,
-                        list: [...state.preguntas.list.filter(pregunta => pregunta.tmpId != action.payload.pregunta.tmpId), action.payload.pregunta]
+                        list: [...state.preguntas.list.filter(pregunta => pregunta.tmpId !== action.payload.pregunta.tmpId), action.payload.pregunta]
                     }
                 }
             } else {
@@ -58,12 +58,12 @@ export default (state = INIT_STATE, action) => {
             }
         // esta accion agrega la pregunta que responde la API
         case CREAR_PREGUNTA_SUCCESS:
-            if (state.preguntas.list.find(pregunta => pregunta.tmpId == action.payload.pregunta.tmpId)) {
+            if (state.preguntas.list.find(pregunta => pregunta.tmpId === action.payload.pregunta.tmpId)) {
                 return {
                     ...state,
                     preguntas: {
                         hasPreguntas: true,
-                        list: [...state.preguntas.list.filter(pregunta => pregunta.tmpId != action.payload.pregunta.tmpId), action.payload.pregunta]
+                        list: [...state.preguntas.list.filter(pregunta => pregunta.tmpId !== action.payload.pregunta.tmpId), action.payload.pregunta]
                     }
                 }
             } else {
@@ -85,7 +85,7 @@ export default (state = INIT_STATE, action) => {
                     ...state.preguntas,
                     list:
                         state.preguntas.list.map(pregunta => {
-                            if (pregunta.tmpId == action.payload.tmpId) {
+                            if (pregunta.tmpId === action.payload.tmpId) {
                                 pregunta.video = action.payload.video;
                             }
                             return pregunta;
@@ -100,7 +100,7 @@ export default (state = INIT_STATE, action) => {
                 preguntas: {
                     hasPreguntas: true,
                     list: [...state.preguntas.list.map(pregunta => {
-                        if (pregunta.tmpId == action.payload.respuesta.tmpId) {
+                        if (pregunta.tmpId === action.payload.respuesta.tmpId) {
                             pregunta.Respuestas.push(action.payload.respuesta);
                         }
                         return pregunta;

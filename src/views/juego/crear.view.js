@@ -7,9 +7,6 @@ import millonario from "../../assets/music/millonario.mp3";
 import coffin from "../../assets/music/coffin.mp3";
 import suspenso from "../../assets/music/suspenso.mp3";
 
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faVolumeMute, faVolumeUp} from "@fortawesome/free-solid-svg-icons";
-
 import DragAndDropFileUploader from "../../components/image-uploader/image-uploader.componet";
 import arrow from "./arrow.svg"
 import {withRouter} from "react-router";

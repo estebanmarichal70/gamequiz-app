@@ -50,7 +50,7 @@ class DragAndDropFileUploader extends React.Component {
         if (this.props.tipoId != null) {
 
             if (!this.state.hasFiles) {
-                if (this.props.tipo != "PREGUNTA")
+                if (this.props.tipo !== "PREGUNTA")
                     return this.props.history.push("/juego/configurar")
                 else
                     return this.props.afterSuccess();

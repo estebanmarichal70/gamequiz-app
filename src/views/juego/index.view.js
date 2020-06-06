@@ -3,6 +3,7 @@ import "../../assets/sass/App.scss";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {withRouter} from "react-router";
 import ViewError from "../error";
+import {Link} from "react-router-dom";
 
 
 const Crear = React.lazy(() => import("./crear.view"));
@@ -19,7 +20,7 @@ const Juego = ({match}) => {
     return (
         <Suspense fallback={<div/>}>
             <div className="center-all">
-                <h1 className="titulo-inicio">GameQuiz</h1>
+                <Link className="link" to="/"><h1 className="titulo-inicio">GameQuiz</h1></Link>
             </div>
             <Switch>
                 <Route

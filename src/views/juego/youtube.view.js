@@ -104,7 +104,7 @@ class YoutubeView extends Component {
     }
 
     handleAceptar = async () => {
-        if(this.state.videoData.url != "" && this.state.videoData.url != undefined){
+        if(this.state.videoData.url !== "" && this.state.videoData.url !== undefined){
             await this.props.agregarVideo(this.state.videoData, this.props.location.state.tmpId);
             this.props.history.push({
                 pathname: '/juego/configurar',

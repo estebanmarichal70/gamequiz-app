@@ -66,7 +66,7 @@ class Configurar extends Component {
     componentDidMount() {
         if (this.props.preguntas) {
             if (this.props.preguntas.list) {
-                let question = this.props.preguntas.list.find(pregunta => pregunta.tmpId == this.state.tmpId);
+                let question = this.props.preguntas.list.find(pregunta => pregunta.tmpId === this.state.tmpId);
                 if (question) {
                     this.setState({...this.state, ...question});
                 }
@@ -87,10 +87,10 @@ class Configurar extends Component {
     }
 
     handleCrearPregunta = () => {
-        if (this.state.mensaje != "" && this.state.puntos != "" && this.state.tiempo != "" && this.state.correcta != "") {
+        if (this.state.mensaje !== "" && this.state.puntos !== "" && this.state.tiempo !== "" && this.state.correcta !== "") {
 
             /* QUEDA CORREGIR ESTE IF QUE PIDE LAS 4 RESPUESTAS AUNQUE SEA TRUE/FALSE */
-            if (this.state.respuesta_a != "" && this.state.respuesta_b != "" && (this.state.quiz && this.state.respuesta_c != "" && this.state.respuesta_d != "")) {
+            if (this.state.respuesta_a !== "" && this.state.respuesta_b !== "" && (this.state.quiz && this.state.respuesta_c !== "" && this.state.respuesta_d !== "")) {
                 const {mensaje, puntos, tiempo, quiz, tmpId, video} = this.state;
                 let pregunta = {
                     mensaje,
@@ -113,9 +113,9 @@ class Configurar extends Component {
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.success != prevProps.success && this.props.success != null) {
-            const pregunta = this.props.preguntas.list.find(pregunta => pregunta.tmpId == this.state.tmpId);
-            if (pregunta != null) {
+        if (this.props.success !== prevProps.success && this.props.success != null) {
+            const pregunta = this.props.preguntas.list.find(pregunta => pregunta.tmpId === this.state.tmpId);
+            if (pregunta !== null) {
                 await this.setState({preguntaId: pregunta.Id})
 
                 let respuestas_posibles = pregunta.Quiz ? ['a', 'b', 'c', 'd'] : ['a', 'b'];
@@ -123,7 +123,7 @@ class Configurar extends Component {
                 respuestas_posibles.forEach(el => {
                     let respuesta = {
                         mensaje: this.state[`respuesta_${el}`],
-                        correcta: this.state[`correcta`] == el.toUpperCase(),
+                        correcta: this.state[`correcta`] === el.toUpperCase(),
                         preguntaId: pregunta.Id,
                         vecesSeleccionada: 0,
                         tmpId: pregunta.tmpId
@@ -193,6 +193,7 @@ class Configurar extends Component {
                                                 </div>
                                             )
                                         }
+                                        return (null)
                                     })
                                 }
                                 <div className="pregunta-cont mb-5">
