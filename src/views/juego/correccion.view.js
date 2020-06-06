@@ -8,7 +8,8 @@ class Correccion extends Component {
         this.state = {
             juego: null,
             preguntaActiva: null,
-            respuestaSel: null
+            respuestaSel: null,
+            puntaje: null
         }
     }
 
@@ -16,12 +17,24 @@ class Correccion extends Component {
          this.setState({
           juego: this.props.location.state.juego,
           preguntaActiva: this.props.location.state.preguntaActiva,
-          respuestaSel: this.props.location.state.respuestaSel
+          respuestaSel: this.props.location.state.respuestaSel,
+          puntaje: this.props.location.state.puntaje
         });
       }
 
-    handleSiguiente =() => {
+    handleSiguiente = async() => {
         let index = this.state.preguntaActiva.index + 1;
+
+        await this.state.preguntaActiva.pregunta.Respuestas.map((respuesta, index) => {
+            if(respuesta.Correcta === true){
+                if(respuesta.Mensaje === this.state.respuestaSel){
+                        this.setState({
+                            puntaje: this.state.puntaje + this.state.preguntaActiva.pregunta.Puntos
+                        })
+                }
+            }
+        })
+
         if(this.state.juego.Preguntas.length !== index){
             this.props.history.push({
                 pathname: '/juego/jugando',
@@ -30,11 +43,13 @@ class Correccion extends Component {
                         index,
                         pregunta: this.state.juego.Preguntas[index]
                     },
-                    juego: this.state.juego
+                    juego: this.state.juego,
+                    puntaje: this.state.puntaje
                 }
             })
         }
         else{
+            
             this.props.history.push({
                 pathname: '/juego/ranking',
                 state: {
@@ -42,13 +57,13 @@ class Correccion extends Component {
                         index,
                         pregunta: this.state.juego.Preguntas[index]
                     },
-                    juego: this.state.juego
+                    juego: this.state.juego,
+                    puntaje: this.state.puntaje
                 }
             })
         }
     }
     
-
     render() {
         return (
             <div>
@@ -58,12 +73,14 @@ class Correccion extends Component {
                             <div className="card-header tit">{this.state.preguntaActiva.pregunta.Mensaje}</div>
                             <div className="card-body center-all flex-column">
                                 <div>
-                                    <span className="tit2">Puntos: {this.state.preguntaActiva.pregunta.Puntos}</span><br/>
                                     {this.state.respuestaSel === "null" ?
                                         this.state.preguntaActiva.pregunta.Respuestas.map((respuesta, index) => {
                                             if(respuesta.Correcta === true){
                                                 return(
-                                                    <span key={respuesta.Id} className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
+                                                    <div key={respuesta.Id}>
+                                                        <span className="tit2">Puntos: {this.state.puntaje}</span><br/>
+                                                        <span className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
+                                                    </div>
                                                 )
                                             }
                                             return(null)
@@ -73,12 +90,18 @@ class Correccion extends Component {
                                             if(respuesta.Correcta === true){
                                                 if(respuesta.Mensaje === this.state.respuestaSel){
                                                     return(
-                                                        <span key={respuesta.Id} className="tit2">Respondiste correctamente</span>
+                                                        <div key={respuesta.Id}>
+                                                            <span className="tit2">Puntos: {this.state.puntaje + this.state.preguntaActiva.pregunta.Puntos}</span><br/>
+                                                            <span className="tit2">Respondiste correctamente</span>
+                                                        </div>
                                                     )
                                                 }
                                                 else{
                                                     return(
-                                                        <span key={respuesta.Id} className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
+                                                        <div key={respuesta.Id}>
+                                                            <span className="tit2">Puntos: {this.state.puntaje}</span><br/>
+                                                            <span className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
+                                                        </div>
                                                     )
                                                 }
                                             }

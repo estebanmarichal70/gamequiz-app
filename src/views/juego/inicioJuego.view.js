@@ -37,7 +37,7 @@ class InicioJuego extends Component {
 
     handleJugar = (e) =>{
         e.preventDefault();
-        if(this.state.juego.Preguntas && this.state.juego.Preguntas.lenght){
+        if(this.state.juego.Preguntas && this.state.juego.Preguntas.length){
             this.props.history.push({
                 pathname: '/juego/jugando',
                 state: {juego: this.state.juego}
