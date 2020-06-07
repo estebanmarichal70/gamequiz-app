@@ -354,6 +354,10 @@ table {
   }
 }
 
+.spinner {
+  margin-top: 200px;
+}
+
 
 /*==================================================================
 [ Inputs, botones y componentes rounded ]*/
@@ -1140,6 +1144,7 @@ input[type=number] {
     .arriba {
       @media (max-width: $phone-breakpoint) {
         margin: 0;
+        flex-direction: column;
       }
     }
 
@@ -1150,28 +1155,43 @@ input[type=number] {
     }
 
     .media {
+
+      .cover {
+        width: 400px;
+        height: 250px;
+        transition: all 0.2s ease-in-out;
+  
+        &:hover {
+          transform: scale(1.03);
+        }
+  
+        img {
+          border: 2px solid $color-secondary;
+          border-radius: 10px;
+          max-width: 400px; 
+          max-height: 250px;
+        }
+        @media (max-width: $phone-breakpoint) {
+          height: 150px;
+          width: 250px;
+          margin-right: 0;
+          img {
+            max-width: 250px; 
+            max-height: 150px;
+          }
+        }
+        @media (max-width: $phone-breakpoint) {
+          margin:0;
+          margin-bottom: 15px;
+        }
+      }
       @media (max-width: $phone-breakpoint) {
+        margin:0;
         flex-direction: column;
       }
     }
 
-    .cover {
-      @extend .card;
-      height: 250px;
-      width: 400px;
-      transition: all 0.2s ease-in-out;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.03);
-      }
-
-      @media (max-width: $phone-breakpoint) {
-        height: 150px;
-        width: 250px;
-        margin-right: 0;
-      }
-    }
+    
 
     @media (max-width: $phone-breakpoint) {
       padding: 20px;
@@ -1229,6 +1249,21 @@ input[type=number] {
       }
     }
 
+    .chart2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(100, 1fr);
+      grid-column-gap: 20px;
+      height: 500px;
+      width: 100%;
+      padding: 5px 10px;
+      @media (max-width: $phone-breakpoint) {
+        padding: 2px 0px;
+        grid-column-gap: 10px;
+        height: 300px;
+      }
+    }
+
     [class*="bar"] {
       margin: 0;
       padding: 15px;
@@ -1246,22 +1281,6 @@ input[type=number] {
         padding: 8px;
 
       }
-    }
-
-    .bar-1 {
-      grid-row-start: 37;
-    }
-
-    .bar-2 {
-      grid-row-start: 87;
-    }
-
-    .bar-3 {
-      grid-row-start: 83;
-    }
-
-    .bar-4 {
-      grid-row-start: 66;
     }
 
     [class*="bar"]:nth-child(1) {
@@ -1342,8 +1361,13 @@ input[type=number] {
     }
   }
 }
-
-
-.spinner {
-  margin-top: 200px;
+.recorteTexto {
+  display: block;
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  @media (max-width: $phone-breakpoint) {
+      max-width: 50px;
+  }
 }

@@ -324,21 +324,23 @@ class Configurar extends Component {
                                 <div className="d-flex flex-column">
                                     <div className="contenedorR arriba d-flex mb-10">
 
-                                        <input className="rounded-input error-i mr-10" type="text"
-                                            value={this.state.quiz ? this.state.respuesta_a : "Falso"}
+                                        <input className="rounded-input success-i mr-10" type="text"
+                                            value={this.state.quiz ? this.state.respuesta_a : "Verdadero"}
                                             onChange={this.handleChange}
                                             placeholder="A - Respuesta"
                                             name="respuesta_a"
                                             maxLength="40"
+                                            readOnly={this.state.quiz ? false : true}
                                             />
 
 
-                                        <input className="rounded-input success-i" type="text"
-                                            value={this.state.quiz ? this.state.respuesta_b : "Verdadero"}
+                                        <input className="rounded-input error-i" type="text"
+                                            value={this.state.quiz ? this.state.respuesta_b : "Falso"}
                                             onChange={this.handleChange}
                                             placeholder="B - Respuesta"
                                             name="respuesta_b"
                                             maxLength="40"
+                                            readOnly={this.state.quiz ? false : true}
                                             />
                                             
                                     </div>

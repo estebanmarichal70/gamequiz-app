@@ -19,7 +19,6 @@ class Perfil extends Component {
         this.state = {
             loading: true
         };
-        
     }
 
     async componentDidMount() {
@@ -58,7 +57,7 @@ class Perfil extends Component {
                         <Link className="link" to="/"><h1 className="titulo-inicio">GameQuiz</h1></Link>
                 </div>
                 {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
-                (<div className="d-flex jc-center contenedorR" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
+                (<div className="d-flex jc-center contenedorR" style={{animation: `fade-in ${easings.easeOutExpo} 2000ms forwards`}}>
                     <div className="flex-izq mr-25">
                         <div className="card-perfil mb-20">
                             <div className="card-header"><span>Perfil</span></div>

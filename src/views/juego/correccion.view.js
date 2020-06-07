@@ -1,5 +1,7 @@
 import React,{Component}  from 'react';
 import '../../assets/sass/App.scss';
+import ReactLoading from "react-loading";
+import { easings } from 'react-animation';
 
 class Correccion extends Component {
 
@@ -9,23 +11,58 @@ class Correccion extends Component {
             juego: null,
             preguntaActiva: null,
             respuestaSel: null,
-            puntaje: null
+            puntaje: null,
+            graficaA: null,
+            graficaB: null,
+            graficaC: null,
+            graficaD: null,
+            loading: true
         }
     }
 
-    componentWillMount() {
-         this.setState({
+    async componentWillMount() {
+        await this.setState({
           juego: this.props.location.state.juego,
           preguntaActiva: this.props.location.state.preguntaActiva,
           respuestaSel: this.props.location.state.respuestaSel,
           puntaje: this.props.location.state.puntaje
-        });
-      }
+        })
+        this.calcularGrafica();
+    }
+
+    calcularGrafica = async() =>{
+        let total = 0;
+        const respuestas = this.state.preguntaActiva.pregunta.Respuestas;
+
+        await respuestas.forEach(respuesta => {
+            total += respuesta.VecesSeleccionada;
+        })
+
+        let A, B, C, D = 0;
+
+        A = parseInt(100 - ((respuestas[0].VecesSeleccionada * 100) / total));
+        B = parseInt(100 - ((respuestas[1].VecesSeleccionada * 100) / total));
+        A = (A === 0 ? 1 : A===100 ? 95 : A);
+        B = (B === 0 ? 1 : B===100 ? 95 : B);
+        this.setState({graficaA: A});
+        this.setState({graficaB: B});
+
+        if(this.state.preguntaActiva.pregunta.Quiz){
+            C = parseInt(100 - ((respuestas[2].VecesSeleccionada * 100) / total));
+            D = parseInt(100 - ((respuestas[3].VecesSeleccionada * 100) / total));
+            C = (C === 0 ? 1 : C===100 ? 95 : C);
+            D = (D === 0 ? 1 : D===100 ? 95 : D);
+            this.setState({graficaC: C === 100 ? 1 : C===0 ? 95 : C});
+            this.setState({graficaD: D === 100 ? 1 : D===0 ? 95 : D});
+        }
+
+        this.setState({loading: false})
+    }
 
     handleSiguiente = async() => {
         let index = this.state.preguntaActiva.index + 1;
 
-        await this.state.preguntaActiva.pregunta.Respuestas.map((respuesta, index) => {
+        await this.state.preguntaActiva.pregunta.Respuestas.forEach((respuesta) => {
             if(respuesta.Correcta === true){
                 if(respuesta.Mensaje === this.state.respuestaSel){
                         this.setState({
@@ -66,8 +103,9 @@ class Correccion extends Component {
     
     render() {
         return (
-            <div>
-                <div className="contenedorR">
+            <div className="center-all">
+                {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
+                (<div className="contenedorR" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                     <div className="d-flex jc-center">
                         <div className="card-chart">
                             <div className="card-header tit">{this.state.preguntaActiva.pregunta.Mensaje}</div>
@@ -78,8 +116,8 @@ class Correccion extends Component {
                                             if(respuesta.Correcta === true){
                                                 return(
                                                     <div key={respuesta.Id}>
-                                                        <span className="tit2">Puntos: {this.state.puntaje}</span><br/>
-                                                        <span className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
+                                                        <span className="tit2">Total de Puntos: {this.state.puntaje}</span><br/>
+                                                        <span className="tit2">La respuesta correcta era: {respuesta.Mensaje}</span>
                                                     </div>
                                                 )
                                             }
@@ -91,16 +129,16 @@ class Correccion extends Component {
                                                 if(respuesta.Mensaje === this.state.respuestaSel){
                                                     return(
                                                         <div key={respuesta.Id}>
-                                                            <span className="tit2">Puntos: {this.state.puntaje + this.state.preguntaActiva.pregunta.Puntos}</span><br/>
-                                                            <span className="tit2">Respondiste correctamente</span>
+                                                            <span className="tit2">Total de Puntos: {this.state.puntaje + this.state.preguntaActiva.pregunta.Puntos}</span><br/>
+                                                            <span className="tit2">Respondiste correctamente!</span>
                                                         </div>
                                                     )
                                                 }
                                                 else{
                                                     return(
                                                         <div key={respuesta.Id}>
-                                                            <span className="tit2">Puntos: {this.state.puntaje}</span><br/>
-                                                            <span className="tit2">Respuesta Correcta: {respuesta.Mensaje}</span>
+                                                            <span className="tit2">Total de Puntos: {this.state.puntaje}</span><br/>
+                                                            <span className="tit2">La respuesta correcta era: {respuesta.Mensaje}</span>
                                                         </div>
                                                     )
                                                 }
@@ -110,17 +148,17 @@ class Correccion extends Component {
                                     }
                                     <hr className="separador"/>
                                 </div>
-                                {!this.state.preguntaActiva.Quiz ? 
+                                {this.state.preguntaActiva.pregunta.Quiz ? 
                                 <div className="chart">
-                                    <div className="bar-1 center-all titulo-c"><span>A - {this.state.preguntaActiva.pregunta.Respuestas[0].Mensaje} (1521)</span></div>
-                                    <div className="bar-2 center-all titulo-c"><span>B - {this.state.preguntaActiva.pregunta.Respuestas[1].Mensaje} (498)</span></div>
-                                    <div className="bar-3 center-all titulo-c"><span>C - {this.state.preguntaActiva.pregunta.Respuestas[2].Mensaje} (670)</span></div>
-                                    <div className="bar-4 center-all titulo-c"><span>D - {this.state.preguntaActiva.pregunta.Respuestas[3].Mensaje} (1350)</span></div>
+                                    <div className="bar-1 center-all titulo-c" style={{gridRowStart: this.state.graficaA}}><span className="recorteTexto">{this.state.preguntaActiva.pregunta.Respuestas[0].Mensaje}</span><span>({this.state.preguntaActiva.pregunta.Respuestas[0].VecesSeleccionada})</span></div>
+                                    <div className="bar-2 center-all titulo-c" style={{gridRowStart: this.state.graficaB}}><span className="recorteTexto">{this.state.preguntaActiva.pregunta.Respuestas[1].Mensaje}</span> <span>({this.state.preguntaActiva.pregunta.Respuestas[1].VecesSeleccionada})</span></div>
+                                    <div className="bar-3 center-all titulo-c" style={{gridRowStart: this.state.graficaC}}><span className="recorteTexto">{this.state.preguntaActiva.pregunta.Respuestas[2].Mensaje}</span> <span>({this.state.preguntaActiva.pregunta.Respuestas[2].VecesSeleccionada})</span></div>
+                                    <div className="bar-4 center-all titulo-c" style={{gridRowStart: this.state.graficaD}}><span className="recorteTexto">{this.state.preguntaActiva.pregunta.Respuestas[3].Mensaje}</span> <span>({this.state.preguntaActiva.pregunta.Respuestas[3].VecesSeleccionada})</span></div>
                                 </div>
                                 :
-                                <div className="chart">
-                                    <div className="bar-1 center-all titulo-c"><span>A - {this.state.preguntaActiva.pregunta.Respuestas[0].Mensaje} (1521)</span></div>
-                                    <div className="bar-2 center-all titulo-c"><span>B - {this.state.preguntaActiva.pregunta.Respuestas[1].Mensaje} (498)</span></div>
+                                <div className="chart2">
+                                    <div className="bar-1 center-all titulo-c" style={{gridRowStart: this.state.graficaA}}><span>{this.state.preguntaActiva.pregunta.Respuestas[0].Mensaje} ({this.state.preguntaActiva.pregunta.Respuestas[0].VecesSeleccionada})</span></div>
+                                    <div className="bar-2 center-all titulo-c" style={{gridRowStart: this.state.graficaB}}><span>{this.state.preguntaActiva.pregunta.Respuestas[1].Mensaje} ({this.state.preguntaActiva.pregunta.Respuestas[1].VecesSeleccionada})</span></div>
                                 </div>
                                 }
                             </div>
@@ -129,7 +167,7 @@ class Correccion extends Component {
                     <div className="center-all mt-30 mb-20 sig">
                         <button onClick={this.handleSiguiente} className="rounded-button w-25">Siguiente</button>
                     </div>
-                </div>
+                </div>)}
             </div>
             
         );

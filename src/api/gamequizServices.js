@@ -41,6 +41,10 @@ export default {
             addDefaultHeaders();
             return axios.post(API_URL + "/juego/cambiar_estado/" + id);
         },
+        aumentarSelRespuesta(id) {
+            addDefaultHeaders();
+            return axios.post(API_URL + "/respuesta/aumentar/" + id);
+        },
         fetchJuegoData(nombre) {
             addDefaultHeaders();
             return axios.get(API_URL + "/juego?nombre=" + nombre);
