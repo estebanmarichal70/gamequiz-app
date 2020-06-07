@@ -7,7 +7,6 @@ import {toast,ToastContainer} from "react-toastify";
 import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
 import debounce from "lodash.debounce";
-import {DEFAULT_IMAGE_URL} from "../../constants/constants";
 
 class Join extends Component {
 
@@ -128,7 +127,7 @@ class Join extends Component {
                                                 <FontAwesomeIcon icon={juego.Password ? faLock : faLockOpen} color="#d1d2d3"/>
                                             </div>
                                             <div className="imagen center-all">
-                                                <img src={juego.Caratula !== "default" ? juego.Caratula : DEFAULT_IMAGE_URL} alt="Imagen"/>
+                                                <img src={juego.Caratula} alt="Imagen"/>
                                             </div>
                                             <span className="titulo">{juego.Nombre}({juego.Preguntas.length})</span>
                                         </div>)

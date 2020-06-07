@@ -7,7 +7,6 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
-import {DEFAULT_IMAGE_URL} from "../../constants/constants";
 
 class InicioJuego extends Component {
 
@@ -65,7 +64,7 @@ class InicioJuego extends Component {
                             </div>
                         </div>
                         <div className="imagen">
-                            <img src={this.state.juego.Caratula !== "default" ? this.state.juego.Caratula : DEFAULT_IMAGE_URL} alt="Imagen"/>
+                            <img src={this.state.juego.Caratula} alt="Imagen"/>
                         </div>
                     </div>
                     <div className="mt-20 card-inicio-nombre">

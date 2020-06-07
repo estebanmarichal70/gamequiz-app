@@ -91,7 +91,6 @@ class Configurar extends Component {
     }
 
     handleCrearPregunta = () => {
-        console.log(this.state.correcta)
         if (this.state.mensaje !== "" && this.state.puntos !== "" && this.state.tiempo !== "" && this.state.correcta !== "") {
             const {mensaje, puntos, tiempo, quiz, tmpId, video} = this.state;
             let pregunta = {
@@ -105,9 +104,9 @@ class Configurar extends Component {
                 inicioVideo: video ? video.start : null,
                 juegoId: this.props.juego.Id
             }
-            if(!this.state.quiz)
+            if(!this.state.quiz){
                 this.props.crearPregunta(pregunta);
-            else {  
+            } else { 
                 if (this.state.respuesta_a !== "" && this.state.respuesta_b !== "" && (this.state.quiz && this.state.respuesta_c !== "" && this.state.respuesta_d !== ""))
                     this.props.crearPregunta(pregunta);
                 else
