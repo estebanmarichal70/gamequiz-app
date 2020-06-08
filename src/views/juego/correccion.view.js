@@ -1,7 +1,11 @@
 import React,{Component}  from 'react';
 import '../../assets/sass/App.scss';
+import http from "../../api/gamequizServices";
 import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
+import {connect} from "react-redux";
+import {withRouter} from "react-router";
+import {toast,ToastContainer} from "react-toastify";
 
 class Correccion extends Component {
 
@@ -9,6 +13,7 @@ class Correccion extends Component {
         super(props);
         this.state = {
             juego: null,
+            nombre: null,
             preguntaActiva: null,
             respuestaSel: null,
             puntaje: null,
@@ -25,7 +30,8 @@ class Correccion extends Component {
           juego: this.props.location.state.juego,
           preguntaActiva: this.props.location.state.preguntaActiva,
           respuestaSel: this.props.location.state.respuestaSel,
-          puntaje: this.props.location.state.puntaje
+          puntaje: this.props.location.state.puntaje,
+          nombre: this.props.location.state.nombre
         })
         this.calcularGrafica();
     }
@@ -66,7 +72,7 @@ class Correccion extends Component {
             if(respuesta.Correcta === true){
                 if(respuesta.Mensaje === this.state.respuestaSel){
                         this.setState({
-                            puntaje: this.state.puntaje + this.state.preguntaActiva.pregunta.Puntos
+                            puntaje: this.state.puntaje + this.state.preguntaActiva.pregunta.Puntos,
                         })
                 }
             }
@@ -81,12 +87,29 @@ class Correccion extends Component {
                         pregunta: this.state.juego.Preguntas[index]
                     },
                     juego: this.state.juego,
-                    puntaje: this.state.puntaje
+                    puntaje: this.state.puntaje,
+                    nombre: this.state.nombre ? this.state.nombre : null
                 }
             })
         }
         else{
-            
+            if(this.props.user){
+                http.services.agregarPuntaje({
+                    usuarioId: this.props.user.Id,
+                    juegoId: this.state.juego.Id,
+                    puntos: this.state.puntaje
+                })
+                .then(res => {
+                    //console.log(res.data)
+                    this.setState({
+                        juego:{
+                            ...this.state.juego,
+                            Puntajes:[...this.state.juego.Puntajes, res.data]
+                        }
+                    })
+                })
+                .catch(err =>toast.error(err.toString()))
+            }
             this.props.history.push({
                 pathname: '/juego/ranking',
                 state: {
@@ -95,7 +118,8 @@ class Correccion extends Component {
                         pregunta: this.state.juego.Preguntas[index]
                     },
                     juego: this.state.juego,
-                    puntaje: this.state.puntaje
+                    puntaje: this.state.puntaje,
+                    nombre: this.state.nombre ? this.state.nombre : null
                 }
             })
         }
@@ -174,4 +198,9 @@ class Correccion extends Component {
     }
 }
 
-export default Correccion;
+const mapStateToProps = ({authUser}) => {
+    const {user} = authUser;
+    return {user};
+  };
+  
+export default withRouter(connect(mapStateToProps)(Correccion));

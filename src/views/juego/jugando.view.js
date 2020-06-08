@@ -12,6 +12,8 @@ import { easings } from 'react-animation';
 import http from "../../api/gamequizServices";
 import {toast,ToastContainer} from "react-toastify";
 import ReactPlayer from "react-player";
+import {connect} from "react-redux";
+import {withRouter} from "react-router";
 
 
 class Jugando extends Component {
@@ -25,6 +27,7 @@ class Jugando extends Component {
       },
       respuestaSel: null,
       puntaje: 0,
+      nombre: "",
       height: null,
       width: null,
       musica: null,
@@ -38,6 +41,13 @@ class Jugando extends Component {
           juego: this.props.location.state.juego,
           preguntaActiva: this.props.location.state.preguntaActiva,
         });
+        
+        if(this.props.location.state.nombre != null){
+            await this.setState({
+              nombre: this.props.location.state.nombre
+          });
+        }
+
         if(this.props.location.state.puntaje != null){
           await this.setState({
             puntaje: this.props.location.state.puntaje
@@ -45,6 +55,11 @@ class Jugando extends Component {
       }
     }
     else{
+      if(this.props.location.state.nombre != null){
+          await this.setState({
+            nombre: this.props.location.state.nombre
+        });
+      }
       await this.setState({
         juego: this.props.location.state.juego,
         preguntaActiva:{
@@ -101,7 +116,8 @@ class Jugando extends Component {
             preguntaActiva: this.state.preguntaActiva,
             juego: this.state.juego,
             respuestaSel: respuestaSel,
-            puntaje: this.state.puntaje
+            puntaje: this.state.puntaje,
+            nombre: this.state.nombre ? this.state.nombre : null
           }
       })
   }
@@ -190,4 +206,9 @@ class Jugando extends Component {
   }
 }
 
-export default Jugando;
+const mapStateToProps = ({authUser}) => {
+  const {user} = authUser;
+  return {user};
+};
+
+export default withRouter(connect(mapStateToProps)(Jugando));

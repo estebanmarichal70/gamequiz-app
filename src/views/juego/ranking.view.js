@@ -3,6 +3,8 @@ import '../../assets/sass/ranking.scss';
 import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
 import {toast,ToastContainer} from "react-toastify";
+import {connect} from "react-redux";
+import {withRouter} from "react-router";
 
 class Ranking extends Component {
 
@@ -10,12 +12,18 @@ class Ranking extends Component {
         super(props);
         this.state = {
             puntaje: null,
-            loading: false
+            juego: null,
+            loading: false,
+            nombre: null
         }
     }
 
     async componentDidMount() {
-       await this.setState({puntaje: this.props.location.state.puntaje});
+       await this.setState({
+           puntaje: this.props.location.state.puntaje,
+           juego: this.props.location.state.juego,
+           nombre: this.props.location.state.nombre
+        });
      }
 
     render() {
@@ -29,7 +37,7 @@ class Ranking extends Component {
                             Animal Quiz
                         </div>
                         <div className="card-body d-flex flex-column">
-                            <strong className="titulo mb-2">Nombre Usuario</strong>
+                            <strong className="titulo mb-2">{this.props.user ? this.props.user : this.state.nombre}</strong>
                             <strong className="titulo mt-1">Puntaje: {this.state.puntaje}</strong>
                             <hr className="barra mb-30"/>
                                 <div className="table style">
@@ -47,26 +55,20 @@ class Ranking extends Component {
                                     <div className="table-body scroll">
                                     <table>
                                         <tbody>
-                                        <tr>
-                                            <td className="column1">1</td>
-                                            <td className="column2">Caste claramente</td>
-                                            <td className="column3">1000</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="column1">2</td>
-                                            <td className="column2">Isaac</td>
-                                            <td className="column3">0</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="column1">3</td>
-                                            <td className="column2">Tesla</td>
-                                            <td className="column3">0</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="column1">4</td>
-                                            <td className="column2">Estevi</td>
-                                            <td className="column3">0</td>
-                                        </tr>
+                                        {this.state.juego ? this.state.juego.Puntajes.map((puntaje, index) => {
+                                                if(index < 10){
+                                                    return(
+                                                        <tr key={puntaje.Id}>
+                                                            <td className="column1">1</td>
+                                                            <td className="column2">{puntaje.Usuario.Nombre}</td>
+                                                            <td className="column3">{puntaje.Puntaje.Puntos}</td>
+                                                        </tr>
+                                                    )
+                                                }
+                                            })
+                                            :
+                                            null
+                                        }
                                         </tbody>
                                     </table>
                                 </div>
@@ -80,4 +82,9 @@ class Ranking extends Component {
     }
 }
 
-export default Ranking;
+const mapStateToProps = ({authUser}) => {
+    const {user} = authUser;
+    return {user};
+  };
+
+export default withRouter(connect(mapStateToProps)(Ranking));

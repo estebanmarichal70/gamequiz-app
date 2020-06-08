@@ -142,7 +142,7 @@ class Join extends Component {
                                 { this.state.juegos ? this.state.juegos.map((juego) => {
                                     if(!juego.Privado){
                                         return (
-                                        < div key={juego.Id} onClick={juego.Password ? () => this.handleOpen(juego) : () => this.handleJugar(juego) } className="card-juego center-all flex-column">
+                                        <div key={juego.Id} onClick={juego.Password ? () => this.handleOpen(juego) : () => this.handleJugar(juego) } className="card-juego center-all flex-column">
                                             <div className="center-all mb-5">
                                                 <FontAwesomeIcon icon={juego.Password ? faLock : faLockOpen} color="#d1d2d3"/>
                                             </div>
