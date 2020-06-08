@@ -19,6 +19,7 @@ class Ranking extends Component {
     }
 
     async componentDidMount() {
+        console.log(this.props.location.state.juego)
        await this.setState({
            puntaje: this.props.location.state.puntaje,
            juego: this.props.location.state.juego,
@@ -37,7 +38,7 @@ class Ranking extends Component {
                             Animal Quiz
                         </div>
                         <div className="card-body d-flex flex-column">
-                            <strong className="titulo mb-2">{this.props.user ? this.props.user : this.state.nombre}</strong>
+                            <strong className="titulo mb-2">Nickname: {this.props.user ? this.props.user.Username : this.state.nombre}</strong>
                             <strong className="titulo mt-1">Puntaje: {this.state.puntaje}</strong>
                             <hr className="barra mb-30"/>
                                 <div className="table style">

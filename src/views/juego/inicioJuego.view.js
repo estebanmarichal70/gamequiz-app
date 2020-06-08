@@ -15,15 +15,21 @@ class InicioJuego extends Component {
         this.state = {
           juego: null,
           loading: true,
-          nombre:""
+          nombre:"",
+          logeado: true
         };
       }
 
     componentDidMount(){
+        if(this.props.user){
+            this.setState({
+                logeado: false
+            })
+        }
         this.setState({
             juego: this.props.location.state.juego,
-          });
-          this.fetchCreadorData(this.props.location.state.juego.UsuarioId);
+        });
+        this.fetchCreadorData(this.props.location.state.juego.UsuarioId);
     }
 
     fetchCreadorData  = async (userId) => {
@@ -46,7 +52,7 @@ class InicioJuego extends Component {
                     this.props.history.push({
                         pathname: '/juego/jugando',
                         state: {juego: this.state.juego,
-                                nombre: this.state.nombre
+                                nombre: this.state.nombre,
                         },
                     })
                 }
@@ -94,7 +100,7 @@ class InicioJuego extends Component {
                             Login 
                         </Link>
                         <form className="d-flex" onSubmit={this.handleJugar}>
-                            <input className="rounded-left-input" type="text" name="nombre" value={this.state.nombre} onChange={this.handleChange} placeholder="Nombre" style={{display: this.props.user ? "none" : null}} required/>
+                            <input className="rounded-left-input" type="text" id="nombre" name="nombre" value={this.state.nombre} onChange={this.handleChange} placeholder="Nombre" style={{display: this.props.user ? "none" : null}} required={this.state.logeado}/>
                             <button className={`${this.props.user ? "rounded-button" : "rounded-right-button"} purple`} type="submit">
                                 Jugar 
                             </button>

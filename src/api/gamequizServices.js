@@ -58,9 +58,11 @@ export default {
         aumentarSelRespuesta(id) {
             return axios.post(API_URL + "/respuesta/aumentar/" + id);
         },
+        //----------Puntaje----------//
         agregarPuntaje(data) {
             addDefaultHeaders();
             return axios.post(API_URL + "/puntaje/", data );
         },
+        //--------------------------//
     }
 }

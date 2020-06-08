@@ -94,13 +94,12 @@ class Correccion extends Component {
         }
         else{
             if(this.props.user){
-                http.services.agregarPuntaje({
+                await http.services.agregarPuntaje({
                     usuarioId: this.props.user.Id,
                     juegoId: this.state.juego.Id,
                     puntos: this.state.puntaje
                 })
                 .then(res => {
-                    //console.log(res.data)
                     this.setState({
                         juego:{
                             ...this.state.juego,
