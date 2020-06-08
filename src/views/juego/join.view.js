@@ -7,12 +7,14 @@ import {toast,ToastContainer} from "react-toastify";
 import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
 import debounce from "lodash.debounce";
+import CustomModal from "../../components/modal.component"
 
 class Join extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            modalIsOpen: false,
             juegos: null,
             buscar : "",
             buscarU : "",
@@ -22,8 +24,17 @@ class Join extends Component {
        
     }
 
+    handleOpen = (juego) =>{
+        this.setState({modalIsOpen:true});
+        this.setState({juegoU: juego})
+    }
+    handleClose = () =>{
+        this.setState({modalIsOpen:false});
+        this.setState({pass: ""})
+    }
+
     async componentDidMount() {
-        this.fetchData();
+        await this.fetchData();
     }
 
     fetchData  = debounce(async (busqueda) => {
@@ -69,7 +80,8 @@ class Join extends Component {
     }
 
     handleIniciar = (e) =>{
-        e.preventDefault();
+        if(e)
+            e.preventDefault();
         if(this.state.pass === this.state.juegoU.Password){
             this.props.history.push({
                 pathname: '/juego/inicio',
@@ -77,8 +89,13 @@ class Join extends Component {
             })
         }
         else{
-            toast.error("Password incorrecto")
+            toast.error("Contraseña incorrecta")
         }
+    }
+
+    handlePassword = async (pass) => {
+        await this.setState({pass: pass});
+        this.handleIniciar();
     }
 
     handleJugar = (juego) => {
@@ -87,7 +104,6 @@ class Join extends Component {
             state: {juego}
         })
     }
-
 
     render() {
         return (
@@ -101,14 +117,18 @@ class Join extends Component {
                                 <div className="card-body d-flex flex-column">
                                     <div className="d-flex mb-10">
                                         <input className="rounded-left-input" value={this.state.buscarU} onChange={this.onChange} name="buscarU" type="text" placeholder="Indentificador de Partida" autoFocus/>
-                                        <button className="rounded-right-button purple" onClick={ ()=> this.fetchJuego(this.state.buscarU)} >
+                                        <button className="rounded-right-button purple" onClick={ ()=> {this.fetchJuego(this.state.buscarU); this.setState({pass: ""})}} >
                                             <FontAwesomeIcon icon={faSearch} color="#909296"/>
                                         </button> 
                                     </div> 
                                     <input className="rounded-input" value={this.state.pass} onChange={this.onChange} id="pass" name="pass" type="password" placeholder="Password" disabled/>
+                                    <form onSubmit={this.handleIniciar}>
+                                        <button id="iniciar" className="rounded-button mt-20 purple fin" type="submit" disabled>
+                                            Ingresar
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
-                            
                         </div>
                         <div className="card-grid">
                             <div className="card-body flex-column">
@@ -122,7 +142,7 @@ class Join extends Component {
                                 { this.state.juegos ? this.state.juegos.map((juego) => {
                                     if(!juego.Privado){
                                         return (
-                                        < div key={juego.Id} onClick={ () => this.handleJugar(juego)} className="card-juego center-all flex-column">
+                                        < div key={juego.Id} onClick={juego.Password ? () => this.handleOpen(juego) : () => this.handleJugar(juego) } className="card-juego center-all flex-column">
                                             <div className="center-all mb-5">
                                                 <FontAwesomeIcon icon={juego.Password ? faLock : faLockOpen} color="#d1d2d3"/>
                                             </div>
@@ -136,14 +156,10 @@ class Join extends Component {
                                     <span className="subtitulo">No hay resultados</span>
                                 }
                                 </div>
+                                <CustomModal onModalClose={this.handleClose} respuesta={this.handlePassword} LinkOrPassword="Password" modalIsOpen={this.state.modalIsOpen}/>
                             </div>
                             
                         </div>
-                        <form onSubmit={this.handleIniciar}>
-                            <button id="iniciar" className="rounded-button mt-10 gold fin" type="submit" disabled>
-                                Iniciar
-                            </button>
-                        </form>
                     </div>)}
             </div>
         );

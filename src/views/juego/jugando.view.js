@@ -27,11 +27,12 @@ class Jugando extends Component {
       puntaje: 0,
       height: null,
       width: null,
-      musica: null
+      musica: null,
+      loading: true
     };
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     if(this.props.location.state.preguntaActiva != null){
         await this.setState({
           juego: this.props.location.state.juego,
@@ -90,6 +91,7 @@ class Jugando extends Component {
       default:
           this.setState({musica: null})
     }
+    await this.setState({loading: false})
   }
 
   handleSiguiente =(respuestaSel) => {

@@ -14,10 +14,8 @@ class Ranking extends Component {
         }
     }
 
-    componentWillMount() {
-       this.setState({
-        puntaje: this.props.location.state.puntaje
-      });
+    async componentDidMount() {
+       await this.setState({puntaje: this.props.location.state.puntaje});
      }
 
     render() {

@@ -86,7 +86,7 @@ class Empezar extends Component {
                                 <Link className="link-blanco" onClick={this.handleOpen} to="#">
                                     Compartir
                                 </Link>
-                                <CustomModal onModalClose={this.handleClose} juegoUUid={this.state.juego.Uuid} modalIsOpen={this.state.modalIsOpen}/>
+                                <CustomModal onModalClose={this.handleClose} LinkOrPassword="Link" juegoUUid={this.state.juego.Uuid} modalIsOpen={this.state.modalIsOpen}/>
                             </div>
                         </div>
                         <div className="card-preguntas">

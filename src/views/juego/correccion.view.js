@@ -20,7 +20,7 @@ class Correccion extends Component {
         }
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         await this.setState({
           juego: this.props.location.state.juego,
           preguntaActiva: this.props.location.state.preguntaActiva,
@@ -56,7 +56,7 @@ class Correccion extends Component {
             this.setState({graficaD: D === 100 ? 1 : D===0 ? 95 : D});
         }
 
-        this.setState({loading: false})
+        await this.setState({loading: false})
     }
 
     handleSiguiente = async() => {
