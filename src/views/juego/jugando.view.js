@@ -13,6 +13,7 @@ import http from "../../api/gamequizServices";
 import {toast,ToastContainer} from "react-toastify";
 import ReactPlayer from "react-player";
 
+
 class Jugando extends Component {
   constructor(props) {
     super(props);
@@ -55,6 +56,9 @@ class Jugando extends Component {
   }
 
   handleMedia = async() => {
+    if(this.state.preguntaActiva.pregunta.Imagen.includes("default.png"))
+      this.setState({preguntaActiva: {...this.state.preguntaActiva, pregunta: {...this.state.preguntaActiva.pregunta, Imagen: null}}})
+
     let screenSize = window.innerWidth;
     if (screenSize < 577) {
         await this.setState({
@@ -121,7 +125,7 @@ class Jugando extends Component {
 
   render() {
     return (
-      <div>
+      <div className="center-all"> 
         <ToastContainer position="top-center"/>
         {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
         (<div className="d-flex jc-center contenedorR" style={{animation: `fade-in ${easings.easeOutExpo} 2000ms forwards`}}>
@@ -172,7 +176,7 @@ class Jugando extends Component {
                     null
                   }
                 <div className="d-flex jc-sb ai-center">
-                  <Timer time={this.state.preguntaActiva.pregunta.Tiempo}/>
+                  <Timer time={this.state.preguntaActiva.pregunta.Tiempo} finTimer={() => {this.handleSiguiente(this.state.respuestaSel)}}/>
                   <button name="null" onClick={this.onClick} className="rounded-button-s">Siguiente</button>
                 </div>
               </div>

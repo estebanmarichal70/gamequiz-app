@@ -28,22 +28,9 @@ export default {
             addDefaultHeaders();
             return axios.post(API_URL + "/juego", params);
         },
-        crearPregunta(data) {
+        fetchJuegoIdData(id) {
             addDefaultHeaders();
-            return axios.post(API_URL + "/pregunta", data);
-        },
-
-        crearRespuesta(data) {
-            addDefaultHeaders();
-            return axios.post(API_URL + "/respuesta", data);
-        },
-        cambiarEstado(id) {
-            addDefaultHeaders();
-            return axios.post(API_URL + "/juego/cambiar_estado/" + id);
-        },
-        aumentarSelRespuesta(id) {
-            addDefaultHeaders();
-            return axios.post(API_URL + "/respuesta/aumentar/" + id);
+            return axios.get(API_URL + "/juego/" + id);
         },
         fetchJuegoData(nombre) {
             addDefaultHeaders();
@@ -53,10 +40,30 @@ export default {
             addDefaultHeaders();
             return axios.get(API_URL + "/juego/Uuid/" + Uuid);
         },
+        cambiarEstado(id) {
+            addDefaultHeaders();
+            return axios.post(API_URL + "/juego/cambiar_estado/" + id);
+        },
+        aumentarJugados(id) {
+            addDefaultHeaders();
+            return axios.post(API_URL + "/juego/aumentarJugados/" + id);
+        },
+        crearPregunta(data) {
+            addDefaultHeaders();
+            return axios.post(API_URL + "/pregunta", data);
+        },
         fetchPreguntaActualizada(id) {
             addDefaultHeaders();
             return axios.get(API_URL + `/pregunta/${id}`)
-        }
-
+        },
+        crearRespuesta(data) {
+            addDefaultHeaders();
+            return axios.post(API_URL + "/respuesta", data);
+        },
+        aumentarSelRespuesta(id) {
+            addDefaultHeaders();
+            return axios.post(API_URL + "/respuesta/aumentar/" + id);
+        },
+       
     }
 }

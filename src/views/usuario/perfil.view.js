@@ -23,7 +23,6 @@ class Perfil extends Component {
 
     async componentDidMount() {
         this.fetchData();
-        
     }
 
     fetchData  = async () => {
@@ -101,7 +100,7 @@ class Perfil extends Component {
                                                 <tr key={juego.Id}>
                                                     <td className="column1">{juego.Nombre}</td>
                                                     <td className="column2">{juego.Descripcion}</td>
-                                                    <td className="column3">cambiar</td>
+                                                    <td className="column3">{juego.Preguntas.length}</td>
                                                     <td className="column4">{juego.Jugados}</td>
                                                     <td className="column5">{timeago(juego.Creado)}</td>
                                                     <td className="column6">

@@ -7,6 +7,7 @@ export default class Timer extends Component {
     }
 
     componentDidMount() {
+        
         this.myInterval = setInterval(() => {
             const { seconds} = this.state
 
@@ -15,22 +16,23 @@ export default class Timer extends Component {
                     seconds: seconds - 1
                 }))
             }
-           
+           if(seconds === 0) {
+            this.props.finTimer();
+           }
         }, 1000)
+        
     }
 
     componentWillUnmount() {
         clearInterval(this.myInterval)
     }
 
+
     render() {
-        const {seconds } = this.state
+        const { seconds } = this.state
         return (
             <div className="timer center-all">
-                { seconds === 0
-                    ? <span>Fin</span>
-                    : <span>{seconds}</span>
-                }
+                <span>{seconds}</span>
             </div>
         )
     }

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import DragAndDropFileUploader from "../../components/image-uploader/image-uploader.componet";
 import {withRouter} from "react-router";
@@ -7,7 +6,6 @@ import arrow from "./arrow.svg";
 
 import {agregarPreguntaTemporal, crearPregunta, crearRespuesta} from "../../redux/actions";
 import {toast, ToastContainer} from "react-toastify";
-import {DEFAULT_IMAGE_URL} from "../../constants/constants";
 import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
 
@@ -170,6 +168,14 @@ class Configurar extends Component {
         })
     }
 
+    handleEmpezar = () => {
+        this.props.history.push({
+            pathname: '/juego/empezar',
+            state: {juegoId: this.props.juego.Id}
+        })
+    }
+    
+
     render() {
         return (
             <div className="d-flex flex-column contenedorR">
@@ -196,7 +202,7 @@ class Configurar extends Component {
                                                         <div className="titulo">{pregunta.Mensaje}</div>
                                                         <div className="imagen mt-6">
                                                             <img alt="Miniatura de pregunta"
-                                                                src={pregunta.Imagen != null ? pregunta.Imagen : DEFAULT_IMAGE_URL}/>
+                                                                src={pregunta.Imagen}/>
                                                         </div>
                                                     </div>
                                                 )
@@ -367,8 +373,8 @@ class Configurar extends Component {
                         </div>
                     </div>
                     <div className="d-flex jc-center">
-                        <Link className="rounded-button success link center-all fin w-30"
-                            to="/juego/empezar">Finalizar configuracion</Link>
+                        <button className="rounded-button success link center-all fin w-30"
+                            onClick={this.handleEmpezar}>Finalizar configuracion</button>
                     </div> 
                 </div>)}
                 

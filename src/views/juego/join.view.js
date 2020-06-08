@@ -100,7 +100,7 @@ class Join extends Component {
                                 <div className="card-header">Ingresar con Enlace</div>
                                 <div className="card-body d-flex flex-column">
                                     <div className="d-flex mb-10">
-                                        <input className="rounded-left-input" value={this.state.buscarU} onChange={this.onChange} name="buscarU" type="text" placeholder="Join Game (link)" autoFocus/>
+                                        <input className="rounded-left-input" value={this.state.buscarU} onChange={this.onChange} name="buscarU" type="text" placeholder="Indentificador de Partida" autoFocus/>
                                         <button className="rounded-right-button purple" onClick={ ()=> this.fetchJuego(this.state.buscarU)} >
                                             <FontAwesomeIcon icon={faSearch} color="#909296"/>
                                         </button> 

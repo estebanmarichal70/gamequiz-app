@@ -37,10 +37,16 @@ class InicioJuego extends Component {
     handleJugar = (e) =>{
         e.preventDefault();
         if(this.state.juego.Preguntas && this.state.juego.Preguntas.length){
-            this.props.history.push({
-                pathname: '/juego/jugando',
-                state: {juego: this.state.juego}
+            http.services.aumentarJugados(this.state.juego.Id)
+            .then(res => {
+                this.setState({juego: {...this.state.juego, Jugados: this.state.juego.Jugados+1}})
+                
+                this.props.history.push({
+                    pathname: '/juego/jugando',
+                    state: {juego: this.state.juego}
+                })
             })
+            .catch(err =>toast.error(err.toString()))
         } else {
             toast.error("Este juego no tiene preguntas");
         }

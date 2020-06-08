@@ -1043,6 +1043,126 @@ input[type=number] {
 }
 
 
+
+/*==================================================================
+[ Estilos para Empezar partida ]*/
+.card-datos {
+  @extend .card;
+  @media(max-width: $phone-breakpoint){
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .card-body {
+    padding: 40px;
+
+    .imagen-juego {
+      height: 135px;
+      width: 220px;
+      img {
+        border: 2px solid $color-secondary;
+        border-radius: 10px;
+        max-width: 220px; 
+        max-height: 135px;
+      }
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+    .datos{
+      font-size:14px;
+      color: #d1d2d3;
+    }
+    
+    .datos li{
+      list-style:none;
+      border-bottom:dotted;
+      border-bottom-color: #393939;
+      margin-top:10px;
+      padding-bottom:8px;
+    }
+  }
+}
+
+.input-modal{
+  @extend .rounded-input;
+  text-align: center;
+  width: 400px;
+  @media(max-width:$phone-breakpoint){
+    width: 250px;
+  }
+}
+
+.card-preguntas {
+  @extend .card;
+  @media(max-width: $phone-breakpoint){
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .card-body {
+    padding: 20px;
+    span{text-align: start;}
+
+    .vacio{
+      @media(max-width:$phone-breakpoint){
+        display: flex;
+        justify-content: center;
+      }
+    }
+    .cont-preguntas{
+      overflow: auto;
+      overflow-x: hidden;
+      padding: 10px;
+      height: 335px;
+      width: 500px;
+      
+      @media(max-width:$phone-breakpoint){
+        font-size: 13px;
+        width: 270px;
+        height: 325px;
+      }
+      .cont-pregunta {
+        @extend .card;
+        height: 130px;
+        padding: 15px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          transform: scale(1.02);
+        }
+        @media(max-width:$phone-breakpoint){
+          width: 230px;
+          height: 125px;
+        }
+    
+        .imagen-juego {
+          height: 110px;
+          width: 160px;
+          img {
+            border: 2px solid $color-secondary;
+            border-radius: 10px;
+            max-height: 110px;
+            max-width: 160px; 
+            @media(max-width:$phone-breakpoint){
+              max-height: 80px;
+              max-width: 120px;
+            }
+          }
+          transition: all 0.2s ease-in-out;
+          &:hover {
+            transform: scale(1.03);
+          }
+          @media(max-width:$phone-breakpoint){
+            height: 80px;
+            width: 120px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
 /*==================================================================
 [ Estilos para Youtube ]*/
 .card-youtube {
