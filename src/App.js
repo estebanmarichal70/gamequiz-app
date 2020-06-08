@@ -26,7 +26,7 @@ class App extends Component {
                             <Route path='/' render={props => <VistaInicio {...props}/>} exact/>
                             <AuthRoute path='/usuario/perfil' user={this.props.user} exact component={Perfil}/>
                             <Route path='/usuario' render={props => <Auth {...props}/>}/>
-                            <Route path='/juego' user={this.props.user} render={props => <Juego {...props}/>}/>
+                            <Route path='/juego' render={props => <Juego {...props}/>}/>
                             <Route path="/error" exact render={props => <ViewError {...props} />}/>
                             <Redirect to="/error"/>
                         </Switch>
