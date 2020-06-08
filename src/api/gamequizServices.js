@@ -29,15 +29,12 @@ export default {
             return axios.post(API_URL + "/juego", params);
         },
         fetchJuegoIdData(id) {
-            addDefaultHeaders();
             return axios.get(API_URL + "/juego/" + id);
         },
-        fetchJuegoData(nombre) {
-            addDefaultHeaders();
+        fetchJuegos(nombre) {
             return axios.get(API_URL + "/juego?nombre=" + nombre);
         },
         fetchJuegoUuid(Uuid) {
-            addDefaultHeaders();
             return axios.get(API_URL + "/juego/Uuid/" + Uuid);
         },
         cambiarEstado(id) {
@@ -45,7 +42,6 @@ export default {
             return axios.post(API_URL + "/juego/cambiar_estado/" + id);
         },
         aumentarJugados(id) {
-            addDefaultHeaders();
             return axios.post(API_URL + "/juego/aumentarJugados/" + id);
         },
         crearPregunta(data) {

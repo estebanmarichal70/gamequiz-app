@@ -1,9 +1,10 @@
 import React, {Suspense} from "react";
 import "../../assets/sass/App.scss";
-import {Redirect, Route, Switch} from "react-router-dom";
+import {Link, Redirect, Route, Switch} from "react-router-dom";
 import {withRouter} from "react-router";
 import ViewError from "../error";
-import {Link} from "react-router-dom";
+
+import AuthRoute from "../../components/auth-route/auth-route.component";
 
 
 const Crear = React.lazy(() => import("./crear.view"));
@@ -16,55 +17,58 @@ const Correccion = React.lazy(() => import("./correccion.view"));
 const Inicio = React.lazy(() => import("./inicioJuego.view"));
 const Ranking = React.lazy(() => import("./ranking.view"));
 
-const Juego = ({match}) => {
+const Juego = (props) => {
     return (
         <Suspense fallback={<div/>}>
             <div className="center-all">
                 <Link className="link" to="/"><h1 className="titulo-inicio">GameQuiz</h1></Link>
             </div>
             <Switch>
-                <Route
-                    path={`${match.url}/crear`}
-                    render={(props) => <Crear {...props} />}
+                <AuthRoute
+                    path={`${props.match.url}/crear`}
+                    user={props.user}
+                    component={Crear}
+                    exact
+                />
+                <AuthRoute
+                    path={`${props.match.url}/configurar`}
+                    user={props.user}
+                    component={Configurar}
                     exact
                 />
                 <Route
-                    path={`${match.url}/configurar`}
-                    render={(props) => <Configurar {...props} />}
-                    exact
-                />
-                <Route
-                    path={`${match.url}/empezar`}
+                    path={`${props.match.url}/empezar`}
                     render={(props) => <Empezar {...props} />}
                     exact
                 />
                 <Route
-                    path={`${match.url}/jugando`}
+                    path={`${props.match.url}/jugando`}
                     render={(props) => <Jugando {...props} />}
                     exact
                 />
-                <Route
-                    path={`${match.url}/youtube`}
-                    render={(props) => <Youtube {...props} />}
+                <AuthRoute
+                    path={`${props.match.url}/youtube`}
+                    user={props.user}
+                    component={Youtube}
                     exact
                 />
                 <Route
-                    path={`${match.url}/join`}
+                    path={`${props.match.url}/join`}
                     render={(props) => <Join {...props} />}
                     exact
                 />
                 <Route
-                    path={`${match.url}/correccion`}
+                    path={`${props.match.url}/correccion`}
                     render={(props) => <Correccion {...props} />}
                     exact
                 />
                 <Route
-                    path={`${match.url}/inicio`}
+                    path={`${props.match.url}/inicio`}
                     render={(props) => <Inicio {...props} />}
                     exact
                 />
                 <Route
-                    path={`${match.url}/ranking`}
+                    path={`${props.match.url}/ranking`}
                     render={(props) => <Ranking {...props} />}
                     exact
                 />

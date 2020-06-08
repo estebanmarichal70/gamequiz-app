@@ -38,7 +38,7 @@ class Join extends Component {
     }
 
     fetchData  = debounce(async (busqueda) => {
-        await http.services.fetchJuegoData(busqueda)
+        await http.services.fetchJuegos(busqueda)
             .then(res => {
                 if(res.data.length){
                     this.setState({juegos: res.data})
