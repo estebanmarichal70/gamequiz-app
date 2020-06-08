@@ -14,15 +14,22 @@ class InicioJuego extends Component {
         super(props);
         this.state = {
           juego: null,
-          loading: true
+          loading: true,
+          nombre:"",
+          logeado: true
         };
       }
 
     componentDidMount(){
+        if(this.props.user){
+            this.setState({
+                logeado: false
+            })
+        }
         this.setState({
             juego: this.props.location.state.juego,
-          });
-          this.fetchCreadorData(this.props.location.state.juego.UsuarioId);
+        });
+        this.fetchCreadorData(this.props.location.state.juego.UsuarioId);
     }
 
     fetchCreadorData  = async (userId) => {
@@ -41,15 +48,30 @@ class InicioJuego extends Component {
             .then(res => {
                 this.setState({juego: {...this.state.juego, Jugados: this.state.juego.Jugados+1}})
                 
-                this.props.history.push({
-                    pathname: '/juego/jugando',
-                    state: {juego: this.state.juego}
-                })
+                if(this.state.nombre != ""){
+                    this.props.history.push({
+                        pathname: '/juego/jugando',
+                        state: {juego: this.state.juego,
+                                nombre: this.state.nombre,
+                        },
+                    })
+                }
+                else{
+                    this.props.history.push({
+                        pathname: '/juego/jugando',
+                        state: {juego: this.state.juego},
+                    })
+                }
+                
             })
             .catch(err =>toast.error(err.toString()))
         } else {
             toast.error("Este juego no tiene preguntas");
         }
+    }
+
+    handleChange = (e) => {
+        this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
@@ -73,12 +95,12 @@ class InicioJuego extends Component {
                             <img src={this.state.juego.Caratula} alt="Imagen"/>
                         </div>
                     </div>
-                    <div className="mt-20 card-inicio-nombre">
-                        <Link className="rounded-button gold link" to="/usuario/login" style={{display: this.props.user ? "none" : null}}>
+                    <div className="d-flex jc-sb mt-20 card-inicio-nombre">
+                        <Link className="rounded-button gold link mr-20" to="/usuario/login" style={{display: this.props.user ? "none" : null}}>
                             Login 
                         </Link>
                         <form className="d-flex" onSubmit={this.handleJugar}>
-                            <input className="rounded-left-input" type="text" placeholder="Nombre" style={{display: this.props.user ? "none" : null}}/>
+                            <input className="rounded-left-input" type="text" id="nombre" name="nombre" value={this.state.nombre} onChange={this.handleChange} placeholder="Nombre" style={{display: this.props.user ? "none" : null}} required={this.state.logeado}/>
                             <button className={`${this.props.user ? "rounded-button" : "rounded-right-button"} purple`} type="submit">
                                 Jugar 
                             </button>

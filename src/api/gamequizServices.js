@@ -20,7 +20,6 @@ export default {
             return axios.get(API_URL + "/me");
         },
         fetchCreadorData(id) {
-            addDefaultHeaders();
             return axios.get(API_URL + "/usuario/" + id);
         },
         //--------------------------//
@@ -57,9 +56,13 @@ export default {
             return axios.post(API_URL + "/respuesta", data);
         },
         aumentarSelRespuesta(id) {
-            addDefaultHeaders();
             return axios.post(API_URL + "/respuesta/aumentar/" + id);
         },
-       
+        //----------Puntaje----------//
+        agregarPuntaje(data) {
+            addDefaultHeaders();
+            return axios.post(API_URL + "/puntaje/", data );
+        },
+        //--------------------------//
     }
 }
