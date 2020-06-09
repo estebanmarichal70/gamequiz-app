@@ -103,24 +103,23 @@ class Configurar extends Component {
                 juegoId: this.props.juego.Id
             }
             if (!this.state.quiz) {
-                    this.props.crearPregunta(pregunta);
+                this.props.crearPregunta(pregunta);
             } else {
-                if (this.state.respuesta_a !== "" && this.state.respuesta_b !== "" && this.state.respuesta_c !== "" && this.state.respuesta_d !== "")
-                {
+                if (this.state.respuesta_a !== "" && this.state.respuesta_b !== "" && this.state.respuesta_c !== "" && this.state.respuesta_d !== "") {
                     let block = false;
                     const {respuesta_a, respuesta_b, respuesta_c, respuesta_d} = this.state
                     if ([respuesta_b, respuesta_c, respuesta_d].indexOf(respuesta_a) >= 0)
                         block = true
-                    else if([respuesta_c, respuesta_d].indexOf(respuesta_b) >= 0)
+                    else if ([respuesta_c, respuesta_d].indexOf(respuesta_b) >= 0)
                         block = true
-                    else if([respuesta_d].indexOf(respuesta_c) >= 0)
+                    else if ([respuesta_d].indexOf(respuesta_c) >= 0)
                         block = true
-    
-                    if(!block)
+
+                    if (!block)
                         this.props.crearPregunta(pregunta);
                     else
                         toast.error("No pueden haber dos respuestas iguales")
-                }else{
+                } else {
                     toast.error("Por favor, complete todas las respuestas.")
                 }
             }
@@ -176,11 +175,8 @@ class Configurar extends Component {
             mensaje: "",
             puntos: "",
             tiempo: "",
-            tmpId: this.props.location.state
-                ?
-                this.props.location.state.tmpId
-                :
-                Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+            video: null,
+            tmpId: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
         })
     }
 
