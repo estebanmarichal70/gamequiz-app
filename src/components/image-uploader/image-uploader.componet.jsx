@@ -32,6 +32,14 @@ class DragAndDropFileUploader extends React.Component {
             },
         })
 
+        this.uppy.use(XHRUpload, {
+            id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
+            method: "POST",
+            headers: {
+                authorization: `Bearer ${this.props.token}`
+            }
+        })
+
         this.uppy.on('file-added', (file) => {
             this.setState({hasFiles: true})
         });
@@ -57,15 +65,18 @@ class DragAndDropFileUploader extends React.Component {
 
             }
 
+            const {xhrUpload} = this.uppy.getState()
+            console.log(xhrUpload);
 
-            this.uppy.use(XHRUpload, {
-                id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-                endpoint: API_URL + `/upload_image?tipo=${this.props.tipo}&id=${this.props.tipoId}`,
-                method: "POST",
-                headers: {
-                    authorization: `Bearer ${this.props.token}`
+            this.uppy.setState({
+                xhrUpload: {
+                    ...xhrUpload,
+                    endpoint: API_URL + `/upload_image?tipo=${this.props.tipo}&id=${this.props.tipoId}`
                 }
             })
+
+
+
 
             await this.uppy.upload();
 
