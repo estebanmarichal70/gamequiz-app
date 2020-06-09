@@ -103,12 +103,26 @@ class Configurar extends Component {
                 juegoId: this.props.juego.Id
             }
             if (!this.state.quiz) {
-                this.props.crearPregunta(pregunta);
-            } else {
-                if (this.state.respuesta_a !== "" && this.state.respuesta_b !== "" && (this.state.quiz && this.state.respuesta_c !== "" && this.state.respuesta_d !== ""))
                     this.props.crearPregunta(pregunta);
-                else
+            } else {
+                if (this.state.respuesta_a !== "" && this.state.respuesta_b !== "" && this.state.respuesta_c !== "" && this.state.respuesta_d !== "")
+                {
+                    let block = false;
+                    const {respuesta_a, respuesta_b, respuesta_c, respuesta_d} = this.state
+                    if ([respuesta_b, respuesta_c, respuesta_d].indexOf(respuesta_a) >= 0)
+                        block = true
+                    else if([respuesta_c, respuesta_d].indexOf(respuesta_b) >= 0)
+                        block = true
+                    else if([respuesta_d].indexOf(respuesta_c) >= 0)
+                        block = true
+    
+                    if(!block)
+                        this.props.crearPregunta(pregunta);
+                    else
+                        toast.error("No pueden haber dos respuestas iguales")
+                }else{
                     toast.error("Por favor, complete todas las respuestas.")
+                }
             }
         } else {
             toast.error("Por favor, complete todos los campos.")
@@ -124,7 +138,6 @@ class Configurar extends Component {
             const pregunta = this.props.preguntas.list.find(pregunta => pregunta.tmpId === this.state.tmpId);
             if (pregunta !== null) {
                 await this.savePreguntaId(pregunta.Id)
-                console.log(`En configurar ${this.state.preguntaId}`)
 
                 let respuestas_posibles = pregunta.Quiz ? ['a', 'b', 'c', 'd'] : ['a', 'b'];
 
@@ -155,7 +168,6 @@ class Configurar extends Component {
     resetState = async () => {
         await this.setState({
             preguntaId: null,
-            quiz: true,
             correcta: "",
             respuesta_a: "",
             respuesta_b: "",

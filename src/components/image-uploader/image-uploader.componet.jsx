@@ -66,7 +66,6 @@ class DragAndDropFileUploader extends React.Component {
             }
 
             const {xhrUpload} = this.uppy.getState()
-            console.log(xhrUpload);
 
             this.uppy.setState({
                 xhrUpload: {

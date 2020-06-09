@@ -48,7 +48,7 @@ class InicioJuego extends Component {
             .then(res => {
                 this.setState({juego: {...this.state.juego, Jugados: this.state.juego.Jugados+1}})
                 
-                if(this.state.nombre != ""){
+                if(this.state.nombre !== ""){
                     this.props.history.push({
                         pathname: '/juego/jugando',
                         state: {juego: this.state.juego,
@@ -96,7 +96,7 @@ class InicioJuego extends Component {
                         </div>
                     </div>
                     <div className="d-flex jc-sb mt-20 card-inicio-nombre">
-                        <Link className="rounded-button gold link mr-20" to="/usuario/login" style={{display: this.props.user ? "none" : null}}>
+                        <Link className="rounded-button purple link mr-20" to="/usuario/login" style={{display: this.props.user ? "none" : null}}>
                             Login 
                         </Link>
                         <form className="d-flex" onSubmit={this.handleJugar}>

@@ -26,7 +26,8 @@ class Join extends Component {
 
     handleOpen = (juego) =>{
         this.setState({modalIsOpen:true});
-        this.setState({juegoU: juego})
+        this.setState({pass: ""})
+        this.setState({juegoP: juego})
     }
     handleClose = () =>{
         this.setState({modalIsOpen:false});
@@ -80,8 +81,7 @@ class Join extends Component {
     }
 
     handleIniciar = (e) =>{
-        if(e)
-            e.preventDefault();
+        e.preventDefault();
         if(this.state.pass === this.state.juegoU.Password){
             this.props.history.push({
                 pathname: '/juego/inicio',
@@ -93,9 +93,21 @@ class Join extends Component {
         }
     }
 
+    handleIniciarPassword = () => {
+        if(this.state.pass === this.state.juegoP.Password){
+            this.props.history.push({
+                pathname: '/juego/inicio',
+                state: {juego: this.state.juegoP}
+            })
+        }
+        else{
+            toast.error("Contraseña incorrecta")
+        }
+    }
+
     handlePassword = async (pass) => {
         await this.setState({pass: pass});
-        this.handleIniciar();
+        this.handleIniciarPassword();
     }
 
     handleJugar = (juego) => {

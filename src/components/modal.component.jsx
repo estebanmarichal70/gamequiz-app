@@ -6,15 +6,15 @@ import { animations } from 'react-animation'
 
 const customStyles = {
     content : {
-      top                   : '35%',
-      left                  : '35%',
+      top                   : '50%',
+      left                  : '50%',
       right                 : 'auto',
       bottom                : 'auto',
       marginRight           : '-50%',
       transform             : 'translate(-50%, -50%)',
       backgroundColor       : '#202225',
       borderRadius          : '10px',
-      animation             : animations.fadeInUp
+      animation             : animations.fadeIn
     }
   };
 
@@ -31,6 +31,7 @@ export default class CustomModal extends React.Component{
     }
  
     closeModal(){
+        this.setState({input: ""})
         this.props.onModalClose();
   }
 

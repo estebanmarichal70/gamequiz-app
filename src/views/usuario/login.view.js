@@ -17,19 +17,15 @@ class Login extends Component {
         super(props);
         this.state = {
             username: "",
-            password: "",
-            errorPrinted: false
+            password: ""
         };
-
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
     
-    onChange(e) {
+    onChange = (e) =>{
         this.setState({[e.target.name]: e.target.value});
     }
 
-    onSubmit(e) {
+    onSubmit = (e) =>{
         e.preventDefault();
         if (this.state.username !== "" && this.state.password !== "") {
             this.setState({...this.state, errorPrinted: false});

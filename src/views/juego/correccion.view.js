@@ -142,6 +142,7 @@ class Correccion extends Component {
     render() {
         return (
             <div className="center-all">
+                <ToastContainer position="top-center"/>
                 {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
                 (<div className="contenedorR" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                     <div className="d-flex jc-center">

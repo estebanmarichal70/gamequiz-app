@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import '../../assets/sass/ranking.scss';
 import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
-import {toast,ToastContainer} from "react-toastify";
+import {ToastContainer} from "react-toastify";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {withRouter} from "react-router";
@@ -37,11 +37,11 @@ class Ranking extends Component {
                 (<div className="d-flex jc-center flex-column center-all contenedorR" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                     <div className="card-ranking">
                         <div className="card-header">
-                            Animal Quiz
+                            {this.state.juego ? this.state.juego.Nombre : null}
                         </div>
                         <div className="card-body d-flex flex-column">
-                            <strong className="titulo mb-2">Nickname: {this.props.user ? this.props.user.Username : this.state.nombre}</strong>
-                            <strong className="titulo mt-1">Puntaje: {this.state.puntaje}</strong>
+                            <strong className="titulo mb-2"><span className="subtitulo">Usuario:</span> {this.props.user ? this.props.user.Username : this.state.nombre}</strong>
+                            <strong className="titulo mt-1"><span className="subtitulo">Puntaje Total:</span> {this.state.puntaje}</strong>
                             <hr className="barra mb-30"/>
                                 <div className="table style">
                                     <div className="table-head">
@@ -68,6 +68,7 @@ class Ranking extends Component {
                                                         </tr>
                                                     )
                                                 }
+                                                return (null)
                                             })
                                             :
                                             null

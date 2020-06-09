@@ -68,10 +68,10 @@ class Perfil extends Component {
                         </div>
 
                         <div className="botones-perfil d-flex mb-20">
-                            <button className="rounded-button gold mr-10" onClick={this.handleLogout}>
+                            <button className="rounded-button purple mr-10" onClick={this.handleLogout}>
                                 Cerrar Sesión
                             </button>
-                            <Link to="/juego/crear" className="rounded-button gold link">Crear Juego</Link>
+                            <Link to="/juego/crear" className="rounded-button purple link">Crear Juego</Link>
                         </div>
                     </div>
                     <div className="wrap-table">

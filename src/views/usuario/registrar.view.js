@@ -27,9 +27,6 @@ class Registrar extends Component {
             messagePrinted: false
         };
         registerLocale('es', es)
-
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
     handleChange = date => {
@@ -38,11 +35,11 @@ class Registrar extends Component {
         });
     }
 
-    onChange(e) {
+    onChange = (e) => {
         this.setState({[e.target.name]: e.target.value});
     }
 
-    onSubmit(e) {
+    onSubmit = (e) =>{
         e.preventDefault();
         this.setState({...this.state, messagePrinted: false});
        
@@ -70,12 +67,12 @@ class Registrar extends Component {
     componentDidUpdate() {
         if (this.props.error !== '' && !this.state.messagePrinted) {
             this.setState({...this.state, messagePrinted: true});
-            switch (this.props.error) {
+            switch (this.props.error.message) {
                 case "Request failed with status code 409":
                     toast.error("El usuario ingresado ya existe");
                     break;
                 default:
-                    toast.error(this.props.error)
+                    toast.error(this.props.error.message)
                     break;
             }
         }

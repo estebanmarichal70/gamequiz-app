@@ -63,7 +63,7 @@ export default {
             return axios.post(API_URL + "/puntaje/", data );
         },
         fetchPuntaje(juegoId) {
-            return axios.get(API_URL + "/puntaje/ranking?juegoId=" + juegoId );
+            return axios.get(API_URL + "/puntaje?juegoId=" + juegoId );
         }
         //--------------------------//
     }
