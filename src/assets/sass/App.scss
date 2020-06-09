@@ -178,6 +178,7 @@ $large-breakpoint: 1200px;
 /*[ Estilo de links ]*/
 .link {
   text-decoration: none;
+  text-align: center;
 }
 
 .link-blanco {
@@ -771,6 +772,20 @@ input[type=number] {
 .card-inicio {
   @media (max-width: $phone-breakpoint) {
     margin-bottom: 20px;
+  }
+
+  .card-inicio-nombre{
+    @media (max-width: $phone-breakpoint) {
+      flex-direction: column;
+      align-items: center;
+    }
+    .link{
+      @media (max-width: $phone-breakpoint) {
+        margin:0;
+        margin-bottom: 10px;
+        width: 100px;
+      }
+    }
   }
 
   .contenedor-inicio {
@@ -1490,4 +1505,32 @@ input[type=number] {
   @media (max-width: $phone-breakpoint) {
       max-width: 50px;
   }
+}
+
+
+/*==================================================================
+[ Estilos para Ranking ]*/
+.card-ranking {
+  @extend .card;
+  .barra {
+    width: 500px;
+    @media (max-width: $phone-breakpoint) {
+      width: 300px;
+    }
+  }
+  .column1 {
+    width: 50px;
+  }
+  .column2 {
+    width: 150px;
+  }
+  .column3 {
+    width: 50px;
+  }
+  .table-body {
+    border-radius: 6px;
+    max-height: 242px;
+    overflow: auto;
+  }
+
 }

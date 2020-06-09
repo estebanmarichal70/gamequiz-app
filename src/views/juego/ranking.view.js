@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../../assets/sass/ranking.scss';
+import '../../assets/sass/App.scss';
 import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
 import {ToastContainer} from "react-toastify";
