@@ -17,6 +17,7 @@ class Correccion extends Component {
             preguntaActiva: null,
             respuestaSel: null,
             puntaje: null,
+            puntajesPorJuegoId: [],
             graficaA: null,
             graficaB: null,
             graficaC: null,
@@ -93,12 +94,18 @@ class Correccion extends Component {
             })
         }
         else{
-            if(this.props.user){
-                await http.services.agregarPuntaje({
-                    usuarioId: this.props.user.Id,
-                    juegoId: this.state.juego.Id,
-                    puntos: this.state.puntaje
-                })
+            let nombreUser = ""
+            if(this.props.user) {
+                nombreUser = this.props.user.Username
+            }
+            else {
+                nombreUser = this.state.nombre
+            }
+            await http.services.agregarPuntaje({
+                username: nombreUser,
+                juegoId: this.state.juego.Id,
+                puntos: this.state.puntaje
+            })
                 .then(res => {
                     this.setState({
                         juego:{
@@ -108,7 +115,14 @@ class Correccion extends Component {
                     })
                 })
                 .catch(err =>toast.error(err.toString()))
-            }
+            await http.services.fetchPuntaje(this.state.juego.Id)
+                .then( res => {
+                        this.setState({
+                            puntajesPorJuegoId: res.data
+                        })
+                    }
+                )
+                .catch(err =>toast.error(err.toString()))
             this.props.history.push({
                 pathname: '/juego/ranking',
                 state: {
@@ -118,7 +132,8 @@ class Correccion extends Component {
                     },
                     juego: this.state.juego,
                     puntaje: this.state.puntaje,
-                    nombre: this.state.nombre ? this.state.nombre : null
+                    nombre: this.state.nombre ? this.state.nombre : null,
+                    puntajesPorJuegoId: this.state.puntajesPorJuegoId ? this.state.puntajesPorJuegoId : null
                 }
             })
         }

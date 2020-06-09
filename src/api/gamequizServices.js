@@ -60,9 +60,11 @@ export default {
         },
         //----------Puntaje----------//
         agregarPuntaje(data) {
-            addDefaultHeaders();
             return axios.post(API_URL + "/puntaje/", data );
         },
+        fetchPuntaje(juegoId) {
+            return axios.get(API_URL + "/puntaje/ranking?juegoId=" + juegoId );
+        }
         //--------------------------//
     }
 }

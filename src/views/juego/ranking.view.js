@@ -4,6 +4,7 @@ import ReactLoading from "react-loading";
 import { easings } from 'react-animation';
 import {toast,ToastContainer} from "react-toastify";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {withRouter} from "react-router";
 
 class Ranking extends Component {
@@ -14,16 +15,17 @@ class Ranking extends Component {
             puntaje: null,
             juego: null,
             loading: false,
+            puntajesPorJuegoId: [],
             nombre: null
         }
     }
 
     async componentDidMount() {
-        console.log(this.props.location.state.juego)
        await this.setState({
            puntaje: this.props.location.state.puntaje,
            juego: this.props.location.state.juego,
-           nombre: this.props.location.state.nombre
+           nombre: this.props.location.state.nombre,
+           puntajesPorJuegoId: this.props.location.state.puntajesPorJuegoId
         });
      }
 
@@ -56,13 +58,13 @@ class Ranking extends Component {
                                     <div className="table-body scroll">
                                     <table>
                                         <tbody>
-                                        {this.state.juego ? this.state.juego.Puntajes.map((puntaje, index) => {
-                                                if(index < 10){
-                                                    return(
+                                        {this.state.puntajesPorJuegoId ? this.state.puntajesPorJuegoId.map((puntaje, index) => {
+                                                if(index < 10) {
+                                                    return (
                                                         <tr key={puntaje.Id}>
-                                                            <td className="column1">1</td>
-                                                            <td className="column2">{puntaje.Usuario.Nombre}</td>
-                                                            <td className="column3">{puntaje.Puntaje.Puntos}</td>
+                                                            <td className="column1">{index + 1}</td>
+                                                            <td className="column2">{puntaje.Username}</td>
+                                                            <td className="column3">{puntaje.Puntos}</td>
                                                         </tr>
                                                     )
                                                 }
@@ -76,7 +78,7 @@ class Ranking extends Component {
                                 </div>
                         </div>
                     </div>
-                    <button className="mt-20 rounded-button purple"> Finalizar </button>
+                    <Link className="mt-20 rounded-button purple link" to="/juego/join"> Finalizar </Link>
                 </div>)}
             </div>
         );
