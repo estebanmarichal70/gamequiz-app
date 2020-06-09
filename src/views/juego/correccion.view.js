@@ -45,35 +45,40 @@ class Correccion extends Component {
             total += respuesta.VecesSeleccionada;
         })
 
-        let A, B, C, D = 0;
+        if(total !== 0){
+            let A, B, C, D = 0;
 
-        A = parseInt(100 - ((respuestas[0].VecesSeleccionada * 100) / total));
-        B = parseInt(100 - ((respuestas[1].VecesSeleccionada * 100) / total));
-        A = (A === 0 ? 1 : A===100 ? 95 : A);
-        B = (B === 0 ? 1 : B===100 ? 95 : B);
-        this.setState({graficaA: A});
-        this.setState({graficaB: B});
+            A = parseInt(100 - ((respuestas[0].VecesSeleccionada * 100) / total));
+            B = parseInt(100 - ((respuestas[1].VecesSeleccionada * 100) / total));
+            A = (A === 0 ? 1 : A===100 ? 95 : A);
+            B = (B === 0 ? 1 : B===100 ? 95 : B);
+            this.setState({graficaA: A});
+            this.setState({graficaB: B});
 
-        if(this.state.preguntaActiva.pregunta.Quiz){
-            C = parseInt(100 - ((respuestas[2].VecesSeleccionada * 100) / total));
-            D = parseInt(100 - ((respuestas[3].VecesSeleccionada * 100) / total));
-            C = (C === 0 ? 1 : C===100 ? 95 : C);
-            D = (D === 0 ? 1 : D===100 ? 95 : D);
-            this.setState({graficaC: C === 100 ? 1 : C===0 ? 95 : C});
-            this.setState({graficaD: D === 100 ? 1 : D===0 ? 95 : D});
+            if(this.state.preguntaActiva.pregunta.Quiz){
+                C = parseInt(100 - ((respuestas[2].VecesSeleccionada * 100) / total));
+                D = parseInt(100 - ((respuestas[3].VecesSeleccionada * 100) / total));
+                C = (C === 0 ? 1 : C===100 ? 95 : C);
+                D = (D === 0 ? 1 : D===100 ? 95 : D);
+                this.setState({graficaC: C === 100 ? 1 : C===0 ? 95 : C});
+                this.setState({graficaD: D === 100 ? 1 : D===0 ? 95 : D});
+            }
         }
 
         await this.setState({loading: false})
     }
 
     handleSiguiente = async() => {
+        await this.setState({
+            loading: true
+        })
         let index = this.state.preguntaActiva.index + 1;
 
         await this.state.preguntaActiva.pregunta.Respuestas.forEach((respuesta) => {
             if(respuesta.Correcta === true){
                 if(respuesta.Mensaje === this.state.respuestaSel){
                         this.setState({
-                            puntaje: this.state.puntaje + this.state.preguntaActiva.pregunta.Puntos,
+                            puntaje: this.state.puntaje + this.state.preguntaActiva.pregunta.Puntos
                         })
                 }
             }
@@ -106,14 +111,7 @@ class Correccion extends Component {
                 juegoId: this.state.juego.Id,
                 puntos: this.state.puntaje
             })
-                .then(res => {
-                    this.setState({
-                        juego:{
-                            ...this.state.juego,
-                            Puntajes:[...this.state.juego.Puntajes, res.data]
-                        }
-                    })
-                })
+                .then()
                 .catch(err =>toast.error(err.toString()))
             await http.services.fetchPuntaje(this.state.juego.Id)
                 .then( res => {
