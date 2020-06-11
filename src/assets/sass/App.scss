@@ -932,9 +932,17 @@ input[type=number] {
     width: 230px;
   }
 
+  .select-box {
+    font-size: 14px;
+    width: 200px;
+
+    .select-box__list {
+      max-height: 95px;
+    }
+  } 
   .respuesta-correcta-select {
-    margin-top: 15px !important;
-    width: 100% !important;
+    margin-top: 15px;
+    width: 100%;
   }
 
   .checkbox-small {
@@ -944,7 +952,7 @@ input[type=number] {
 
   @media (max-width: $phone-breakpoint) {
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 90px;
   }
 }
 
