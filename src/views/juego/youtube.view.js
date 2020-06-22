@@ -81,6 +81,22 @@ class YoutubeView extends Component {
     handleSubmit = async event => {
         await this.handleSizeVideo(event);
 
+        if(this.state.minStart === "") {
+            this.setState({minStart: "0"})
+        }
+
+        if(this.state.minEnd === "") {
+            this.setState({minEnd: "0"})
+        }
+
+        if(this.state.secStart === "") {
+            this.setState({secStart: "0"})
+        }
+
+        if(this.state.secEnd === "") {
+            this.setState({secEnd: "0"})
+        }
+
         const videoData = {
             url: this.state.inputValueUrl,
             start: parseInt(this.state.minStart) * 60 + parseInt(this.state.secStart),

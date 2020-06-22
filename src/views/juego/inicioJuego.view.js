@@ -20,16 +20,32 @@ class InicioJuego extends Component {
         };
       }
 
-    componentDidMount(){
-        if(this.props.user){
+    async componentDidMount(){
+        const { user, location } = this.props
+        if(user){
             this.setState({
                 logeado: false
             })
         }
-        this.setState({
-            juego: this.props.location.state.juego,
-        });
-        this.fetchCreadorData(this.props.location.state.juego.UsuarioId);
+        const uuid = this.parseQueryParams(location.search)
+        if(uuid) {
+            const response = await http.services.fetchJuegoUuid(uuid)
+            this.setState({ juego: response.data, loading: false }, () => {
+                this.fetchCreadorData(this.state.juego.UsuarioId);
+            })
+        } else {
+            toast.error("URL invaldia")
+        }
+    }
+
+    parseQueryParams(queryParams) {
+        if(queryParams.includes("uuid")) {
+            const split = queryParams.split("=")
+            return split[1]
+        } else {
+            return null
+        }
+
     }
 
     fetchCreadorData  = async (userId) => {
@@ -75,10 +91,19 @@ class InicioJuego extends Component {
     }
 
     render() {
+        const { juego, loading, user, nombre } = this.state
+        if(!juego && loading) {
+            return(
+                <div className="center-all">
+                    <ToastContainer position="top-center"/>
+                    <ReactLoading className="spinner" type="spin" color="#fff"/>
+                </div>
+            )
+        }
         return(
             <div className="center-all">
                 <ToastContainer position="top-center"/>
-                {this.state.loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) : 
+                {loading ? (<ReactLoading className="spinner" type="spin" color="#fff"/>) :
                 (<div className="center-all flex-column card-inicio" style={{animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`}}>
                     <div className="center-all contenedor-inicio contenedorR">
                         <div className="card-info-juego mr-30">
@@ -86,13 +111,13 @@ class InicioJuego extends Component {
                                 Info del Juego
                             </div>
                             <div className="card-body d-flex flex-column">
-                                <input className="rounded-input mb-20" disabled type="text" value={this.state.user ? "Creador: "+ this.state.user.Username : ""}/>
-                                <input className="rounded-input mb-20" disabled type="text"  value={this.state.juego ? "Titulo: "+ this.state.juego.Nombre : ""}/>
-                                <textarea className="rounded-textarea" disabled value={this.state.juego ? "Descripcion: "+ this.state.juego.Descripcion : ""}/>
+                                <input className="rounded-input mb-20" disabled type="text" value={user ? "Creador: "+ user.Username : ""}/>
+                                <input className="rounded-input mb-20" disabled type="text"  value={juego ? "Titulo: "+ juego.Nombre : ""}/>
+                                <textarea className="rounded-textarea" disabled value={juego ? "Descripcion: "+ juego.Descripcion : ""}/>
                             </div>
                         </div>
                         <div className="imagen">
-                            <img src={this.state.juego.Caratula} alt="Imagen"/>
+                            <img src={juego.Caratula} alt="Imagen"/>
                         </div>
                     </div>
                     <div className="d-flex jc-sb mt-20 card-inicio-nombre">
@@ -100,7 +125,7 @@ class InicioJuego extends Component {
                             Login 
                         </Link>
                         <form className="d-flex" onSubmit={this.handleJugar}>
-                            <input className="rounded-left-input" type="text" id="nombre" name="nombre" value={this.state.nombre} onChange={this.handleChange} placeholder="Nombre" style={{display: this.props.user ? "none" : null}} required={this.state.logeado}/>
+                            <input className="rounded-left-input" type="text" id="nombre" name="nombre" value={nombre} onChange={this.handleChange} placeholder="Nombre" style={{display: this.props.user ? "none" : null}} required={this.state.logeado}/>
                             <button className={`${this.props.user ? "rounded-button" : "rounded-right-button"} purple`} type="submit">
                                 Jugar 
                             </button>

@@ -10,6 +10,7 @@ import ReactLoading from "react-loading";
 import {easings} from 'react-animation';
 
 import gamequizServices from "../../api/gamequizServices";
+import Video from "../../components/video-youtube.component";
 
 class Configurar extends Component {
 
@@ -19,6 +20,7 @@ class Configurar extends Component {
             preguntas: [],
             preguntaId: null,
             quiz: true,
+            flag: true,
             correcta: "",
             respuesta_a: "",
             respuesta_b: "",
@@ -70,6 +72,9 @@ class Configurar extends Component {
                 let question = this.props.preguntas.list.find(pregunta => pregunta.tmpId === this.state.tmpId);
                 if (question) {
                     this.setState({...this.state, ...question});
+                    if(question.video.url != null) {
+                        this.setState({flag: false})
+                    }
                 }
             }
         }
@@ -340,8 +345,8 @@ class Configurar extends Component {
                                             <span className="titulo">o</span>
                                             <hr className="w-30 separador"/>
                                         </div>
-                                        <button className="rounded-button link mt-5" onClick={this.handleAgregarVideo}>
-                                            Agregar video
+                                         <button className="rounded-button link mt-5" onClick={this.handleAgregarVideo}>
+                                             {this.state.flag ? 'Agregar video' : 'Cambiar video' }
                                         </button>
                                     </div>
                                     <div className="d-flex flex-column">

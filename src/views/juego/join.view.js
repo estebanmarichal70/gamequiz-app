@@ -21,7 +21,6 @@ class Join extends Component {
             pass : "",
             loading: true
         };
-       
     }
 
     handleOpen = (juego) =>{
@@ -113,7 +112,7 @@ class Join extends Component {
     handleJugar = (juego) => {
         this.props.history.push({
             pathname: '/juego/inicio',
-            state: {juego}
+            search: `?uuid=${juego.Uuid}`
         })
     }
 
