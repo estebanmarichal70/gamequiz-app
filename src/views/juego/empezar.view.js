@@ -17,7 +17,8 @@ class Empezar extends Component {
         this.state = {
             modalIsOpen: false,
             juego: null,
-            loading: true
+            loading: true,
+            link: 'localhost:3000/juego/inicio?uuid='
         };
     }
 
@@ -30,7 +31,11 @@ class Empezar extends Component {
         .catch(err =>toast.error(err.toString()))
     }
 
-    handleOpen = () =>{
+    handleOpen = async () =>{
+        let concat = this.state.link.concat(this.state.juego.Uuid)
+        await this.setState({
+            shareLink: concat
+        })
         this.setState({modalIsOpen:true});
     }
     handleClose = () =>{
@@ -86,7 +91,7 @@ class Empezar extends Component {
                                 <Link className="link-blanco" onClick={this.handleOpen} to="#">
                                     Compartir
                                 </Link>
-                                <CustomModal onModalClose={this.handleClose} LinkOrPassword="Link" juegoUUid={this.state.juego.Uuid} modalIsOpen={this.state.modalIsOpen}/>
+                                <CustomModal onModalClose={this.handleClose} LinkOrPassword="Link" juegoUUid={this.state.shareLink} modalIsOpen={this.state.modalIsOpen}/>
                             </div>
                         </div>
                         <div className="card-preguntas">
