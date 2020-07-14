@@ -10,7 +10,6 @@ import ReactLoading from "react-loading";
 import {easings} from 'react-animation';
 
 import gamequizServices from "../../api/gamequizServices";
-import Video from "../../components/video-youtube.component";
 
 class Configurar extends Component {
 
@@ -155,6 +154,7 @@ class Configurar extends Component {
                     }
                     this.props.crearRespuesta(respuesta);
                 });
+                this.setState({flag: true})
                 document.getElementById("0").checked = true;
             }
         }

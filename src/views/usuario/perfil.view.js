@@ -3,7 +3,7 @@ import '../../assets/sass/App.scss';
 
 import {Link, withRouter} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimesCircle, faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import {faTimesCircle, faCheckCircle, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 import http from "../../api/gamequizServices";
 import {toast,ToastContainer} from "react-toastify";
 import {timeago} from "../../utils";
@@ -32,6 +32,18 @@ class Perfil extends Component {
             })
             .catch(err => toast.error(err.toString()))
         this.setState({loading:false})
+    }
+
+    handleEmp = async(id) => {
+        await this.setState({juegoId: id})
+        this.handleEmpezar()
+    }
+
+    handleEmpezar = () => {
+        this.props.history.push({
+            pathname: '/juego/empezar',
+            state: {juegoId: this.state.juegoId}
+        })
     }
 
     handleLogout = () => {
@@ -108,7 +120,14 @@ class Perfil extends Component {
                                                             <FontAwesomeIcon
                                                             icon={juego.Activo ? faTimesCircle : faCheckCircle}
                                                             color="#909296"/>
-                                                            {juego.Activo ? " Desactivar" : " Activar"}
+                                                            {juego.Activo ? " Desactivar " : " Activar "}
+                                                        </Link>
+                                                        |
+                                                        <Link className="link-gris ml-5" to="#" onClick={ () => this.handleEmp(juego.Id)}>
+                                                            <FontAwesomeIcon
+                                                            icon={faInfoCircle}
+                                                            color="#909296"/>
+                                                            &nbsp;Información
                                                         </Link>
                                                     </td>
                                                 </tr>)
